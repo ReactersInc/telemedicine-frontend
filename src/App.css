@@ -1,0 +1,9 @@
+button{
+    cursor: pointer;
+}
+input:active{
+    border: transparent;
+}
+.noScroll{
+    overflow: unset;
+}

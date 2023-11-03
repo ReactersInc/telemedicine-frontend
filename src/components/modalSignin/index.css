@@ -1,0 +1,98 @@
+.overlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(164, 164, 164, 0.732);
+}
+.modal{
+    display: flex;
+    justify-content: center;
+    
+}
+.modal-background{
+    min-width: 270px;
+    position: absolute;
+    top: 20%;
+    z-index: 2;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2% 3%;
+    box-shadow: 5px 5px 10px #5d5d5d;
+    
+}
+.modalRow{
+    margin: 10px 0;
+    min-width: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.modalRow input{
+    border: transparent;
+    border-bottom: 1px solid rgb(163, 163, 163);
+    min-width: 270px
+}
+.signinText{
+    background-color: #D5DEED;
+    width: 100%;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+}
+.modalContainer{
+    position: relative;
+}
+.closeModal{
+    position: absolute;
+    right: -9%;
+    top: -9%;
+}
+.closeModal button{
+    border: transparent;
+    color: white;
+    background-color: #D5DEED;
+    border-radius: 50%;
+}
+.modalPatientSelector{
+    width: 50%;
+    text-align: center;
+    background-color: #2CDA6D;
+    color: white;
+    padding: 5px 0;
+    cursor: pointer;
+}
+.modalDoctorSelector{
+    width: 50%;
+    text-align: center;
+    background-color: #D5DEED;
+    color: #2CDA6D;
+    padding: 5px 0;
+    cursor: pointer;
+}
+.loginBtn{
+    background-color: #2CDA6D;
+    color: white;
+    width: 100%;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+}
+@media screen and (max-width: 900px) {
+    .closeModal{
+        right: -7%;
+        top: -7%;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .closeModal{
+        transform: scale(0.8);
+        right: -6%;
+        top: -7%;
+    }
+  }

@@ -1,0 +1,8 @@
+.Circle{
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+.Label{
+    position: absolute;
+}

@@ -1,0 +1,93 @@
+
+.container{
+  display: flex;
+  justify-content: center;
+  background-color: #F5F5F5;
+  min-height: 90vh;
+  padding-top: 20px;
+}
+.registerForm{
+  width: max-content;
+  background-color: #FFFFFF;
+  padding: 1vw;
+  border-radius: 0 0 10px 10px;
+
+}
+.header{
+  text-align: center;
+  width: 100%;
+  background-color: #D5DEED;
+  border-radius:10px 10px 0 0;
+  padding: 10px 0;
+}
+.row{
+  margin: 10px 0;
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.selector{
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 500px;
+  width: 80%;
+  height: max-content;
+  border: 1px solid blue;
+  border-radius: 10px;
+}
+.patientSelector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: max-content;
+  padding: 0 10% ;  
+  color: white;
+  background-color:  #2CDA6D;
+  padding: 5px 0;
+}
+.doctorSelector{
+  width: 50%;
+  padding: 0 10%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: max-content;
+  padding: 0 10% ;  
+  color: #2CDA6D;
+  background-color: #D5DEED;
+  padding: 5px 0;
+}
+.patientSelector:hover, .doctorSelector:hover{
+  cursor: pointer;
+}
+
+.submitBtn{
+  border: #2CDA6D solid;
+  background-color: #2CDA6D;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.signinBtn{
+  border: #2CDA6D solid;
+  background-color: #FFFFFF;
+  color: #2CDA6D;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.mandatory{
+  font-size: 0.8rem;
+  color: red;
+}
+@media screen and (max-width: 520px) {
+  .row{
+    font-size: 0.9rem;
+  }
+}
