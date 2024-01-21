@@ -25,6 +25,7 @@
   align-items: center;
   justify-content: center;
   background-color: #FFFFFF;
+  box-shadow: 0 10px 10px #2cda6c30;
 }
 .btns{
   display: flex;

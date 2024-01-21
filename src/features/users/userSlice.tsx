@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState: { email:string, dob:string, exp:number, gender:string, name:string, photoUrl:string, state:string, timeStamp: string } = {
+const initialState: { id:string, email:string, dob:string, exp:number, gender:string, name:string, photoUrl:string, state:string, timeStamp: string, phone:string } = {
+  id:"",
   email:"",
   dob:"",
   exp:-1,
@@ -8,7 +9,8 @@ const initialState: { email:string, dob:string, exp:number, gender:string, name:
   name:"",
   photoUrl:"",
   state:"",
-  timeStamp:""
+  timeStamp:"",
+  phone:""
 
 }
 
@@ -17,6 +19,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     userLogin: (state, action) => {
+      state.id  = action.payload.id
       state.email = action.payload.email;
       state.dob = action.payload.dob;
       state.exp = action.payload.exp;
@@ -25,8 +28,10 @@ const userSlice = createSlice({
       state.photoUrl = action.payload.photoUrl;
       state.state = action.payload.state;
       state.timeStamp = action.payload.timeStamp;
+      state.phone = action.payload.phone;
     },
     userLogout: (state)=>{
+      state.id=""
       state.email = ""
       state.dob = ""
       state.exp = -1
@@ -35,6 +40,7 @@ const userSlice = createSlice({
       state.photoUrl = ""
       state.state = ""
       state.timeStamp = ""
+      state.phone = ""
     }
   }
 })

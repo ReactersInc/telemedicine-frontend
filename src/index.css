@@ -1,8 +1,9 @@
 body {
   margin: 0;
-  font-family: Kanit;
+  font-family:Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F5F9FE;
 }
 
 code {

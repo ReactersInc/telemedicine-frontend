@@ -1,0 +1,141 @@
+.homeBanner{
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.homeBannerText{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 50%;
+}
+.homeBannerText > h1{
+    font-size: 5rem;
+    margin: 0;
+}
+.homeBannerText > h1 > span{
+    color: #2CDA6D;
+}
+.homeBannerText > p{
+    font-size: 2rem;
+}
+.homeBannerBtn{
+    height: max-content;
+    width: max-content;
+    padding: 15px;
+    font-size: 2rem;
+    color: #FFFFFF;
+    background-color: #2CDA6D;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.homeBannerImage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+.homeService > h2{
+    color: #2CDA6D;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+.homeService > h1{
+    display: flex;
+    justify-content: center;
+}
+.homeServiceShow{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.homeServiceCard{
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    height: 250px;
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.homeServiceCard > img{
+    height: 100px;
+    width: 100px;
+}
+.homeServiceCard > p{
+    margin: 0;
+}
+
+.homeServiceCard:hover{
+    box-shadow: 5px 5px 40px #000000 ;
+    animation-duration: 2s;
+}
+.homeAboutUs{
+    padding-top: 40px;
+    width: 100%;
+}
+.homeAboutUs > h2 {
+    color: #2CDA6D;
+    display: flex;
+    justify-content: center;
+}
+.homeAboutContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeAboutVideo {
+    width: 25%;
+}
+.homeAboutVideo > video {
+    border-radius: 10px;
+}
+.homeAboutText{
+    width: 60%;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-left: 5%;
+}
+.homeContactContainer{
+    width: 100%;
+}
+.homeContactContainer > h2{
+    color: #2CDA6D;
+    display: flex;
+    justify-content: center;
+}
+.homeContactContainer{
+    background-color: #FFFFFF;
+    padding-top: 30px;
+}
+.homeContacts{
+    display: flex;
+    align-items: center; 
+    justify-content: space-evenly;
+}
+.homeContactLineContainer{
+    width: 40%;
+}
+.homeContactLine{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-bottom: 20px;
+}
+.homeContactLine > div > div > h3{
+    color: #2CDA6D;
+    margin: 0;
+}
+.homeContactLine > div > div > p{
+    margin: 0;
+}
+.homeContactLine > img{
+    margin-right: 20px;
+}
+.homeContactMap{
+    width: 40%;
+}

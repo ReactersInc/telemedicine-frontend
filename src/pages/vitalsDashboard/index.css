@@ -1,0 +1,131 @@
+.vitals-page{
+    display: flex;
+}
+/* .vert-nav{
+    height: 95vh;
+    width: 120px;
+    background-color: #FFFFFF ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+} */
+#vitals-dashboard{
+    margin-left: 160px;
+}
+.page-label{
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.page-label select{
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.vitals-table{
+    display: flex;
+    font-family: Kanit;
+}
+.row-vitals{
+    display: flex;
+    justify-content: left;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.Circle-vitals{
+    background-color: #FFFFFF;
+    width: 150px;
+    height: 200px;
+    padding: 5px 30px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px; 
+    margin: 10px 20px 0px 20px;
+}
+
+.col-vitals{
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 300px;
+    padding: 5px 30px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin: 10px 20px 0px 20px;
+}
+.progress{
+    position: relative;
+}
+
+.progress-col{
+    position: relative;
+}
+
+.Label-vitals-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    height: 150px;
+    width: 150px;
+    font-size: 2rem;
+}
+
+.Label-vitals{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+    font-size: 2rem;
+}
+
+#sys{
+    background: linear-gradient(180deg, #A9FFC6 0%, #FFF 100%);
+}
+
+#dia{
+    background: linear-gradient(180deg, #80FF80 0%, #FFF 100%);
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#vitalsIcon{
+    background-color: #2CDA6D;
+    border-radius: 20px;
+}
+.sidenav div{
+    padding: 20px;
+    cursor: pointer;
+}
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+} 

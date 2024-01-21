@@ -146,6 +146,17 @@ function DoctorDetails() {
           <input type="text" id="confirmPassword" name="confirmPassword" required/>
         </div>
       </div>
+      <div className="inputDoctorConfirmPassword">
+        <label htmlFor="otp">OTP *</label>
+        <br />
+        <input type="text" id="otp" name="otp" required/>
+        <br />
+        <br />
+        <button type="button" className="submitBtn">
+          Request OTP
+        </button>
+      </div>
+      <br />
       <button type="button" className="submitBtn">
         Submit
       </button>

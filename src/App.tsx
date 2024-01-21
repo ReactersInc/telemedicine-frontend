@@ -1,13 +1,17 @@
 import React from 'react';
 import './App.css';
-import Dashboard from './pages/dashboard';
+// import Dashboard from './pages/patientDashboard';
 import Register from './pages/register';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import { Provider } from 'react-redux'
 import { store, persistor } from "./app/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Home from './pages/home'
-import Test from './pages/test';
+import VitalsDashboard from './pages/vitalsDashboard';
+import Appointment from './pages/appointment';
+import PatientDashboard from './pages/patientDashboard';
+import DoctorDashboard from './pages/doctorDashboard';
+// import EcgGraph from './pages/test2'
 
 export const router = [
   {
@@ -19,13 +23,29 @@ export const router = [
     element: <Register/>,
   },
   {
-    path: "/dashboard",
-    element: <Dashboard/>,
+    path: "/patientdashboard",
+    element: <PatientDashboard/>,
   },
   {
-    path: "/test",
-    element: <Test/>
-  }
+    path: "/vitals",
+    element: <VitalsDashboard/>
+  },
+  {
+    path: "/appointment",
+    element: <Appointment/>
+  },
+  {
+    path: "/patientdashboard",
+    element: <PatientDashboard/>,
+  },
+  {
+    path: "/doctordashboard",
+    element: <DoctorDashboard/>,
+  },
+  // {
+  //   path: "/test2",
+  //   element: <EcgGraph/>
+  // }
 ]
 
 function App() {

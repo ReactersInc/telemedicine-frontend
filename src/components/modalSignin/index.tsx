@@ -16,6 +16,17 @@ interface DecodedJwtPayload {
     timestamp: string;
   }
 
+  interface DecodedJwtPayload {
+    email: string;
+    dob: string;
+    exp: number;
+    gender: string;
+    name: string;
+    photourl: string;
+    state: string;
+    timestamp: string;
+  }
+
 function ModalSignin(){
     const dispatch = useDispatch()
 
@@ -27,6 +38,7 @@ function ModalSignin(){
         dispatch(setModal())
     }
 
+    const [userType, setUserType] = useState(0)
     const [patientSelector, setPatientSelector] = useState("modalPatientSelector")
     const [doctorSelector, setDoctorSelector] = useState("modalDoctorSelector")
 
@@ -35,6 +47,7 @@ function ModalSignin(){
         {
             setPatientSelector("modalDoctorSelector");
             setDoctorSelector("modalPatientSelector");
+            setUserType(1);
         }
     }
 
@@ -43,6 +56,7 @@ function ModalSignin(){
         {
             setPatientSelector("modalPatientSelector");
             setDoctorSelector("modalDoctorSelector");
+            setUserType(0);
         }
     }
 
@@ -89,7 +103,8 @@ function ModalSignin(){
                         timeStamp:decodedJwt.timestamp
                     }))
 
-                    window.location.href = "/dashboard"
+                    // window.location.href = "/dashboard"
+                    window.location.href = (userType)?"doctordashboard":"patientdashboard"
 
                 } else {
                     console.error("Invalid response structure.");

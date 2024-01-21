@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-input {
+      padding: 8px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      padding: 12px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="dropdown">
+  <input type="text" class="dropdown-input" placeholder="Search..." oninput="filterDropdown()">
+  <div class="dropdown-content" id="myDropdown">
+    <a href="#">Option 1</a>
+    <a href="#">Option 2</a>
+    <a href="#">Option 3</a>
+    <a href="#">Option 4</a>
+    <a href="#">Option 5</a>
+  </div>
+</div>
+
+<script>
+function filterDropdown() {
+  var input, filter, dropdown, options, i;
+  input = document.querySelector('.dropdown-input');
+  filter = input.value.toUpperCase();
+  dropdown = document.getElementById('myDropdown');
+  options = dropdown.getElementsByTagName('a');
+
+  for (i = 0; i < options.length; i++) {
+    if (options[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+      options[i].style.display = '';
+    } else {
+      options[i].style.display = 'none';
+    }
+  }
+
+  dropdown.classList.add('show');
+}
+
+// Close the dropdown if the user clicks outside of it
+window.addEventListener('click', function(event) {
+  var dropdown = document.getElementById('myDropdown');
+  if (!event.target.matches('.dropdown-input')) {
+    dropdown.classList.remove('show');
+  }
+});
+
+// Display the dropdown when the input is clicked
+document.querySelector('.dropdown-input').addEventListener('click', function() {
+  document.getElementById('myDropdown').classList.add('show');
+});
+</script>
+
+</body>
+</html>

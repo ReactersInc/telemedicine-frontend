@@ -23,20 +23,20 @@ function HorizontalNav(){
     <>
     <div className="navContainer">
     <div className="navbar">
-            <div className="logo">
+            <div className="logo" >
                 Navalogy
             </div>
             <div className="btns">
-                <a href="#" className="navLink">Home</a>
+                <a href="/#home" className="navLink">Home</a>
                 &nbsp;&nbsp;
                 &nbsp;&nbsp;
-                <a href="#" className="navLink">Service</a>
+                <a href="/#service" className="navLink">Service</a>
                 &nbsp;&nbsp;
                 &nbsp;&nbsp;
-                <a href="#" className="navLink">About us</a>
+                <a href="/#aboutUs" className="navLink">About us</a>
                 &nbsp;&nbsp;
                 &nbsp;&nbsp;
-                <a href="#" className="navLink">Contact</a> 
+                <a href="/#contact" className="navLink">Contact</a> 
                 &nbsp;&nbsp; 
                 &nbsp;&nbsp;
                 <button className="signinBtn" onClick={toggleModal}>Sign in</button>
@@ -46,15 +46,15 @@ function HorizontalNav(){
         </div>
     </div>
         
-        <div>
-        {
-            isModalOpen && (
-                
-                    <ModalSignin/>
-               
-            )
-        }
-        </div>
+    <div>
+    {
+        isModalOpen && (
+            
+                <ModalSignin/>
+            
+        )
+    }
+    </div>
         
         
     </>
