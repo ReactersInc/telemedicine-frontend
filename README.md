@@ -1,1 +1,1 @@
-# telemedicine-frontend
+# telemedicine-frontend-repo
