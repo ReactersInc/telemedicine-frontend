@@ -9,3 +9,6 @@ body {
 code {
   font-family: Manrope;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
