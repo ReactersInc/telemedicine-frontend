@@ -54,7 +54,7 @@ function HorizontalNav() {
           </button>
           &nbsp;&nbsp;
           <a href="/register">
-            <button className="SignBtn">Sign up</button>
+            <button className="SignBtn">Register</button>
           </a>
         </div>
       </div>

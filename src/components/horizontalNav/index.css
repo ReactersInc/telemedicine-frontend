@@ -2,25 +2,27 @@
   border: #2cda6d solid;
   background-color: #2cda6d;
   color: #ffffff;
-  padding: 12px 15px;
+  padding: 12px 18px;
   border-radius: 5px;
 }
 .signinBtn {
   border: #2cda6d solid;
   background-color: #ffffff;
   color: #2cda6d;
-  padding: 12px 15px;
+  padding: 12px 18px;
   border-radius: 5px;
 }
 
 .navbar {
-  position: static;
-  padding: 32px 60px;
+  padding-top: 16px;
+  padding-right: 20px;
+  padding-left: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #f5f9fe;
 }
+
 .btns {
   display: flex;
   width: 80vw;
@@ -36,6 +38,7 @@
   text-decoration: none;
   position: relative;
   height: max-content;
+  font-weight: 500;
 }
 .navLink::after {
   content: "";

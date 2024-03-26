@@ -10,3 +10,7 @@ input:active {
 .webcontainer {
   margin: 0px 100px;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

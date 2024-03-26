@@ -31,7 +31,7 @@ function Home() {
       </div>
 
       <div className={styles.homeService} id="service">
-        <h2>SERVICES</h2>
+        <h2 className="text-2xl font-semibold">Services</h2>
         <h1>Experienced in multiple medical practices</h1>
         <div className={styles.homeServiceShow}>
           <div className={styles.homeServiceCard}>
@@ -61,7 +61,7 @@ function Home() {
         </div>
       </div>
       <div className={styles.homeAboutUs} id="aboutUs">
-        <h2>About Us</h2>
+        <h2 className="text-2xl font-semibold">About Us</h2>
         <div className={styles.homeAboutContainer}>
           <div className={styles.homeAboutVideo}>
             <video width="100%" height="auto" autoPlay muted>
@@ -82,7 +82,7 @@ function Home() {
         </div>
       </div>
       <div className={styles.homeContactContainer} id="contact">
-        <h2>Contact Us</h2>
+        <h2 className="text-2xl font-semibold">Contact Us</h2>
         <div className={styles.homeContacts}>
           <div className={styles.homeContactLineContainer}>
             <div className={styles.homeContactLine}>
