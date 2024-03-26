@@ -1,44 +1,37 @@
-
-.submitBtn{
-    border: #2CDA6D solid;
-    background-color: #2CDA6D;
-    color: #FFFFFF;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-.signinBtn{
-  border: #2CDA6D solid;
-  background-color: #FFFFFF;
-  color: #2CDA6D;
-  padding: 5px 10px;
+.SignBtn {
+  border: #2cda6d solid;
+  background-color: #2cda6d;
+  color: #ffffff;
+  padding: 12px 15px;
   border-radius: 5px;
 }
-.navContainer{
-  height: 2.5rem;
-  position: static;
-
+.signinBtn {
+  border: #2cda6d solid;
+  background-color: #ffffff;
+  color: #2cda6d;
+  padding: 12px 15px;
+  border-radius: 5px;
 }
-.navbar{
-  position: fixed;
-  padding: 7px 0;
+
+.navbar {
+  position: static;
+  padding: 32px 60px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #FFFFFF;
-  box-shadow: 0 10px 10px #2cda6c30;
+  justify-content: space-between;
+  background-color: #f5f9fe;
 }
-.btns{
+.btns {
   display: flex;
   width: 80vw;
   justify-content: end;
-  margin-right: 2%;
 }
-.logo{
+.logo {
   display: flex;
   width: 20vw;
   justify-content: left;
 }
-.navLink{
+.navLink {
   color: black;
   text-decoration: none;
   position: relative;
@@ -51,21 +44,20 @@
   bottom: 0;
   width: 0;
   height: 2px;
-  background-color: #2CDA6D;
-  transition:  0.3s ;
+  background-color: #2cda6d;
+  transition: 0.3s;
 }
 
-.navLink:hover{
-  color: #2CDA6D;
+.navLink:hover {
+  color: #2cda6d;
 }
 
 .navLink:hover::after {
   width: 100%;
 }
 
-
 @media screen and (max-width: 520px) {
-  .navbar{
+  .navbar {
     font-size: 0.9rem;
   }
 }
