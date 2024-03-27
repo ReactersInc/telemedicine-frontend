@@ -155,55 +155,66 @@ function VitalsDashboard() {
     <div>
       <div className="vitals-page">
         <div className="sidenav">
-          <img src="./static/profile-icon.png" height="100px" alt="" />
+          <img
+            src="./static/profile-icon.png"
+            height="100px"
+            alt=""
+            className="mt-4 ml-12"
+          />
           <h2>{name}</h2>
-          <div>
+          <div className="flex mt-6 space-x-1 justify-items-center">
             <a href="/patientdashboard">
-              <img
-                src="./static/dashboard-icon.png"
-                height="30px"
-                width="30px"
-                alt=""
-              />
+              <img src="./static/menu.png" height="30px" width="30px" alt="" />
+            </a>
+            <a href="/patientdashboard" className="font-semibold text-2xl pt-1">
+              Home
             </a>
           </div>
-          <div>
+          <div className="flex space-x-1 justify-items-center">
             <a href="/appointment">
               <img
-                src="./static/appointment-icon.png"
+                src="./static/appointment.png"
                 height="30px"
                 width="30px"
                 alt=""
               />
             </a>
+            <a href="/appointment" className="font-semibold text-2xl pt-1">
+              Appointments
+            </a>
           </div>
-          <div>
+          <div className="flex space-x-1 justify-items-center">
             <a href="/history">
               <img
-                src="./static/history-icon.png"
+                src="./static/patient.png"
                 height="30px"
                 width="30px"
                 alt=""
               />
             </a>
+            <a href="/history" className="font-semibold text-2xl pt-1">
+              History
+            </a>
           </div>
-          <div id="vitalsIcon">
+          <div className="flex space-x-2 justify-items-center">
             <a href="/vitals">
               <img
-                src="./static/vitals-icon.png"
+                src="./static/robotic-hand.png"
                 height="30px"
                 width="30px"
                 alt=""
               />
             </a>
+            <a href="/vitals" className="font-semibold text-2xl pt-1 ">
+              Vitals
+            </a>
           </div>
-          <div onClick={handleLogout}>
-            <img
-              src="./static/logout-icon.png"
-              height="30px"
-              width="30px"
-              alt=""
-            />
+          <div
+            onClick={handleLogout}
+            className="flex mt-auto pb-4 ml-2 space-x-4 justify-items-center text-red-500"
+          >
+            <img src="./static/power.png" height="35px" width="35px" alt="" />
+            <h3 className="font-semibold text-2xl">Logout</h3>
           </div>
         </div>
         <div id="vitals-dashboard">

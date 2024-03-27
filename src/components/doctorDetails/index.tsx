@@ -206,7 +206,7 @@ function DoctorDetails() {
               <select
                 name="bloodGroup"
                 id="bloodGroup"
-                className="style_input"
+                className="style_input w-full"
                 required
               >
                 <option value="A+">A+</option>

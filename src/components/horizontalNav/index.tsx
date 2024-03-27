@@ -42,7 +42,7 @@ function HorizontalNav() {
           </a>
           &nbsp;&nbsp; &nbsp;&nbsp;
           <a href="/#aboutUs" className="navLink">
-            About us
+            About Us
           </a>
           &nbsp;&nbsp; &nbsp;&nbsp;
           <a href="/#contact" className="navLink">
