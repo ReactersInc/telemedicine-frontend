@@ -1,9 +1,26 @@
-.style_input {
+/* styles.css */
+input.style_input,
+select.style_input {
   padding: 10px;
-  border-color: 1px solid #2cda6d;
+  border: 1px solid #2cda6d; /* Default border color */
   border-radius: 10px;
   margin-top: 2px;
   max-width: 100%;
+  background-color: white; /* Set the background color */
+  transition: box-shadow 0.3s, border-color 0.3s; /* Add transition for border color */
+}
+
+/* Apply border color when input is focused or has valid content */
+input.style_input:focus,
+input.style_input:valid,
+select.style_input:focus {
+  border-color: #2cda6d; /* Green border color */
+}
+
+/* Shadow effect when focused */
+input.style_input:focus,
+select.style_input:focus {
+  box-shadow: 0 0 5px rgba(44, 218, 109, 0.5); /* Shadow effect when focused */
 }
 
 .container {

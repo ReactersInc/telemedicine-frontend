@@ -116,7 +116,7 @@ function PatientDetails() {
         Submit
       </button> */}
       <div>
-        <div className="flex justify-between space-x-60 mt-16 items-start">
+        <div className="flex justify-items-start space-x-48  mt-16 items-start">
           <div>
             <label htmlFor="fname">First Name *</label>
             <br />
@@ -150,7 +150,7 @@ function PatientDetails() {
             </select>
           </div>
         </div>
-        <div className="flex justify-between space-x-6 mt-8">
+        <div className="flex justify-items-start space-x-48 mt-8">
           <div>
             <label htmlFor="email">Email *</label>
             <br />
@@ -186,7 +186,7 @@ function PatientDetails() {
           </div>
         </div>
 
-        <div className="flex justify-between space-x-6 mt-8">
+        <div className="flex justify-items-start space-x-48 mt-8">
           <div>
             <label htmlFor="height">Height(cm) *</label>
             <br />
@@ -231,7 +231,7 @@ function PatientDetails() {
           </div>
         </div>
 
-        <div className="flex justify-items-start space-x-48 mt-8 items-start">
+        <div className="flex justify-items-start space-x-48  mt-8 items-start">
           <div>
             <label htmlFor="address">Address *</label>
             <br />
@@ -239,7 +239,7 @@ function PatientDetails() {
               type="text"
               name="address"
               id="address"
-              className="style_input "
+              className="style_input w-full"
               required
             />
           </div>
@@ -256,7 +256,7 @@ function PatientDetails() {
             />
           </div>
         </div>
-        <div className="flex justify-between space-x-6 mt-8">
+        <div className="flex justify-items-start space-x-48 mt-8">
           <div>
             <label htmlFor="password">Password *</label>
             <br />
@@ -281,7 +281,7 @@ function PatientDetails() {
             />
           </div>
         </div>
-        <div className="flex space-x-6 mt-8">
+        <div className="flex space-x-8 mt-8">
           <div>
             <label htmlFor="otp">OTP *</label>
             <br />
@@ -302,7 +302,7 @@ function PatientDetails() {
         <br />
         <button
           type="button"
-          className="mt-6 px-4 py-3 bg-[#2cda6d] rounded-xl text-white font-semibold"
+          className="mt-6 px-8 py-3 bg-[#2cda6d] rounded-3xl text-white font-semibold"
         >
           Submit
         </button>
