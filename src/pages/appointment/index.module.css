@@ -1,92 +1,94 @@
 .sidenav {
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #FFFFFF;
-    overflow-x: hidden;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-items: center;
+  padding-left: 4px;
 }
-#appointmentIcon{
-    background-color: #2CDA6D;
-    border-radius: 20px;
+#appointmentIcon {
+  background-color: #2cda6d;
+  border-radius: 20px;
 }
-.sidenav div{
-    padding: 20px;
-    cursor: pointer;
+.sidenav div {
+  padding: 20px;
+  cursor: pointer;
 }
 .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
+  padding: 6px 8px 6px 6px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+  display: block;
 }
-  
+
 .sidenav a:hover {
-    color: #f1f1f1;
+  color: #2cda6d;
 }
-#appointment{
-    margin-left: 180px;
+#appointment {
+  margin-left: 300px;
+  margin-top: 60px;
 }
-.page-label{
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.appointmentContainer{
-    width: 80%;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    padding: 20px;
+.page-label {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.inputDiv{
-    width: 100%;
-    padding: 10px 0;
-}
-.inputSelect{
-    width: 100%;
-}
-.btnDoctorSearch{
-    height: max-content;
-    width: max-content;
-    padding: 10px;
-    color: #FFFFFF;
-    background-color: #2CDA6D;
-    cursor: pointer;
-    border-radius: 10px;
+.appointmentContainer {
+  width: 80%;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 20px;
 }
 
-ul{
-    display: flex;
-    
+.inputDiv {
+  width: 100%;
+  padding: 10px 0;
+}
+.inputSelect {
+  width: 100%;
+}
+.btnDoctorSearch {
+  height: max-content;
+  width: max-content;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #2cda6d;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
-li{
-    background-color: #FFFFFF;
-    border-radius: 10px ;
-    padding: 20px;
-    width: max-content;
-    margin-right: 20px;
+ul {
+  display: flex;
+}
+
+li {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  width: max-content;
+  margin-right: 20px;
 }
 li::marker {
-    color: transparent;
-  }
+  color: transparent;
+}
 
-  .submitBtn{
-    border: #2CDA6D solid;
-    background-color: #2CDA6D;
-    color: #FFFFFF;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
+.submitBtn {
+  border: #2cda6d solid;
+  background-color: #2cda6d;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

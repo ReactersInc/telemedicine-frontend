@@ -1,33 +1,66 @@
+/* styles.css */
+input.style_input,
+select.style_input {
+  padding: 10px;
+  border: 1px solid #2cda6d; /* Default border color */
+  border-radius: 10px;
+  margin-top: 2px;
+  max-width: 100%;
+  background-color: white; /* Set the background color */
+  transition: box-shadow 0.3s, border-color 0.3s; /* Add transition for border color */
+}
 
-.container{
+/* Apply border color when input is focused or has valid content */
+input.style_input:focus,
+input.style_input:valid,
+select.style_input:focus {
+  border-color: #2cda6d; /* Green border color */
+}
+
+/* Shadow effect when focused */
+input.style_input:focus,
+select.style_input:focus {
+  box-shadow: 0 0 5px rgba(44, 218, 109, 0.5); /* Shadow effect when focused */
+}
+
+.container {
   display: flex;
   justify-content: center;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   min-height: 90vh;
   padding-top: 20px;
 }
-.registerForm{
+.registerForm {
   width: max-content;
-  background-color: #FFFFFF;
-  padding: 1vw;
-  border-radius: 0 0 10px 10px;
-
+  background-color: #ffffff;
+  padding: 4vw;
+  border-radius: 10px;
+  margin: 32px auto;
 }
-.header{
+
+b {
+  font-size: 2rem;
+}
+.header {
   text-align: center;
   width: 100%;
-  background-color: #D5DEED;
-  border-radius:10px 10px 0 0;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
   padding: 10px 0;
 }
-.row{
-  margin: 10px 0;
-  width: 90vw;
+
+.select_btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
+  max-width: fit-content;
+  border-radius: 28px;
+  border: 2px solid #2cda6d;
+  margin: 0 auto;
 }
-.selector{
+
+.selector {
   width: 90vw;
   display: flex;
   align-items: center;
@@ -42,52 +75,52 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
   height: max-content;
-  padding: 0 10% ;  
   color: white;
-  background-color:  #2CDA6D;
-  padding: 5px 0;
+  background-color: #2cda6d;
+  padding: 10px 32px 10px 36px; /*top right bottom left */
+  border-radius: 28px;
+  overflow: hidden;
 }
-.doctorSelector{
-  width: 50%;
+.doctorSelector {
   padding: 0 10%;
   height: max-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
   height: max-content;
-  padding: 0 10% ;  
-  color: #2CDA6D;
-  background-color: #D5DEED;
-  padding: 5px 0;
+  color: #2cda6d;
+  background-color: #ffffff;
+  padding: 10px 36px 10px 32px;
+  border-radius: 28px;
 }
-.patientSelector:hover, .doctorSelector:hover{
+.patientSelector:hover,
+.doctorSelector:hover {
   cursor: pointer;
 }
 
-.submitBtn{
-  border: #2CDA6D solid;
-  background-color: #2CDA6D;
-  color: #FFFFFF;
+.submitBtn {
+  border: #2cda6d solid;
+  background-color: #2cda6d;
+  color: #ffffff;
   padding: 5px 10px;
   border-radius: 5px;
 }
-.signinBtn{
-  border: #2CDA6D solid;
-  background-color: #FFFFFF;
-  color: #2CDA6D;
+.signinBtn {
+  border: #2cda6d solid;
+  background-color: #ffffff;
+  color: #2cda6d;
   padding: 5px 10px;
   border-radius: 5px;
 }
 
-.mandatory{
+.mandatory {
+  margin-top: 8px;
   font-size: 0.8rem;
   color: red;
 }
 @media screen and (max-width: 520px) {
-  .row{
+  .row {
     font-size: 0.9rem;
   }
 }

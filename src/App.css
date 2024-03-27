@@ -1,9 +1,16 @@
-button{
-    cursor: pointer;
+button {
+  cursor: pointer;
 }
-input:active{
-    border: transparent;
+input:active {
+  border: transparent;
 }
-.noScroll{
-    overflow: unset;
+.noScroll {
+  overflow: unset;
 }
+.webcontainer {
+  margin: 0px 100px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
