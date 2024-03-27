@@ -34,20 +34,19 @@ function Register() {
 
       <div>
         <div>
-          <div className="header">
-            <b>Create Your Account</b>
-          </div>
-
           <div className="registerForm">
-            <div className="row">
+            <div className="header">
+              <b>Create Your Account</b>
+            </div>
+            <div className="select_btn">
               <div
                 className={patientSelector}
                 onClick={changeStylePatientClick}
               >
-                Patient
+                <p className="font-semibold text-lg">Patient</p>
               </div>
               <div className={doctorSelector} onClick={changeStyleDoctorClick}>
-                Doctor
+                <p className="font-semibold text-lg">Doctor</p>
               </div>
             </div>
 

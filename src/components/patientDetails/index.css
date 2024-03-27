@@ -1,104 +1,101 @@
+/* .row {
+  margin: 10px 0;
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
 
+.row {
+  display: flex;
+  max-width: 50%;
+}
 
- .row{
-    margin: 10px 0;
-    width: 90vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-
-  input, select{
-    border: transparent;
-    border-bottom: 1px solid rgb(163, 163, 163);
-    border-radius: 0;
-  
-  }
-  .inputFname, .inputLname{
-    width: 45vw;
-  }
-  .patientPassword, .patientConfirmPassword{
-    width: 45vw;
-  }
-  .patientPassword > input , .patientConfirmPassword > input{
-    width: 44vw;
-  }
-  .inputFname > input , .inputLname> input{
-    width: 44vw;
-  }
-  .inputEmail{
-    width: 90vw;
-  }
-  .inputEmail > input{
-    width: 89vw;
-  }
-  .inputGender, .inputBloodGroup, .inputDOB{
-    width: 30vw;
-  }
-  .inputGender>select{
-    width: 29vw;
-  }
-  .inputBloodGroup>select{
-    width: 29vw;
-  }
-  .inputDOB>input{
-    width: 29vw;
-  }
-  .inputMob, .inputHeight, .inputWeight{
-    width: 30vw;
-  }
-  .inputMob>input{
-    width: 28vw;
-  }
-  .inputHeight>input{
-    width: 28vw;
-  }
-  .inputWeight>input{
-    width: 29vw;
-  }
-  .inputAdddress{
-    width: 90vw;
-  }
-  .inputAddress > input{
-    width: 90vw;
-  }
-  .inputImage{
-    width: 90vw;
-  }
-  .inputImage > input {
-    justify-content: end;
-    width: 89vw;
-  }
-  .inputPatientPassword, .inputPatientConfirmPassword{
-    width: 45vw;
-  }
-  .inputPatientPassword > input , .inputPatientConfirmPassword > input{
-    width: 44vw;
-  }
-  .submitBtn{
-    border: #2CDA6D solid;
-    background-color: #2CDA6D;
-    color: #FFFFFF;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  Select{
-    border: transparent;
-    border-bottom: 1px solid rgb(163, 163, 163);
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+input,
+select {
+  border: transparent;
+  border-bottom: 1px solid rgb(163, 163, 163);
+  border-radius: 0;
+}
+.inputFname,
+.inputLname {
+  width: 2vw;
+}
+.patientPassword,
+.patientConfirmPassword {
+  width: 2vw;
+}
+.patientPassword > input,
+.patientConfirmPassword > input {
+  width: 2vw;
+}
+.inputFname > input,
+.inputLname > input {
+  width: 2w;
+}
+.inputEmail {
+  width: 2vw;
+}
+.inputEmail > input {
+  width: 2vw;
+}
+.inputGender,
+.inputBloodGroup,
+.inputDOB {
+  width: 2vw;
+}
+.inputGender > select {
+  width: 2vw;
+}
+.inputBloodGroup > select {
+  width: 2vw;
+}
+.inputDOB > input {
+  width: 2vw;
+}
+.inputMob,
+.inputHeight,
+.inputWeight {
+  width: 2vw;
+}
+.inputMob > input {
+  width: 2vw;
+}
+.inputHeight > input {
+  width: 2vw;
+}
+.inputWeight > input {
+  width: 2vw;
+}
+.inputAdddress {
+  width: 2vw;
+}
+.inputAddress > input {
+  width: 2vw;
+}
+.inputImage {
+  width: 2vw;
+}
+.inputImage > input {
+  justify-content: end;
+  width: 2vw;
+}
+.inputPatientPassword,
+.inputPatientConfirmPassword {
+  width: 2vw;
+}
+.inputPatientPassword > input,
+.inputPatientConfirmPassword > input {
+  width: 2vw;
+}
+.submitBtn {
+  border: #2cda6d solid;
+  background-color: #2cda6d;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+Select {
+  border: transparent;
+  border-bottom: 1px solid rgb(163, 163, 163);
+}
