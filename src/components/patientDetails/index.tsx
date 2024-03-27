@@ -231,19 +231,7 @@ function PatientDetails() {
           </div>
         </div>
 
-        <div className="flex justify-items-start space-x-48  mt-8 items-start">
-          <div>
-            <label htmlFor="address">Address *</label>
-            <br />
-            <input
-              type="text"
-              name="address"
-              id="address"
-              className="style_input w-full"
-              required
-            />
-          </div>
-
+        <div className="flex justify-between space-x-20  mt-8 items-start">
           <div>
             <label htmlFor="image">Upload Image</label>
             <br />
@@ -252,6 +240,17 @@ function PatientDetails() {
               name="image"
               id="image"
               className="style_input"
+              required
+            />
+          </div>
+          <div className="grow">
+            <label htmlFor="address">Address *</label>
+            <br />
+            <input
+              type="text"
+              name="address"
+              id="address"
+              className="style_input w-full"
               required
             />
           </div>
