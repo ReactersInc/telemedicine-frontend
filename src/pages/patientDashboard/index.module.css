@@ -50,11 +50,11 @@
   margin-top: 60px;
 }
 .patientDetailContainer {
-  width: 80%;
+  width: 90%;
   background-color: #ffffff;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  padding: 20px 0;
+  padding: 32px 48px 32px 30px;
 }
 .profileBanner {
   display: flex;
@@ -66,28 +66,27 @@
 .pateintDetails {
   background-color: #ffffff;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-  display: flex;
   flex-wrap: wrap;
-  padding: 20px;
-  border-radius: 20px;
-  width: 60%;
+  border-radius: 10px;
+  padding: 4px;
+  width: 40%;
 }
 
 .label {
-  width: 40%;
-  margin: 10px 0;
-  font-weight: bolder;
+  display: flex;
+  margin-left: 16px;
+  margin-top: 12px;
+  justify-content: left;
 }
 .value {
-  width: 60%;
-  margin: 10px 0;
+  margin-left: 8px;
 }
 
 .tableContainer {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: 50px 0;
+  margin: 50px 25px;
 }
 #tableDiv {
   width: 90%;
@@ -99,7 +98,7 @@
 #table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 #table th {
