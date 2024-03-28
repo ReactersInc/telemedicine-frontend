@@ -1,0 +1,34 @@
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-items: center;
+  padding-left: 18px;
+}
+
+#dashboardIcon {
+  background-color: #2cda6d;
+  border-radius: 20px;
+  margin-top: 32px;
+}
+.sidenav div {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.sidenav a:hover {
+  color: #2cda6d;
+}
+
+.sidenav a:active {
+  color: #2cda6d;
+}
