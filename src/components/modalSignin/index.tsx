@@ -16,17 +16,6 @@ interface DecodedJwtPayload {
     timestamp: string;
   }
 
-  interface DecodedJwtPayload {
-    email: string;
-    dob: string;
-    exp: number;
-    gender: string;
-    name: string;
-    photourl: string;
-    state: string;
-    timestamp: string;
-  }
-
 function ModalSignin(){
     const dispatch = useDispatch()
 

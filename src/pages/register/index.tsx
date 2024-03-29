@@ -56,7 +56,6 @@ function Register() {
               ) : (
                 <DoctorDetails />
               )}
-              <div className="mandatory">(* fields are mandatory.)</div>
             </div>
           </div>
         </div>
