@@ -39,6 +39,9 @@
 .row-vitals{
     display: flex;
     justify-content: left;
+    /* border: solid red; */
+    /* padding: 0px 10px; */
+    
 }
 .col{
     display: flex;
@@ -48,11 +51,13 @@
 .Circle-vitals{
     background-color: #FFFFFF;
     width: 150px;
-    height: 200px;
+    height: 150px;
     padding: 5px 30px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 20px; 
     margin: 10px 20px 0px 20px;
+    /* border: solid blue; */
+    
 }
 
 
@@ -66,39 +71,46 @@
   /* display: flex; */
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 107%;
   padding: 5px 30px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px #80FF80;
   border-radius: 20px;
   margin: 10px 0px;
+  margin-right: 10px;
+  /* border: solid red; */
 }
 .progress{
     position: relative;
+    display: flex;
+    /* border:solid red; */
 }
 
 .progress-col{
     position: relative;
+    border: solid pink;
 }
 
-.Label-vitals-center{
+.Label-vitals-center {
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     z-index: 1;
-    height: 150px;
-    width: 150px;
+    height: 90px;
+    width: 100px;
     font-size: 2rem;
-}
+  }
 
-.Label-vitals{
+.Label-vitals {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    width: 150px;
+    height: 40%;
+    width: 100%; /* Adjust this if needed */
     font-size: 2rem;
-}
-
+    /* border: solid black; */
+  }
+  
 #sys{
     background: linear-gradient(180deg, #A9FFC6 0%, #FFF 100%);
 }
@@ -140,3 +152,61 @@
 .sidenav a:hover {
   color: #f1f1f1;
 } 
+
+.Label-vitals svg {
+    width: 100%; /* Adjust the size of the SVG icon as needed */
+  }
+
+  .Label-vitals p {
+    margin: 5px; /* Remove any default margin */
+  }
+
+
+  .Label-vitals > div {
+    text-align: center; /* Center the text */
+  }
+
+  .Label-vitals svg{
+    /* border: solid pink; */
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+
+  .body-temp{
+    margin-bottom: 10px;
+  }
+
+  .Label-vitals-center > div {
+    text-align: center; /* Center the text */
+  }
+
+  .Label-vitals-center svg {
+    width: 80%; /* Adjust the size of the SVG icon as needed */
+  }
+
+  .timestamp{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: larger;
+    margin-right: -80px;
+  }
+
+  .blood-pressure{
+    /* border: solid red; */
+    /* background-color: #FFFFFF; */
+    align-items: center;
+    justify-content: center;
+    padding: 5px 30px;
+    /* box-shadow: 0px 4px 4px 0px #80FF80; */
+    border-radius: 20px;
+    /* margin: 10px 0px; */
+    margin-right: 10px;
+    margin-top: 2px;
+  }
+
+  .blood-pressure-heading{
+    display: flex;
+    justify-content: center;
+  }

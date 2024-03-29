@@ -16,10 +16,10 @@
 .modal-background{
     min-width: 270px;
     position: absolute;
-    top: 20%;
+    top: 10%;
     z-index: 2;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 2% 3%;
     box-shadow: 5px 5px 10px #5d5d5d;
     
@@ -30,21 +30,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 15px;
+    
   }
 .modalRow input{
     border: transparent;
-    border-bottom: 1px solid rgb(163, 163, 163);
-    min-width: 270px
+    /* border-bottom: 1px solid rgb(163, 163, 163); */
+    min-width: 270px;
+    margin-bottom: 15px;
+    border: solid #2CDA6D;
+    padding: 8px;
+    border-radius: 10px;
+
+}
+
+.modalRow .input-field-name{
+    margin-bottom: 4px;
 }
 .signinText{
-    background-color: #D5DEED;
+    /* background-color: #D5DEED; */
     width: 100%;
     padding: 5px 0;
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 .modalContainer{
     position: relative;
+
 }
 .closeModal{
     position: absolute;
@@ -57,32 +69,86 @@
     background-color: #D5DEED;
     border-radius: 50%;
 }
-.modalPatientSelector{
+.modalPatientSelector {
     width: 50%;
     text-align: center;
     background-color: #2CDA6D;
     color: white;
-    padding: 5px 0;
+    padding: 10px;
     cursor: pointer;
+    border-radius: 10px; /* Add border radius */
+    border-radius: 10px; /* Add border radius */
+    border: 1px solid #2CDA6D;
 }
-.modalDoctorSelector{
+
+.modalDoctorSelector {
     width: 50%;
     text-align: center;
-    background-color: #D5DEED;
+    background-color: #ffffff;
     color: #2CDA6D;
-    padding: 5px 0;
+    padding: 10px;
     cursor: pointer;
+    border-radius: 10px; /* Add border radius */
+    border-radius: 10px; /* Add border radius */
+    border: 1px solid #2CDA6D;
 }
+
 .loginBtn{
     background-color: #2CDA6D;
     color: white;
     width: 100%;
-    padding: 5px 0;
+    padding: 5px;
     display: flex;
     justify-content: center;
     cursor: pointer;
+    border-radius: 3px;
+    /* margin-bottom: 15px; */
 
 }
+
+
+.modalRow .forgotPassword {
+    margin-top: 15px; /* Add space at the top */
+    color: #2CDA6D;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+
+.modalRow .googleSignupBtn {
+    background-color: #b0e7c3;
+    color: #0c0730;
+    border: 2px solid #2CDA6D;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  .googleSignupBtn img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+
+
+  .signupText {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px; /* Add space between the "Sign up with Google" button and the text */
+}
+
+.signupLink {
+    color: #2CDA6D; /* Change color to match your design */
+    cursor: pointer;
+}
+
+.signupLink:hover {
+    text-decoration: underline; /* Add underline effect on hover */
+}
+
 @media screen and (max-width: 900px) {
     .closeModal{
         right: -7%;

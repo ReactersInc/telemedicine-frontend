@@ -131,9 +131,11 @@ function VitalsDashboard() {
     <div >
       <VerticalNav />
       <div id='vitals-dashboard'>
-        <div className='page-label'>
+        <div className='timestamp'>
           <span>Vitals Dashboard</span>
-          <select name="timestamp" id="timestamp" onChange={(e) => {
+          <div>
+            <label>data</label>
+            <select name="timestamp" id="timestamp" onChange={(e) => {
             setDateId(parseInt(e.target.value))
           }}>
             <option value={0}>{date[0]}</option>
@@ -141,7 +143,7 @@ function VitalsDashboard() {
             <option value={2}>{date[2]}</option>
             <option value={3}>{date[3]}</option>
             <option value={4}>{date[4]}</option>
-          </select>
+          </select></div>
         </div>
         <div className="ecg-container">
           <div className='col-vitals'>
@@ -182,7 +184,7 @@ function VitalsDashboard() {
               </div>
               <div className='progress'>
                 <div className="Circle-vitals" >
-                  <div> <p>Body Temp.</p> </div>
+                  <div className='body-temp'> <p>Body Temp.</p> </div>
                   <div className="Label-vitals">
                     <div>
                       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="150" viewBox="0 0 45 125" fill="none">
@@ -202,8 +204,8 @@ function VitalsDashboard() {
                     <div>
                       {bodyTemp}°C
                     </div>
-
                   </div>
+
 
                   {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
                 </div>
@@ -222,18 +224,38 @@ function VitalsDashboard() {
                   </div>
                 </div>
               </div> */}
+              <div className='row-vitals'>
+              <div className='progress'>
+                <div className="Circle-vitals" >
+                  <div> Humidity</div>
+                  <div className="Label-vitals">{humidity}</div>
+                  
+                  {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                </div>
+              </div>
+              <div className='progress'>
+                <div className="Circle-vitals" >
+                  <div> GSR</div>
+                  <div className="Label-vitals">{gsr}</div>
+                  
+                  {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                </div>
+              </div>
+            </div>
+
+
+
+
             <div className='Progress-col'>
-              <div className="col-vitals" >
+              <div className="blood-pressure" >
                 <div>
-                  <div> &nbsp;&nbsp;&nbsp;Blood Pressure</div>
+                  <div className='blood-pressure-heading'>Blood Pressure</div>
                   <div className='row-vitals'>
                     <div className='Progress'>
                       <div className="Circle-vitals" id='sys' >
                         <div> Systolic</div>
                         <div className="Label-vitals">{sys}</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="140" viewBox="0 0 212 136" fill="none">
-                          <path d="M1 54.1797L27.125 46.6067L53.25 3L79.375 50.3636L105.5 9.09104L131.625 134L157.75 132.905L183.875 81.8506L210 55.7819" stroke="#0BDA51" stroke-width="3" />
-                        </svg>
+                        
                         {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
                       </div>
                     </div>
@@ -241,9 +263,7 @@ function VitalsDashboard() {
                       <div className="Circle-vitals" id='dia'>
                         <div> Diastolic</div>
                         <div className="Label-vitals">{dia}</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="140" viewBox="0 0 213 139" fill="none">
-                          <path d="M2 82.9245L28.25 6L54.5 114.396L80.75 129.986L107 23.1635L133.25 122.796L159.5 81.3529L185.75 119.132L212 137" stroke="#009900" stroke-width="3" />
-                        </svg>
+                        
                         {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
                       </div>
                     </div>
@@ -254,29 +274,7 @@ function VitalsDashboard() {
               </div>
 
 
-              <div className='row-vitals'>
-              <div className='progress'>
-                <div className="Circle-vitals" >
-                  <div> Humidity</div>
-                  <div className="Label-vitals">{humidity}</div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="150" height="100" viewBox="0 0 38 40" fill="none">
-                    <path d="M16.669 13.3333L17.4308 13.9811L17.1313 14.3333H16.669V13.3333ZM23.75 11C21.2517 11 18.995 12.1415 17.4308 13.9811L15.9072 12.6856C17.822 10.4335 20.6212 9 23.75 9V11ZM32.25 20C32.25 14.9805 28.3967 11 23.75 11V9C29.5967 9 34.25 13.9738 34.25 20H32.25ZM23.75 29C28.3967 29 32.25 25.0195 32.25 20H34.25C34.25 26.0262 29.5967 31 23.75 31V29ZM9.75 29H23.75V31H9.75V29ZM5.75 25C5.75 27.2091 7.54086 29 9.75 29V31C6.43629 31 3.75 28.3137 3.75 25H5.75ZM5.75 18.3333V25H3.75V18.3333H5.75ZM9.75 14.3333C7.54086 14.3333 5.75 16.1242 5.75 18.3333H3.75C3.75 15.0196 6.43629 12.3333 9.75 12.3333V14.3333ZM16.669 14.3333H9.75V12.3333H16.669V14.3333Z" fill="#9ACD32" />
-                    <path d="M25.8364 29.7559C27.5837 29.3418 29.1842 28.4163 30.4533 27.086C31.7224 25.7557 32.6084 24.0749 33.0092 22.2374C33.4099 20.3999 33.309 18.4806 32.7181 16.7009C32.1272 14.9211 31.0704 13.3535 29.6696 12.1787C28.2688 11.004 26.5811 10.27 24.801 10.0614C23.021 9.85281 21.2212 10.1782 19.6093 10.9999C17.9973 11.8216 16.6389 13.1063 15.6907 14.7056C14.7424 16.305 14.243 18.154 14.2501 20.0393" stroke="#9ACD32" stroke-width="2" />
-                  </svg>
-                  {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
-                </div>
-              </div>
-              <div className='progress'>
-                <div className="Circle-vitals" >
-                  <div> GSR</div>
-                  <div className="Label-vitals">{gsr}</div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="150" height="140" viewBox="0 0 188 62" fill="none">
-                    <path d="M1 24.6597L24.25 21.3068L47.5 2L70.75 22.9702L94 4.6968L117.25 60L140.5 59.5151L163.75 36.911L187 25.3691" stroke="#00E79B" stroke-width="3" />
-                  </svg>
-                  {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
-                </div>
-              </div>
-            </div>
+              
             </div>
           </div>
         </div>

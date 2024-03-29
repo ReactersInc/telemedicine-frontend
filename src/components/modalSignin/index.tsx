@@ -5,7 +5,19 @@ import { setModal } from "../../features/modal/modalSlice";
 import jwt_decode, { JwtPayload } from 'jwt-decode';
 import { userLogin } from "../../features/users/userSlice";
 
+
 interface DecodedJwtPayload {
+    email: string;
+    dob: string;
+    exp: number;
+    gender: string;
+    name: string;
+    photourl: string;
+    state: string;
+    timestamp: string;
+  }
+
+  interface DecodedJwtPayload {
     email: string;
     dob: string;
     exp: number;
@@ -133,16 +145,25 @@ function ModalSignin(){
                         </div>
                         <div className="modalRow">
                             <div >
+                                <div className="input-field-name">
                                 <label htmlFor="email">Email </label>
-                                <br />
+                                </div>
+                                <div>
                                 <input type="email" id="email" name="email" />
+                                </div>
+                               
                             </div>
                         </div>
                         <div className="modalRow">
                             <div >
+                                <div className="input-field-name">
                                 <label htmlFor="password">Password </label>
-                                <br />
+                                </div>
+
+                                <div>
                                 <input type="password" id="password" name="password" />
+                                </div>
+                                
                             </div>
                         </div>
                         <div className="modalRow">
@@ -150,6 +171,18 @@ function ModalSignin(){
                                 Login
                             </div>
                         </div>
+
+                        <div className="modalRow">
+                        <div className="forgotPassword">Forgot Password?   </div>
+                        </div>
+
+                        <div className="modalRow">
+                <button className="googleSignupBtn">
+                <img src="%PUBLIC_URL%/assets/googleImage.svg" alt="Google Icon" />
+                  Continue with Google
+                </button>
+              </div>
+                        
                     </div> 
                 </div>
             </div>    
