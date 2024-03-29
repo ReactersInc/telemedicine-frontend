@@ -4,6 +4,9 @@ import { useState } from "react";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
 import VerticalNav from "../../components/verticalNavPat";
+import Select from "react-select";
+import { Space } from "antd";
+
 interface Doctor {
   About: {
     d_id: string;
@@ -65,24 +68,41 @@ function DoctorList({ doctors, patientEmail }: DoctorListProps) {
 
   return (
     <div>
-      <h3>List of Available Doctors:</h3>
-      <ul>
+      <h3 className=" mt-6 text-xl font-semibold pt-2">
+        List of Available Doctors:
+      </h3>
+      <ul className="flex space-x-4 p-6">
         {doctors.map((doctor) => (
           <li key={doctor.About.d_id}>
             <div>
               <img src="./static/profile-icon.png" alt={doctor.About.name} />
             </div>
-            <div>
-              <p>Name: {doctor.About.name}</p>
-              <p>Email: {doctor.About.email}</p>
-              <p>Gender: {doctor.About.gender}</p>
-              <p>Mobile Number: {doctor.About.mobile_no}</p>
-              <p>Rating: {doctor.About.rating}</p>
+            <div className="flex flex-col space-y-1">
+              <p>
+                <span className="font-medium">Name: </span>
+                {doctor.About.name}
+              </p>
+              <p>
+                <span className="font-medium">Email: </span>
+                {doctor.About.email}
+              </p>
+              <p>
+                <span className="font-medium">Gender: </span>
+                {doctor.About.gender}
+              </p>
+              <p>
+                <span className="font-medium">Mobile No.: </span>
+                {doctor.About.mobile_no}
+              </p>
+              <p>
+                <span className="font-medium">Rating: </span>
+                {doctor.About.rating}
+              </p>
             </div>
             <div>
               <button
                 onClick={() => handleBookAppointment(doctor)}
-                className={styles.submitBtn}
+                className=" mt-6 py-2 px-4 font-semibold text-white text-md bg-[#2cda6d] rounded-md"
               >
                 Book Appointment
               </button>
@@ -125,21 +145,71 @@ function Appointment() {
       };
     }) => state.user.email
   );
-  const dispatch = useDispatch();
+
+  const specialityOptions = [
+    { value: "Pediatrician", label: "Pediatrician" },
+    { value: "Gastro", label: "Gastro" },
+    { value: "Dental", label: "Dental" },
+    { value: "General", label: "General" },
+    { value: "Ortho", label: "Ortho" },
+  ];
+
+  const timeSlots = [
+    { value: "10:30 AM", label: "10:30 AM" },
+    { value: "11:00 AM", label: "11:00 AM" },
+    { value: "11:30 AM", label: "11:30 AM" },
+    { value: "12:00 AM", label: "12:00 AM" },
+    { value: "12:30 PM", label: "12:30 PM" },
+  ];
+
+  const LocationOptions = [
+    { value: "Guwahati", label: "Guwhati" },
+    { value: "Biswanath Chariali", label: "Biswanath Chariali" },
+    { value: "Kolkata", label: "Kolkata" },
+    // { value: "12:00 AM", label: "12:00 AM" },
+    // { value: "12:30 PM", label: "12:30 PM" },
+  ];
+
   const [speciality, setSpeciality] = useState("");
   const [location, setLocation] = useState("");
+  const [time, setTime] = useState("");
   const [doctorList, setDoctorList] = useState([]);
+  const [selectedTime, setSelectedTime] = useState("");
+
+  const dispatch = useDispatch();
+
   const handleLogout = () => {
     dispatch(userLogout());
     window.location.href = "/";
   };
 
-  const handleSpecialityChange = (e: any) => {
-    setSpeciality(e.target.value);
+  const handleSpecialityChange = (selectedOption: any) => {
+    if (selectedOption) {
+      setSpeciality(selectedOption.value);
+    } else {
+      setSpeciality("none"); // or whatever default value you want to set
+    }
+    console.log(selectedOption.value);
   };
 
-  const handleLocationChange = (e: any) => {
-    setLocation(e.target.value);
+  const handleTimeChange = (selectedOption: any) => {
+    if (selectedOption) {
+      setTime(selectedOption.value);
+      setSelectedTime(selectedOption.value);
+    } else {
+      setTime("none");
+      setSelectedTime("");
+    }
+    console.log(selectedOption.value);
+  };
+
+  const handleLocationChange = (selectedOption: any) => {
+    if (selectedOption) {
+      setLocation(selectedOption.value);
+    } else {
+      setLocation("none"); // or whatever default value you want to set
+    }
+    console.log(selectedOption.value);
   };
 
   const searchDoctor = async () => {
@@ -152,6 +222,8 @@ function Appointment() {
       specilization: speciality, // Use the selected speciality
       location: location, // Use the selected location
     };
+
+    console.log(data);
 
     const requestOptions = {
       method: "POST",
@@ -166,7 +238,7 @@ function Appointment() {
       if (response.ok) {
         const jsonResponse = await response.json();
         if (jsonResponse && jsonResponse.Status) {
-          console.log(jsonResponse.Status.List[0].About);
+          console.log(jsonResponse.Status.List[0]);
           setDoctorList(jsonResponse.Status.List);
         }
       } else {
@@ -179,9 +251,19 @@ function Appointment() {
     }
   };
 
-  // function printDoctor(){
+  const specialityStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      padding: "4px", // Padding
+      border: "1px solid #2cda6d", // Border
+      borderRadius: "10px", // Border radius
+      marginTop: "6px", // Margin top
+      maxWidth: "30%", // Max width
+      backgroundColor: "white", // Background color
+      transition: "box-shadow 0.3s, border-color 0.3s", // Transition
+    }),
+  };
 
-  // }
   return (
     <div>
       <VerticalNav />
@@ -191,44 +273,79 @@ function Appointment() {
         </div>
         <div className={styles.appointmentContainer}>
           <div>
-            <b>Speciality:</b>
-          </div>
-          <div className={styles.inputDiv}>
-            <select
-              name="speciality"
-              id="speciality"
-              className={styles.inputSelect}
-              onChange={handleSpecialityChange}
-            >
-              <option value={"Pediatrician"}>Pediatrician</option>
-              <option value={"Gastro"}>Gastro</option>
-              <option value={"Dental"}>Dental</option>
-              <option value={"General"}>General</option>
-              <option value={"Ortho"}>Ortho</option>
-            </select>
-          </div>
-          <div>
-            <b>Location:</b>
-          </div>
-          <div className={styles.inputDiv}>
-            <select
-              name="location"
-              id="location"
-              className={styles.inputSelect}
-              onChange={handleLocationChange}
-            >
-              <option value={"Guwahati"}>Guwahati</option>
-              <option value={"Biswanath Chariali"}>Biswanath Chariali</option>
-              <option value={"Nagaon"}>Nagaon</option>
-              <option value={"Kolkata"}>Kolkata</option>
-              <option value={"Tezpur"}>Tezpur</option>
-            </select>
-          </div>
-          <div className={styles.inputDiv}>
-            <div className={styles.btnDoctorSearch} onClick={searchDoctor}>
-              Search Doctor
+            <div>
+              <label htmlFor="degree" className="text-lg font-semibold pt-2">
+                Speciality
+              </label>
+              <br />
+              <Select
+                styles={specialityStyles}
+                name="speciality"
+                id="speciality"
+                options={specialityOptions}
+                isMulti={false}
+                placeholder=""
+                onChange={handleSpecialityChange}
+                required
+              />
             </div>
+            <div className="mt-4">
+              <label htmlFor="degree" className="text-lg font-semibold pt-2">
+                Location
+              </label>
+              <br />
+              <Select
+                styles={specialityStyles}
+                name="location"
+                id="location"
+                options={LocationOptions}
+                isMulti={false}
+                placeholder=""
+                onChange={handleLocationChange}
+                required
+              />
+            </div>
+            {/* <div className="mt-4">
+              <div>
+                <label htmlFor="dob" className="text-lg font-semibold pt-2">
+                  Date
+                </label>
+                <br />
+                <input
+                  type="date"
+                  name="dob"
+                  id="dob"
+                  className={styles.style_input}
+                  required
+                />
+              </div>
+            </div>
+            <div className="mt-4">
+              <label htmlFor="degree" className="text-lg font-semibold pt-2">
+                Time
+              </label>
+              <br />
+              <div className="flex space-x-6">
+                {timeSlots.map((timeOption) => (
+                  <button
+                    key={timeOption.value}
+                    onClick={() => handleTimeChange(timeOption)}
+                    className={`border py-2 px-4 border-[#2cda6d] rounded-md ${
+                      selectedTime === timeOption.value ? "bg-green-50" : ""
+                    }`}
+                  >
+                    <h3>{timeOption.label}</h3>
+                  </button>
+                ))}
+              </div>
+            </div> */}
           </div>
+          <button
+            className=" mt-6 py-2 px-4 font-semibold text-white text-lg bg-[#2cda6d] rounded-md"
+            onClick={searchDoctor}
+          >
+            Search Doctor
+          </button>
         </div>
         <div>
           <DoctorList doctors={doctorList} patientEmail={email} />
