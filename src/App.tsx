@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-// import Dashboard from './pages/patientDashboard';
-import Register from "./pages/register";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store, persistor } from "./app/store";
@@ -11,20 +9,16 @@ import VitalsDashboard from "./pages/vitalsDashboard";
 import Appointment from "./pages/appointment";
 import PatientDashboard from "./pages/patientDashboard";
 import DoctorDashboard from "./pages/doctorDashboard";
-// import EcgGraph from './pages/test2'
+import ReportPage from "./pages/report/Report";
+
+
 
 export const router = [
+
+  
   {
     path: "/",
     element: <Home />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/patientdashboard",
-    element: <PatientDashboard />,
   },
   {
     path: "/vitals",
@@ -42,29 +36,34 @@ export const router = [
     path: "/doctordashboard",
     element: <DoctorDashboard />,
   },
-  // {
-  //   path: "/test2",
-  //   element: <EcgGraph/>
-  // }
+  {
+    path: "/report",
+    element: <ReportPage SpO2={0} />,
+  },
+
+  
 ];
 
+
 function App() {
+
+
+
+  
   return (
-    <>
-      <div className="webcontainer">
-        <BrowserRouter>
-          <Provider store={store}>
-            <PersistGate persistor={persistor}>
-              <Routes>
-                {router.map((item, index) => {
-                  return <Route path={item.path} element={item.element} />;
-                })}
-              </Routes>
-            </PersistGate>
-          </Provider>
-        </BrowserRouter>
-      </div>
-    </>
+    <div className="webcontainer">
+      <BrowserRouter>
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <Routes>
+              {router.map((item, index) => (
+                <Route key={index} path={item.path} element={item.element} />
+              ))}
+            </Routes>
+          </PersistGate>
+        </Provider>
+      </BrowserRouter>
+    </div>
   );
 }
 
