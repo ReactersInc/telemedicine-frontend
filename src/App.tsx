@@ -11,6 +11,8 @@ import VitalsDashboard from "./pages/vitalsDashboard";
 import Appointment from "./pages/appointment";
 import PatientDashboard from "./pages/patientDashboard";
 import DoctorDashboard from "./pages/doctorDashboard";
+import Bookings from "./pages/bookings";
+import PatientsList from "./pages/patientsList";
 // import EcgGraph from './pages/test2'
 
 export const router = [
@@ -41,6 +43,14 @@ export const router = [
   {
     path: "/doctordashboard",
     element: <DoctorDashboard />,
+  },
+  {
+    path: "/bookings",
+    element: <Bookings />,
+  },
+  {
+    path: "/patientsList",
+    element: <PatientsList />,
   },
   // {
   //   path: "/test2",
