@@ -5,7 +5,8 @@ import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
 import VerticalNav from "../../components/verticalNavPat";
 import Select from "react-select";
-import { Space } from "antd";
+import AppointModal from "../../components/appointModal";
+import { setModal } from "../../features/modal/modalSlice";
 
 interface Doctor {
   About: {
@@ -66,6 +67,26 @@ function DoctorList({ doctors, patientEmail }: DoctorListProps) {
     console.log("Booking appointment with doctor:", doctor);
   };
 
+  const isModalOpen = useSelector(
+    (state: { modal: { modalOpen: boolean; scroll: boolean } }) =>
+      state.modal.modalOpen
+  );
+  const scrollable = useSelector(
+    (state: { modal: { modalOpen: boolean; scroll: boolean } }) =>
+      state.modal.scroll
+  );
+  const dispatch = useDispatch();
+
+  const toggleModal = () => {
+    dispatch(setModal());
+  };
+
+  if (!scrollable) {
+    document.body.style.overflowY = "hidden";
+  } else {
+    document.body.style.overflowY = "auto";
+  }
+
   return (
     <div>
       <h3 className=" mt-6 text-xl font-semibold pt-2">
@@ -101,7 +122,7 @@ function DoctorList({ doctors, patientEmail }: DoctorListProps) {
             </div>
             <div>
               <button
-                onClick={() => handleBookAppointment(doctor)}
+                onClick={toggleModal}
                 className=" mt-6 py-2 px-4 font-semibold text-white text-md bg-[#2cda6d] rounded-md"
               >
                 Book Appointment
@@ -163,7 +184,7 @@ function Appointment() {
   ];
 
   const LocationOptions = [
-    { value: "Guwahati", label: "Guwhati" },
+    { value: "Guwahati", label: "Guwahati" },
     { value: "Biswanath Chariali", label: "Biswanath Chariali" },
     { value: "Kolkata", label: "Kolkata" },
     // { value: "12:00 AM", label: "12:00 AM" },
@@ -264,9 +285,36 @@ function Appointment() {
     }),
   };
 
+  const isModalOpen = useSelector(
+    (state: { modal: { modalOpen: boolean; scroll: boolean } }) =>
+      state.modal.modalOpen
+  );
+  const scrollable = useSelector(
+    (state: { modal: { modalOpen: boolean; scroll: boolean } }) =>
+      state.modal.scroll
+  );
+
+  const toggleModal = () => {
+    dispatch(setModal());
+  };
+
+  if (!scrollable) {
+    document.body.style.overflowY = "hidden";
+  } else {
+    document.body.style.overflowY = "auto";
+  }
+
   return (
     <div>
       <VerticalNav />
+      <div>
+        {isModalOpen && (
+          <div className={styles.overlayAppoint} onClick={toggleModal}>
+            <AppointModal />
+          </div>
+        )}
+      </div>
+
       <div id={styles.appointment}>
         <div className="page-label">
           <span>Book an Appointment</span>
