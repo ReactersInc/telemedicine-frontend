@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
-import VerticalNav from "../../components/verticalNavPat";
+import VerticalNav from "../../components/VerticalNavPat";
 import Select from "react-select";
 import AppointModal from "../../components/appointModal";
 import { setModal } from "../../features/modal/modalSlice";

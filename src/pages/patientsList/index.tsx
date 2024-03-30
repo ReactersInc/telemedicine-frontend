@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
-import VerticalNav from "../../components/verticalNavDoc";
+import VerticalNav from "../../components/VerticalNavDoc";
 
 interface User {
   id: string;

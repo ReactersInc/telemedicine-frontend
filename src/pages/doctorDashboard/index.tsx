@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
-import VerticalNavDoc from "../../components/verticalNavDoc";
+import VerticalNavDoc from "../../components/VerticalNavDoc";
 
 function DoctorDashboard() {
   const name = useSelector(

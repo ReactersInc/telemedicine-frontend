@@ -1,7 +1,7 @@
 // ReportPage.js
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import VerticalNav from '../../components/verticalNavDoc';
+import VerticalNav from '../../components/VerticalNavDoc';
 import "./report.css";
 
 

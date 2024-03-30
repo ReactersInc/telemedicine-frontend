@@ -12,7 +12,6 @@
 } */
 #vitals-dashboard{
     margin-left: 160px;
-    
 }
 .page-label{
     font-size: 2rem;
@@ -21,7 +20,9 @@
     display: flex;
     justify-content: space-between;
 }
-
+.vitalscontainer{
+  margin-left: 160px;
+}
 .Label-vitals-ecg {
   width: 100%;
 }

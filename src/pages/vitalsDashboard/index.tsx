@@ -7,8 +7,7 @@ import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
-import VerticalNav from "../../components/verticalNavPat";
-import { Link } from 'react-router-dom';
+import VerticalNav from "../../components/VerticalNavPat";
 
 function VitalsDashboard() {
   const [pulse, setPulse] = useState(0);
@@ -156,14 +155,13 @@ function VitalsDashboard() {
   };
 
   return (
-    <>
     <div>
       <VerticalNav />
       <div id="vitals-dashboard">
         <div className="timestamp">
           <span>Vitals Dashboard</span>
           <div>
-            <label>data</label>
+            <label>Data :</label>
 
             <select
               name="timestamp"
@@ -180,7 +178,8 @@ function VitalsDashboard() {
             </select></div>
           </div>
         </div>
-        <div className="ecg-container">
+<div className="vitalscontainer">
+<div className="ecg-container">
           <div className="col-vitals">
             <div>
               <div> ECG</div>
@@ -232,11 +231,11 @@ function VitalsDashboard() {
                         ? 100
                         : ((roomTemp - 15) * 100) / (30 - 15)
                     }
-                    strokeWidth={10}
+                    strokeWidth={5}
                     strokeColor="#25D366"
                     trailWidth={5}
                     trailColor="#d6e7da"
-                    gapDegree={60}
+                    gapDegree={90}
                     gapPosition="bottom"
                   />
                 </div>
@@ -338,52 +337,57 @@ function VitalsDashboard() {
                   </div>
                 </div>
               </div> */}
-            <div className="row-vitals">
-              <div className="progress">
-                <div className="Circle-vitals">
-                  <div> Humidity</div>
-                  <div className="Label-vitals">{humidity}</div>
+            <div className='row-vitals'>
+                <div className='progress'>
+              <div className="row-vitals">
+                <div className="progress">
+                  <div className="Circle-vitals">
+                    <div> Humidity</div>
+                    <div className="Label-vitals">{humidity}</div>
 
-                  {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+
+                    {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                  </div>
+                <div className="progress">
+                  <div className="Circle-vitals">
+                    <div> GSR</div>
+                    <div className="Label-vitals">{gsr}</div>
+
+
+                    {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                  </div>
                 </div>
               </div>
-              <div className="progress">
-                <div className="Circle-vitals">
-                  <div> GSR</div>
-                  <div className="Label-vitals">{gsr}</div>
 
-                  {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
-                </div>
-              </div>
-            </div>
+              <div className="Progress-col">
+                <div className="blood-pressure">
+                  <div>
+                    <div className="blood-pressure-heading">Blood Pressure</div>
+                    <div className="row-vitals">
+                      <div className="Progress">
+                        <div className="Circle-vitals" id="sys">
+                          <div> Systolic</div>
+                          <div className="Label-vitals">{sys}</div>
 
-            <div className="Progress-col">
-              <div className="blood-pressure">
-                <div>
-                  <div className="blood-pressure-heading">Blood Pressure</div>
-                  <div className="row-vitals">
-                    <div className="Progress">
-                      <div className="Circle-vitals" id="sys">
-                        <div> Systolic</div>
-                        <div className="Label-vitals">{sys}</div>
 
-                        {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                          {/* <Circle percent={sys} strokeWidth={6} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                        </div>
                       </div>
-                    </div>
-                    <div className="Progress">
-                      <div className="Circle-vitals" id="dia">
-                        <div> Diastolic</div>
-                        <div className="Label-vitals">{dia}</div>
+                      <div className="Progress">
+                        <div className="Circle-vitals" id="dia">
+                          <div> Diastolic</div>
+                          <div className="Label-vitals">{dia}</div>
 
-                        {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+
+                          {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className='vitals-report'>
+              <div className='vitals-report'>
               <div>
                 <button className='report-button'>
                   <a href="/report">
@@ -392,19 +396,13 @@ function VitalsDashboard() {
                 </button>
               </div>
             </div>
-
-
           </div>
-
-
-
-
-
-
-
+          </div>
+        </div>
         </div>
       </div>
-    </>
+</div>
+    </div>
   );
 }
 

@@ -13,6 +13,7 @@ import Bookings from "./pages/bookings";
 import PatientsList from "./pages/patientsList";
 // import EcgGraph from './pages/test2'
 import ReportPage from "./pages/report/Report";
+import Register from "./pages/register";
 
 
 
@@ -47,10 +48,18 @@ export const router = [
     path: "/patientsList",
     element: <PatientsList />,
   },
+  // {
+  //   path: "/test2",
+  //   element: <EcgGraph/>
+  // }
   {
     path: "/report",
     element: <ReportPage SpO2={0} />,
   },
+  {
+    path:"/register",
+    element :<Register/>,
+  }
 
   
 ];
