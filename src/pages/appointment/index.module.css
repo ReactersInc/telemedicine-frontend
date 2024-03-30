@@ -100,3 +100,13 @@ li::marker {
   transition: box-shadow 0.3s, border-color 0.3s; /* Add transition for border color */
   cursor: pointer;
 }
+
+.overlayAppoint {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent grey background */
+  z-index: 999; /* Ensure the overlay is behind the modal but in front of the appointment page */
+}

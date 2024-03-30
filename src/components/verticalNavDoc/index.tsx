@@ -70,7 +70,7 @@ function VerticalNav() {
           </a>
         </div>
         <div className="flex space-x-3 justify-items-start">
-          <a href="/appointment">
+          <a href="/patientsList">
             <img
               src="./static/appointment.png"
               height="22px"
@@ -79,12 +79,12 @@ function VerticalNav() {
               className="mt-1"
             />
           </a>
-          <a href="/appointment" className="font-semibold text-xl  ">
-            Appointments
+          <a href="/patientsList" className="font-semibold text-xl  ">
+            Patients
           </a>
         </div>
         <div className="flex space-x-3 justify-items-start">
-          <a href="/history">
+          <a href="/bookings">
             <img
               src="./static/patient.png"
               height="22px"
@@ -93,8 +93,8 @@ function VerticalNav() {
               className="mt-1"
             />
           </a>
-          <a href="/history" className="font-semibold text-xl">
-            History
+          <a href="/bookings" className="font-semibold text-xl">
+            Appointments
           </a>
         </div>
         <div className="flex space-x-3 justify-items-start">

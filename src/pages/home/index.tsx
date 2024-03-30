@@ -22,7 +22,7 @@ function Home() {
             piscing elit, sed do eismod
           </p>
           <div className={styles.homeBannerBtn} onClick={toggleModal}>
-            Book an Apointment
+            Book an Appointment
           </div>
         </div>
         <div className={styles.homeBannerImage}>
