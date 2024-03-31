@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
-import VerticalNav from "../../components/VerticalNavDoc";
+import VerticalNavDoctor from "../../components/verticalNavDoctor";
 
 interface User {
   id: string;
@@ -71,8 +71,7 @@ function Bookings() {
 
   return (
     <div>
-      <VerticalNav />
-
+<VerticalNavDoctor/>
       <div>
         <div className="flex ml-56 mt-16">
           <div className="w-11/12 rounded-md p-6 shade bg-white">

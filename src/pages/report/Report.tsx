@@ -1,8 +1,8 @@
 // ReportPage.js
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import VerticalNav from '../../components/VerticalNavDoc';
 import "./report.css";
+import VerticalNavPatient from '../../components/verticalNavPatient';
 
 
 
@@ -151,8 +151,7 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
 
   return (
     <div>
-      
-      <VerticalNav />
+      <VerticalNavPatient/>
       <div className='report-heading'>
         <div>
           <h2>Report Page</h2>

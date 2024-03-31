@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
-import VerticalNavDoc from "../../components/VerticalNavDoc";
+import VerticalNavDoctor from "../../components/verticalNavDoctor";
 
 function DoctorDashboard() {
   const name = useSelector(
@@ -58,7 +58,7 @@ function DoctorDashboard() {
   };
   return (
     <div>
-      <VerticalNavDoc />
+      <VerticalNavDoctor/>
       <div id={styles.dashboard}>
         <div className="page-label">
           <span>Doctor Dashboard</span>

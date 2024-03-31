@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
-import VerticalNav from "../../components/VerticalNavPat";
 import Select from "react-select";
 import AppointModal from "../../components/appointModal";
 import { setModal } from "../../features/modal/modalSlice";
+import VerticalNavPatient from "../../components/verticalNavPatient";
 
 interface Doctor {
   About: {
@@ -306,7 +306,7 @@ function Appointment() {
 
   return (
     <div>
-      <VerticalNav />
+      <VerticalNavPatient/>
       <div>
         {isModalOpen && (
           <div className={styles.overlayAppoint} onClick={toggleModal}>

@@ -225,7 +225,7 @@ function PatientDetails() {
               <select
                 name="gender"
                 id="gender"
-                className="style_input"
+                className="style_input w-[200px]"
                 required
               >
                 <option value=""></option>
@@ -267,7 +267,7 @@ function PatientDetails() {
               <select
                 name="bloodGroup"
                 id="bloodGroup"
-                className="style_input w-full"
+                className="style_input w-[200px] "
                 required
               >
                 <option value=""></option>
@@ -316,7 +316,7 @@ function PatientDetails() {
                 type="date"
                 name="dob"
                 id="dob"
-                className="style_input"
+                className="style_input w-[200px]"
                 required
               />
             </div>
@@ -430,7 +430,7 @@ function PatientDetails() {
                   />
                   <button
                     type="submit"
-                    className="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="mt-6 px-4 py-3 bg-[#2cda6d] rounded-xl text-white font-semibold  focus:outline-none focus:shadow-outline"
                   >
                     Verify OTP
                   </button>

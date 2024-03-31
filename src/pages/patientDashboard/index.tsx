@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
-import VerticalNav from "../../components/VerticalNavPat";
+import VerticalNavPatient from "../../components/verticalNavPatient";
 
 function PatientDashboard() {
   const name = useSelector(
@@ -43,8 +43,7 @@ function PatientDashboard() {
   };
   return (
     <div>
-      <VerticalNav />
-
+<VerticalNavPatient/>
       <div id={styles.dashboard}>
         <div className="page-label">
           <span>Patient Dashboard</span>

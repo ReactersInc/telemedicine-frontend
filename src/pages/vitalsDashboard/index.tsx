@@ -7,7 +7,7 @@ import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
-import VerticalNav from "../../components/VerticalNavPat";
+import VerticalNavPatient from "../../components/verticalNavPatient";
 
 function VitalsDashboard() {
   const [pulse, setPulse] = useState(0);
@@ -16,6 +16,7 @@ function VitalsDashboard() {
   const [bodyTemp, setBodyTemp] = useState(0);
   const [humidity, setHumidity] = useState(0);
   const [gsr, setGsr] = useState(0);
+
   const [sys, setSys] = useState(0);
   const [dia, setDia] = useState(0);
   const [ecgData, setEcgData] = useState([]);
@@ -156,7 +157,7 @@ function VitalsDashboard() {
 
   return (
     <div>
-      <VerticalNav />
+      <VerticalNavPatient/>
       <div id="vitals-dashboard">
         <div className="timestamp">
           <span>Vitals Dashboard</span>

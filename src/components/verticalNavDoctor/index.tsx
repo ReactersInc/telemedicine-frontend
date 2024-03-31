@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
 
-function VerticalNav() {
+function VerticalNavDoctor() {
   const name = useSelector(
     (state: {
       user: {
@@ -123,4 +123,4 @@ function VerticalNav() {
   );
 }
 
-export default VerticalNav;
+export default VerticalNavDoctor;
