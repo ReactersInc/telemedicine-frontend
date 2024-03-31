@@ -20,6 +20,21 @@ function DoctorDashboard() {
       };
     }) => state.user.name
   );
+  const gender = useSelector(
+    (state: {
+      user: {
+        id: string;
+        email: string;
+        dob: string;
+        exp: number;
+        gender: string;
+        name: string;
+        photoUrl: string;
+        state: string;
+        timeStamp: string;
+      };
+    }) => state.user.gender
+  );
   const email = useSelector(
     (state: {
       user: {
@@ -85,7 +100,7 @@ function DoctorDashboard() {
               <div className={styles.label}>
                 <div className="flex">
                   <h3 className="font-semibold">Gender:</h3>
-                  <div className={styles.value}>Female</div>
+                  <div className={styles.value}>{gender}</div>
                 </div>
                 <div className="flex ml-6">
                   <h3 className="font-semibold">DOB:</h3>
