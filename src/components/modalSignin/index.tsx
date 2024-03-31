@@ -126,7 +126,10 @@ function ModalSignin(){
         <div className="overlay" onClick={toggleModal}>
             <div className="modal" onClick={toggleModal}>
                 <div className="modal-background">
-                    <div className="modalContainer">
+                        <div className="modalContainer">
+                        <div className="closeModal ">
+                            <button className="w-5 h-5 items-center" onClick={toggleModal}>x</button>
+                        </div>
                         <div className="modalRow">
                             <div className="signinText">
                                 <b>Sign In</b>
@@ -140,9 +143,7 @@ function ModalSignin(){
                                 Doctor
                             </div>
                         </div>
-                        <div className="closeModal">
-                            <button onClick={toggleModal}>x</button>
-                        </div>
+                      
                         <div className="modalRow">
                             <div >
                                 <div className="input-field-name">

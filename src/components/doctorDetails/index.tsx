@@ -3,7 +3,6 @@ import Select from "react-select";
 import jwt_decode, { JwtPayload } from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../features/users/userSlice";
-import { log } from "console";
 
 interface DecodedJwtPayload {
   email: string;
@@ -28,13 +27,13 @@ function DoctorDetails() {
     { value: "MD", label: "MD" },
     { value: "BDS", label: "BDS" },
   ];
-  const SpecilizationOptions: { value: string; label: string }[] = [
-    { value: "Pediatrician", label: "Pediatrician" },
-    { value: "gastro", label: "gastro" },
-    { value: "Dental", label: "Dental" },
-    { value: "General", label: "General" },
-    { value: "Ortho", label: "Ortho" },
-  ];
+  // const SpecilizationOptions: { value: string; label: string }[] = [
+  //   { value: "Pediatrician", label: "Pediatrician" },
+  //   { value: "gastro", label: "gastro" },
+  //   { value: "Dental", label: "Dental" },
+  //   { value: "General", label: "General" },
+  //   { value: "Ortho", label: "Ortho" },
+  // ];
   const degreeStyles = {
     control: (provided: any) => ({
       ...provided,
@@ -51,6 +50,7 @@ function DoctorDetails() {
     }),
   };
   const [emailset, setemail] = useState("");
+
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -62,30 +62,13 @@ function DoctorDetails() {
     state: "",
     country: "",
     bloodGroup: "",
-    certificate: "",
-    image: "",
     degree: [],
     reg_no: "",
-    specilization: [],
+    specialization:"",
     password: "",
     confirmPassword: "",
   });
-  const send_data = {
-    email: formData.email,
-    name: formData.fname  + formData.lname,
-    mobile_no: formData.mobile,
-    reg_no: formData.reg_no,
-    dob: formData.dob,
-    gender: formData.gender,
-    specilization: formData.specilization,
-    password: formData.password,
-    degree: formData.degree,
-    certificate: '["1","2","3"]', 
-    blood_grp: formData.bloodGroup,
-    address: formData.city+"," + formData.state  +"," + formData.country,
-    profileImg: "formData.image",
-    rating : 0
-  };
+
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -94,7 +77,6 @@ function DoctorDetails() {
       [name]: value,
     });
   };
-
   const handleFileInputChange = (e: any) => {
     const { name, files } = e.target;
     setFormData({
@@ -111,64 +93,36 @@ function DoctorDetails() {
   };
 
   const handleSubmit = async () => {
-    console.log("send data");
-    console.log(send_data);
     const apiurl = "http://52.66.241.131/IoMTAppAPI/api/addDoctor.php";
-    console.log("done 01"); 
-
     const requestOptions = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email : formData.email,
-        name :formData.fname +formData.lname,
-        mobile_no : formData.mobile,
-        reg_no : formData.reg_no,
-        dob : formData.dob,
-        gender : formData.gender,
-        specilization : formData.specilization,
-        password :formData.password,
-        degree: formData.degree,
-        certificate: ["1","2","3"], 
-        blood_grp: formData.bloodGroup,
-        address : formData.city+"," + formData.state  +"," + formData.country,
-        profileImg : "https://www.google.com/abc",
-        rating : 0
-      }),
-      // body: JSON.stringify({
-      //   email : "csb21075@tezu.ac.in",
-      //   name :"Rajveer choudhary",
-      //   mobile_no : "123456789",
-      //   reg_no : "123456789",
-      //   dob : "25-07-2000",
-      //   gender : "M",
-      //   specilization : "Gastro",
-      //   password :"12",
-      //   degree: ["1abchugfhsgfhhgd","2abchugfhsgfhhgd", "12edfreght"],
-      //   certificate: ["1","2","3"], 
-      //   blood_grp: "B+",
-      //   address : "Kolkata",
-      //   profileImg : "https://www.google.com/abc",
-      //   rating : 0
-      //   }),
+          email : formData.email,
+          name :formData.fname + " " + formData.lname ,
+          mobile_no : formData.mobile,
+          reg_no : formData.reg_no ,
+          dob : formData.dob,
+          gender : formData.gender,
+          specilization :formData.specialization,
+          password :formData.password,
+          degree: formData.degree,
+          certificate:" null", 
+          blood_grp: formData.bloodGroup,
+          address : formData.city + ", " + formData.state + ", " + formData.country,
+          profileImg :"null",
+          rating : 0
+          }),
     };
-    console.log("done 11",requestOptions); 
     try {
       const response = await fetch(apiurl, requestOptions);
-      console.log("done 21");
       if (response.ok) {
-        console.log("done 31",response);
         const jsonResponse = await response.json();
-        console.log("Done 41 : ", jsonResponse);
         alert("Successfully added the doctor!");
         if (jsonResponse && jsonResponse.Status) {
-          // window.location.href = "patientdashboard";
-          console.log("success");
           setemail(formData.email);
-          console.log(emailset);
-          console.log("set");
 
           setstate(false);
         } else {
@@ -184,7 +138,6 @@ function DoctorDetails() {
 
     const apiurl = "http://52.66.241.131/IoMTAppAPI/api/authDoctorOTP.php";
     event.preventDefault();
-    console.log({otp, emailset});
     const requestOptions = {
       method: "POST",
       headers: {
@@ -192,22 +145,18 @@ function DoctorDetails() {
       },
       body: JSON.stringify({email:formData.email, otp: otp}),
     };
-    console.log("done 0");
 
 
     try {
       const response = await fetch(apiurl, requestOptions);
-      console.log("done 2");
 
       if (response.ok) {
 
         const jsonResponse = await response.json();
-        console.log("Done 4 : ", jsonResponse);
         if (jsonResponse && jsonResponse.Status) {
 
           const jwtToken = jsonResponse.Status.jwt;
           const decodedJwt: DecodedJwtPayload = jwt_decode(jwtToken);
-console.log("done 5");
           dispatch(
             userLogin({
               email: decodedJwt.email,
@@ -220,9 +169,7 @@ console.log("done 5");
               timeStamp: decodedJwt.timestamp,
             })
           );
-          window.location.href = "doctordashbord";
-          console.log("success");
-          console.log(decodedJwt);
+          window.location.href = "/doctordashboard";
           setOtp("");
           setstate(true);
         } else {
@@ -386,7 +333,7 @@ console.log("done 5");
               <option value="AB-">AB-</option>
             </select>
           </div>
-          <div>
+          {/* <div>
             <label htmlFor="certificate">Upload Certificate(s) *</label>
             <br />
             <input
@@ -396,8 +343,8 @@ console.log("done 5");
               onChange={handleFileInputChange}
               className="style_input w-[210px]"
             />
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <label htmlFor="image">Upload Image *</label>
             <br />
             <input
@@ -408,10 +355,8 @@ console.log("done 5");
               className="style_input w-[210px]"
               required
             />
-          </div>
-        </div>
-        <div className="flex justify-items-start space-x-48 mt-8">
-          <div className="w-[200px]">
+          </div> */}
+          <div className="w-[210px]">
             <label htmlFor="degree">Degree(s) *</label>
             <br />
             <Select
@@ -441,27 +386,11 @@ console.log("done 5");
               className="style_input w-[210px]"
             />
           </div>
-          <div className="w-[200px]">
-            <label htmlFor="specilization">Specialization In *</label>
-            <br />
-            <Select
-              styles={degreeStyles}
-              name="specilization"
-              id="specilization"
-              options={SpecilizationOptions}
-              // value={formData.specilization}
-              onChange={(selectedOptions) =>
-                handleSelectChange("specilization", selectedOptions)
-              }
-              className="style_input"
-              isMulti={true}
-              placeholder=""
-              required
-            />
-          </div>
         </div>
-        <div className="flex justify-items-start space-x-48 mt-8">
-          <div>
+        <div className="flex justify-between space-x-48 mt-8">
+          
+          
+          <div className="w-[200px]">
             <label htmlFor="password">Password *</label>
             <br />
             <input
@@ -474,7 +403,7 @@ console.log("done 5");
               required
             />
           </div>
-          <div>
+          <div className="w-[200px]">
             <label htmlFor="confirmPassword">Confirm Password *</label>
             <br />
             <input
@@ -487,7 +416,26 @@ console.log("done 5");
               required
             />
           </div>
-        </div>
+          <div className="w-[200px]">
+            <label htmlFor="specilization">Specialization In *</label>
+            <br />
+            <select
+            name="specialization"
+            id="specialization"
+            value={formData.specialization}
+            onChange={handleInputChange}
+            className="style_input w-[200px]"
+            required
+            >
+            <option value=""></option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="Gastro">Gastro</option>
+            <option value="Dental">Dental</option>
+            <option value="General">General</option>
+            <option value="Ortho">Ortho</option>
+            </select>
+          </div>
+          </div>
       </div>
       {state ? (<button
         type="button"

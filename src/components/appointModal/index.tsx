@@ -48,6 +48,9 @@ function AppointModal() {
       <div className={styles.overlay} onClick={toggleModal}>
         <div className={styles.modalContainer} onClick={handleContentClick}>
           <div className="mt-4 px-4">
+          <div className="closeModal ">
+                            <button className="w-5 h-5 items-center" onClick={toggleModal}>x</button>
+                        </div>
             <div>
               <label htmlFor="dob" className="text-lg font-semibold pt-2">
                 Date

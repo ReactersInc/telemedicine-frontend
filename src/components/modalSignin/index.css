@@ -61,13 +61,18 @@
 .closeModal{
     position: absolute;
     right: -9%;
-    top: -9%;
+    top:-4%;
 }
 .closeModal button{
     border: transparent;
-    color: white;
+    color: rgb(0, 0, 0);
     background-color: #D5DEED;
     border-radius: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
 }
 .modalPatientSelector {
     width: 50%;
