@@ -8,18 +8,23 @@ interface DateTimeOption {
   Time: string;
   Slots_Remaining: number;
 }
+interface AppointModalProps {
+  doctor_id: string;
+  patientEmail: string;
+}
 
-function AppointModal(props: any) {
+function AppointModal(props:  AppointModalProps) {
   const [dateTimeOptions, setDateTimeOptions] = useState<DateTimeOption[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [isDateTimeSelected, setIsDateTimeSelected] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log('Props in AppointModal:', props);
     const fetchDateTimeOptions = async () => {
       const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/searchSlot.php";
-      const doctorId = "D-17118919082"; // Static doctor_id
-
+      const doctorId = "D-17029136424"; // Static doctor_id
+      // console.log(interface AppointModalProps, doctorId);
       try {
         const response = await fetch(apiUrl, {
           method: "POST",
@@ -95,7 +100,7 @@ function AppointModal(props: any) {
               <h1 className="text-xl font-semibold mb-2">
                 Select Date and Time
               </h1>
-              <div>{props.doctorID}</div>
+              {/* <div>{props.doctorID}</div> */}
               {dateTimeOptions.map((option) => (
                 <div key={`${option.Date}-${option.Time}`} className="mt-2">
                   <div className="flex space-x-6">

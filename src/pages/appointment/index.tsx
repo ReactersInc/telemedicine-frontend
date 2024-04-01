@@ -26,52 +26,11 @@ interface DoctorListProps {
   patientEmail: string;
 }
 
-const [doctorID, setDoctorID] = useState("");
-const [PatientEmailID, setPatientEmailID] = useState("");
 
 function DoctorList({ doctors, patientEmail }: DoctorListProps) {
-  const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
-
-  const handleBookAppointment = async (doctor: Doctor) => {
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/bookAppointment.php";
-
-    const data = {
-      patient_email: patientEmail,
-      doctor_id: doctor.About.d_id,
-      booking_date: "25-12-2023",
-      booking_time: "10:00",
-    };
-    console.log(data);
-
-    setDoctorID(data.doctor_id);
-    setPatientEmailID(data.patient_email);
-
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-
-    try {
-      const response = await fetch(apiUrl, requestOptions);
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        if (jsonResponse && jsonResponse.Status) {
-          console.log(jsonResponse);
-        }
-      } else {
-        console.error("Error sending JSON data:", response.statusText);
-        // Handle the error appropriately
-      }
-    } catch (error) {
-      console.error("Error sending JSON data:", error);
-      // Handle the error appropriately
-    }
-    alert("Booking appointment with doctor:" + doctor);
-    console.log("Booking appointment with doctor:", doctor);
-  };
+  const [doctorID, setDoctorID] = useState("");
+  const [PatientEmailID, setPatientEmailID] = useState("");
+  
 
   const isModalOpen = useSelector(
     (state: { modal: { modalOpen: boolean; scroll: boolean } }) =>
@@ -83,7 +42,14 @@ function DoctorList({ doctors, patientEmail }: DoctorListProps) {
   );
   const dispatch = useDispatch();
 
-  const toggleModal = () => {
+  const toggleModal = (doctorId: string) => {
+    setDoctorID(doctorId);
+    setPatientEmailID(patientEmail);
+    console.log(doctorId);
+    console.log(patientEmail);
+    dispatch(setModal());
+  };
+  const toggleModal1 = () => {
     dispatch(setModal());
   };
 
@@ -128,11 +94,18 @@ function DoctorList({ doctors, patientEmail }: DoctorListProps) {
             </div>
             <div>
               <button
-                onClick={toggleModal}
+                onClick={() => toggleModal(doctor.About.d_id)}
                 className=" mt-6 py-2 px-4 font-semibold text-white text-md bg-[#2cda6d] rounded-md"
               >
                 Book Appointment
               </button>
+              <div>
+                {isModalOpen && (
+                  <div className={styles.overlayAppoint} onClick={toggleModal1}>
+                    <AppointModal doctor_id={doctorID} patientEmail={PatientEmailID} />
+                  </div>
+                )}
+              </div>
             </div>
           </li>
         ))}
@@ -312,14 +285,8 @@ function Appointment() {
 
   return (
     <div>
-      <VerticalNavPatient />
-      <div>
-        {isModalOpen && (
-          <div className={styles.overlayAppoint} onClick={toggleModal}>
-            <AppointModal doctorID={doctorID} patientEmailID={PatientEmailID} />
-          </div>
-        )}
-      </div>
+      <VerticalNavPatient/>
+      
 
       <div id={styles.appointment}>
         <div className="page-label">
@@ -359,6 +326,40 @@ function Appointment() {
                 required
               />
             </div>
+            {/* <div className="mt-4">
+              <div>
+                <label htmlFor="dob" className="text-lg font-semibold pt-2">
+                  Date
+                </label>
+                <br />
+                <input
+                  type="date"
+                  name="dob"
+                  id="dob"
+                  className={styles.style_input}
+                  required
+                />
+              </div>
+            </div>
+            <div className="mt-4">
+              <label htmlFor="degree" className="text-lg font-semibold pt-2">
+                Time
+              </label>
+              <br />
+              <div className="flex space-x-6">
+                {timeSlots.map((timeOption) => (
+                  <button
+                    key={timeOption.value}
+                    onClick={() => handleTimeChange(timeOption)}
+                    className={`border py-2 px-4 border-[#2cda6d] rounded-md ${
+                      selectedTime === timeOption.value ? "bg-green-50" : ""
+                    }`}
+                  >
+                    <h3>{timeOption.label}</h3>
+                  </button>
+                ))}
+              </div>
+            </div> */}
           </div>
           <button
             className=" mt-6 py-2 px-4 font-semibold text-white text-lg bg-[#2cda6d] rounded-md"
