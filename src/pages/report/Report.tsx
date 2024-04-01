@@ -78,13 +78,80 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
 
   const generateReportspo2 = (SpO2: number) => {
     if (SpO2 >= 95) {
-      return "SpO2 OK";
+      return (
+      <div className='display-container'>
+      <div className='vital-heading'>
+      <h1>Your Blood Oxygen level is good.</h1>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.healthline.com/health/normal-blood-oxygen-level#symptoms'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+    );
     } else if (SpO2 >= 85 && SpO2 < 95) {
-      return "HYPOXEMIA";
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+        <p>HYPOXEMIA</p>
+      <h1>Your Blood Oxygen level is low.</h1>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.healthline.com/health/normal-blood-oxygen-level#symptoms'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
     } else if (SpO2 >= 67 && SpO2 < 85) {
-      return "Visual and Cognitive Signs";
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <h1>Your Blood Oxygen level is very low.</h1>
+      <h1>visual and cognitive changes may start to develop.</h1>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      
+      <p>To know More <a href='https://www.healthline.com/health/normal-blood-oxygen-level#symptoms'><span className='click-here-link'>click here</span></a></p>
+      
+      </div>
+
+      </div>
+      );
     } else {
-      return "Cyanosis";
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+        <p>CYANOSIS</p>
+      <h1>Your Blood Oxygen level is critically low.</h1>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.healthline.com/health/normal-blood-oxygen-level#symptoms'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
     }
 
 
@@ -106,14 +173,78 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
 
 
   const generateReportBP = (sys:number, dia:number) => {
-    if (sys >= 100) {
-      return "bp OK";
-    } else if (gsr >= 85 && gsr < 95) {
-      return "HYPOXEMIA";
-    } else if (dia >= 67 && gsr < 85) {
-      return "Visual and Cognitive Signs";
-    } else {
-      return "Cyanosis";
+    if (sys< 120  && dia<80) {
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <h1>Normal Blood Pressure</h1>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
+    } else if (sys >= 120 && dia < 80) {
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <p>Elevated Blood Pressure</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
+    } else if (sys >= 130 && dia >= 80) {
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <p>Stage 1 Hypertension</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
+    } else if(sys>=140 && dia>=90) {
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <p>Stage 2 Hypertension</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
     }
 
 
@@ -121,16 +252,76 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
 
 
   const generateReportBody_temp = (body_Temp:number) => {
-    if (body_Temp >= 30) {
-      return (<div className='vital-heading'>
-        <h1>"body temp  OK"</h1>
+    if (body_Temp >= 36.5 && body_Temp <37.3) {
+      return (<div className='display-container'>
+      <div className='vital-heading'>
+      <p>Normal Body Temperature</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
       </div>);
-    } else if (gsr >= 85 && gsr < 95) {
-      return "HYPOXEMIA";
-    } else if (dia >= 67 && gsr < 85) {
-      return "Visual and Cognitive Signs";
-    } else {
-      return "Cyanosis";
+    } else if (body_Temp >= 37.3 && body_Temp < 37.9) {
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <p>Low Grade Fever</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
+    } else if (body_Temp >38) {
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <p>Fever (Pyrexia)</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
+    } else{
+      return(
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <p>Hypothermia</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
     }
 
 
@@ -138,18 +329,69 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
 
 
   const generateReportPulse = (pulse:number) => {
-    if (pulse >= 90) {
-      return "pulse  OK";
-    } else if (gsr >= 85 && gsr < 95) {
-      return "HYPOXEMIA";
-    } else if (dia >= 67 && gsr < 85) {
-      return "Visual and Cognitive Signs";
+    if (pulse<=100 && pulse>=60) {
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <p>Normal Pulse</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+        
+      );
+    } else if (pulse>100) {
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <p>High Pulse(Tachycardia)</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+        
+      );
+   
     } else {
-      return "Cyanosis";
+      return (
+        <div className='display-container'>
+      <div className='vital-heading'>
+      <p>Low Pulse (Bradycardia)</p>
+      </div>
+      <div className='display-icon'>
+        <img src="./static/healthySpo2.png" alt="" />
+
+      </div>
+      <div className='more-info-link'>
+      <div >
+      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
+      </div>
+      </div>
+
+      </div>
+      );
     }
 
 
   };
+
+ 
 
   return (
     <div>
@@ -164,10 +406,10 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
 
       <div className='report-container'>
   <div className='report-text'>
-    <p> SpO2 Report: {generateReportspo2(SpO2)}</p>
+    <p> SpO2 Report: {(SpO2)} {generateReportspo2(SpO2)}</p>
   </div>
   <div className='report-text'>
-    <p>GSR Report: {generateReportgsr(gsr)}</p>
+    <p>GSR Report: {(gsr)} {generateReportgsr(gsr)}</p>
   </div>
   <div className='report-text'>
     <p>BP Report: {generateReportBP(sys, dia)}</p>
@@ -179,6 +421,7 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
     <p>Pulse Report: {generateReportPulse(pulse)}</p>
   </div>
 </div>
+
 
     </div>
   );
