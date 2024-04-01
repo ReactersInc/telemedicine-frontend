@@ -4,18 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { setModal } from "../../features/modal/modalSlice";
 import jwt_decode, { JwtPayload } from "jwt-decode";
 import { userLogin } from "../../features/users/userSlice";
-
 interface DecodedJwtPayload {
+  id: string;
   email: string;
   dob: string;
   exp: number;
   gender: string;
   name: string;
-  photourl: string;
+  photoUrl: string;
   state: string;
-  timestamp: string;
-}
+  timeStamp: string;
+  phone: string;
 
+
+  mobile_no: string;
+  doctor_id: string;
+  registration_no: string;
+  specilization: string;
+  rating: number;
+}
 function ModalSignin() {
   const dispatch = useDispatch();
   const [state, setstate] = useState(true);
@@ -97,16 +104,14 @@ function ModalSignin() {
               exp: decodedJwt.exp,
               gender: decodedJwt.gender,
               name: decodedJwt.name,
-              photoUrl: decodedJwt.photourl,
+              photoUrl: decodedJwt.photoUrl,
               state: decodedJwt.state,
-              timeStamp: decodedJwt.timestamp,
+              timeStamp: decodedJwt.timeStamp,
             })
           );
 
           // window.location.href = "/dashboard"
-          window.location.href = userType
-            ? "doctordashboard"
-            : "patientdashboard";
+          window.location.href = "patientdashboard";
         } else {
           console.error("Invalid response structure.");
         }
@@ -155,17 +160,21 @@ function ModalSignin() {
               email: decodedJwt.email,
               dob: decodedJwt.dob,
               exp: decodedJwt.exp,
-              gender: decodedJwt.gender,
+              doctor_id: decodedJwt.doctor_id,
               name: decodedJwt.name,
-              photoUrl: decodedJwt.photourl,
-              state: decodedJwt.state,
-              timeStamp: decodedJwt.timestamp,
+              photoUrl: decodedJwt.photoUrl,
+              registration_no: decodedJwt.registration_no,
+              mobile_no: decodedJwt.mobile_no,
+              specilization: decodedJwt.specilization,
+              rating: decodedJwt.rating,
+              gender: decodedJwt.gender,
             })
           );
+          console.log(decodedJwt.doctor_id);
+          console.log( decodedJwt.registration_no);
 
-          window.location.href = userType
-            ? "doctordashboard"
-            : "patientdashboard";
+          window.location.href = "doctordashboard";
+            
         } else {
           console.error("Invalid response structure.");
         }

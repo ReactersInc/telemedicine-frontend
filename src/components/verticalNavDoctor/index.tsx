@@ -4,33 +4,49 @@ import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
 
 function VerticalNavDoctor() {
-  const name = useSelector(
+  const doctor_id = useSelector(
     (state: {
       user: {
         id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
+  email: string;
+  dob: string;
+  exp: number;
+  gender: string;
+  name: string;
+  photoUrl: string;
+  state: string;
+  timeStamp: string;
+  phone: string;
+
+
+  mobile_no: string;
+  doctor_id: string;
+  registration_no: string;
+  specilization: string;
+  rating: number;
       };
-    }) => state.user.name
+    }) => state.user.doctor_id
   );
   const email = useSelector(
     (state: {
       user: {
         id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
+  email: string;
+  dob: string;
+  exp: number;
+  gender: string;
+  name: string;
+  photoUrl: string;
+  state: string;
+  timeStamp: string;
+  phone: string;
+
+
+  mobile_no: string;
+  doctor_id: string;
+  registration_no: string;
+  specilization: string;
+  rating: number;
       };
     }) => state.user.email
   );
@@ -53,7 +69,7 @@ function VerticalNavDoctor() {
               className="border rounded-full"
             />
           </div>
-          <h2 className="font-semibold text-center">{name}</h2>
+          <h2 className="font-semibold text-center">{doctor_id}</h2>
         </div>
         <div className="flex space-x-3 justify-items-start">
           <a href="/doctordashboard">
@@ -108,7 +124,7 @@ function VerticalNavDoctor() {
             />
           </a>
           <a href="/setslot" className="font-semibold text-xl">
-          SET Slot 
+            SET Slot
           </a>
         </div>
         <div
