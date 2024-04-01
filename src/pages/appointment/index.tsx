@@ -26,6 +26,9 @@ interface DoctorListProps {
   patientEmail: string;
 }
 
+const [doctorID, setDoctorID] = useState("");
+const [PatientEmailID, setPatientEmailID] = useState("");
+
 function DoctorList({ doctors, patientEmail }: DoctorListProps) {
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
 
@@ -39,6 +42,9 @@ function DoctorList({ doctors, patientEmail }: DoctorListProps) {
       booking_time: "10:00",
     };
     console.log(data);
+
+    setDoctorID(data.doctor_id);
+    setPatientEmailID(data.patient_email);
 
     const requestOptions = {
       method: "POST",
@@ -306,11 +312,11 @@ function Appointment() {
 
   return (
     <div>
-      <VerticalNavPatient/>
+      <VerticalNavPatient />
       <div>
         {isModalOpen && (
           <div className={styles.overlayAppoint} onClick={toggleModal}>
-            <AppointModal />
+            <AppointModal doctorID={doctorID} patientEmailID={PatientEmailID} />
           </div>
         )}
       </div>
@@ -353,40 +359,6 @@ function Appointment() {
                 required
               />
             </div>
-            {/* <div className="mt-4">
-              <div>
-                <label htmlFor="dob" className="text-lg font-semibold pt-2">
-                  Date
-                </label>
-                <br />
-                <input
-                  type="date"
-                  name="dob"
-                  id="dob"
-                  className={styles.style_input}
-                  required
-                />
-              </div>
-            </div>
-            <div className="mt-4">
-              <label htmlFor="degree" className="text-lg font-semibold pt-2">
-                Time
-              </label>
-              <br />
-              <div className="flex space-x-6">
-                {timeSlots.map((timeOption) => (
-                  <button
-                    key={timeOption.value}
-                    onClick={() => handleTimeChange(timeOption)}
-                    className={`border py-2 px-4 border-[#2cda6d] rounded-md ${
-                      selectedTime === timeOption.value ? "bg-green-50" : ""
-                    }`}
-                  >
-                    <h3>{timeOption.label}</h3>
-                  </button>
-                ))}
-              </div>
-            </div> */}
           </div>
           <button
             className=" mt-6 py-2 px-4 font-semibold text-white text-lg bg-[#2cda6d] rounded-md"
