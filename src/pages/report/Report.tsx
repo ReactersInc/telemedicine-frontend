@@ -122,7 +122,9 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
 
   const generateReportBody_temp = (body_Temp:number) => {
     if (body_Temp >= 30) {
-      return "body temp  OK";
+      return (<div className='vital-heading'>
+        <h1>"body temp  OK"</h1>
+      </div>);
     } else if (gsr >= 85 && gsr < 95) {
       return "HYPOXEMIA";
     } else if (dia >= 67 && gsr < 85) {
@@ -152,26 +154,32 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
   return (
     <div>
       <VerticalNavPatient/>
-      <div className='report-heading'>
+      <div className='report-title-heading'>
         <div>
-          <h2>Report Page</h2>
+          <p>Report Page</p>
 
         </div>
 
       </div>
 
-      <div className='report-text'>
-        <div>
-          <p> SpO2 Report: {generateReportspo2(SpO2)}</p>
-          <p>GSR Report: {generateReportgsr(gsr)}</p>
-          <p>BP Report: {generateReportBP(sys, dia)}</p>
-          <p>body temp Report: {generateReportBody_temp(bodyTemp)}</p>
-          <p>Pulse Report: {generateReportPulse(pulse)}</p>
+      <div className='report-container'>
+  <div className='report-text'>
+    <p> SpO2 Report: {generateReportspo2(SpO2)}</p>
+  </div>
+  <div className='report-text'>
+    <p>GSR Report: {generateReportgsr(gsr)}</p>
+  </div>
+  <div className='report-text'>
+    <p>BP Report: {generateReportBP(sys, dia)}</p>
+  </div>
+  <div className='report-text'>
+    <p>body temp Report: {generateReportBody_temp(bodyTemp)}</p>
+  </div>
+  <div className='report-text'>
+    <p>Pulse Report: {generateReportPulse(pulse)}</p>
+  </div>
+</div>
 
-        </div>
-
-
-      </div>
     </div>
   );
 };

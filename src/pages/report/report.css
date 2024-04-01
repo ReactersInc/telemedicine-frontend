@@ -1,16 +1,39 @@
-.report-text{
+.report-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* margin-left: 100px; */
-}
+    align-items: flex-start;
+    margin-left: 150px;
+    margin-right: 15px;
+    
+  }
+  
+  .report-text {
+    margin-top: 5px; /* Adjust as needed */
+    /* border: solid 1px black; Just for visualization */
+    padding: 10px;
+    height: 18vh; /* 15% of viewport height */
+    width: 80vw;
+    background-color: #2cda6d;
+    color: white;
+    border-radius: 15px;
+  }
 
-.report-heading{
+  .report-title-heading{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size:xx-large;
-    /* width: 20px; */
+    font-size: xx-large;
+    background-color: aquamarine;
+    color: white;
+    margin-left: 150px;
+    border-radius: 10px;
+    width: 80vw;
+  }
+  .vital-heading{
+    color: red;
+  }
 
-}
+  .report-heading{
+    margin-top: 0;
+  }
+  
