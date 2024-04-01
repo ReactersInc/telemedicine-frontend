@@ -34,7 +34,7 @@ function ModalSignin() {
   const [doctorSelector, setDoctorSelector] = useState("modalDoctorSelector");
 
   const changeStyleDoctorClick = () => {
-    setstate(!state);
+    setstate(false);
     if (
       patientSelector === "modalPatientSelector" &&
       doctorSelector === "modalDoctorSelector"
@@ -46,7 +46,7 @@ function ModalSignin() {
   };
 
   const changeStylePatientClick = () => {
-    setstate(!state);
+    setstate(true);
     if (
       patientSelector === "modalDoctorSelector" &&
       doctorSelector === "modalPatientSelector"
@@ -240,7 +240,7 @@ function ModalSignin() {
                 <div className="modalRow">
                   <button className="googleSignupBtn">
                     <img
-                      src="%PUBLIC_URL%/assets/googleImage.svg"
+                      src="./static/google.svg"
                       alt="Google Icon"
                     />
                     Continue with Google

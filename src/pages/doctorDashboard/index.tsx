@@ -123,30 +123,7 @@ function DoctorDashboard() {
               </div>
             </div>
 
-            {/* <div className={styles.pateintDetails}>
-              <div className="flex">
-                <p className="font-bold text-lg ml-auto mr-auto pt-2">
-                  Recent Health Checkup
-                </p>
-              </div>
-              <div className={styles.label}>
-                <h3 className="font-semibold">Date:</h3>
-                <div className={styles.value}>29/03/2024</div>
-              </div>
-              <div className={styles.label}>
-                <h3 className="font-semibold">Consultant Doctor:</h3>
-                <div className={styles.value}>Dr. Abc Xyz</div>
-              </div>
-
-              <div className="ml-4 mt-4">
-                <div className="flex space-x-2 items-center">
-                  <h3 className="font-semibold">Diagnosis</h3>
-                  <button className="py-2 px-3 bg-[#2cda6d] border rounded-2xl font-semibold text-slate-50">
-                    Preview Prescription
-                  </button>
-                </div>
-              </div>
-            </div>*/}
+        
           </div>
           <div className={styles.tableContainer}>
             <div id={styles.tableDiv}>

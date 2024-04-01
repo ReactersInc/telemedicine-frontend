@@ -64,11 +64,10 @@ function DoctorDetails() {
     bloodGroup: "",
     degree: [],
     reg_no: "",
-    specialization:"",
+    specialization: "",
     password: "",
     confirmPassword: "",
   });
-
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -93,6 +92,46 @@ function DoctorDetails() {
   };
 
   const handleSubmit = async () => {
+    if (
+      formData.fname === "" ||
+      formData.lname === "" ||
+      formData.email === "" ||
+      formData.mobile === "" ||
+      formData.dob === "" ||
+      formData.city === "" ||
+      formData.state === "" ||
+      formData.country === "" ||
+      formData.password === "" ||
+      formData.confirmPassword === "" ||
+      formData.gender === "" ||
+      formData.bloodGroup === "" ||
+      formData.degree.length === 0 ||
+      formData.reg_no === "" ||
+      formData.specialization === ""
+    ) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+    if (formData.password != formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    if (formData.password.length < 6) {
+      alert("Password must contain at least 6 characters.");
+      return false;
+    }
+
+    // Check if password contains at least one number
+    if (!/\d/.test(formData.password)) {
+      alert("Password must contain at least one number.");
+      return false;
+    }
+
+    // Check if password contains at least one special character
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(formData.password)) {
+      alert("Password must contain at least one special character.");
+      return false;
+    }
     const apiurl = "http://52.66.241.131/IoMTAppAPI/api/addDoctor.php";
     const requestOptions = {
       method: "POST",
@@ -100,21 +139,22 @@ function DoctorDetails() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-          email : formData.email,
-          name :formData.fname + " " + formData.lname ,
-          mobile_no : formData.mobile,
-          reg_no : formData.reg_no ,
-          dob : formData.dob,
-          gender : formData.gender,
-          specilization :formData.specialization,
-          password :formData.password,
-          degree: formData.degree,
-          certificate:" null", 
-          blood_grp: formData.bloodGroup,
-          address : formData.city + ", " + formData.state + ", " + formData.country,
-          profileImg :"null",
-          rating : 0
-          }),
+        email: formData.email,
+        name: formData.fname + " " + formData.lname,
+        mobile_no: formData.mobile,
+        reg_no: formData.reg_no,
+        dob: formData.dob,
+        gender: formData.gender,
+        specilization: formData.specialization,
+        password: formData.password,
+        degree: formData.degree,
+        certificate: " null",
+        blood_grp: formData.bloodGroup,
+        address:
+          formData.city + ", " + formData.state + ", " + formData.country,
+        profileImg: "null",
+        rating: 0,
+      }),
     };
     try {
       const response = await fetch(apiurl, requestOptions);
@@ -130,12 +170,9 @@ function DoctorDetails() {
       } else {
         window.alert("ram ram sara  na");
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   const handleotp = async (event: React.FormEvent<HTMLFormElement>) => {
-
-
     const apiurl = "http://52.66.241.131/IoMTAppAPI/api/authDoctorOTP.php";
     event.preventDefault();
     const requestOptions = {
@@ -143,18 +180,15 @@ function DoctorDetails() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({email:formData.email, otp: otp}),
+      body: JSON.stringify({ email: formData.email, otp: otp }),
     };
-
 
     try {
       const response = await fetch(apiurl, requestOptions);
 
       if (response.ok) {
-
         const jsonResponse = await response.json();
         if (jsonResponse && jsonResponse.Status) {
-
           const jwtToken = jsonResponse.Status.jwt;
           const decodedJwt: DecodedJwtPayload = jwt_decode(jwtToken);
           dispatch(
@@ -177,8 +211,7 @@ function DoctorDetails() {
       } else {
         window.alert("invalid email or password");
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   return (
     <>
@@ -188,6 +221,7 @@ function DoctorDetails() {
             <label htmlFor="fname">First Name *</label>
             <br />
             <input
+            autoComplete="off"
               type="text"
               id="fname"
               name="fname"
@@ -201,6 +235,7 @@ function DoctorDetails() {
             <label htmlFor="lname">Last Name *</label>
             <br />
             <input
+            autoComplete="off"
               type="text"
               id="lname"
               name="lname"
@@ -233,6 +268,7 @@ function DoctorDetails() {
             <label htmlFor="email">Email *</label>
             <br />
             <input
+            autoComplete="off"
               type="email"
               id="email"
               name="email"
@@ -246,6 +282,7 @@ function DoctorDetails() {
             <label htmlFor="mobile">Mobile Number *</label>
             <br />
             <input
+            autoComplete="off"
               type="text"
               id="mobile"
               name="mobile"
@@ -259,6 +296,7 @@ function DoctorDetails() {
             <label htmlFor="dob">Date of Birth *</label>
             <br />
             <input
+            autoComplete="off"
               type="date"
               id="dob"
               name="dob"
@@ -274,6 +312,7 @@ function DoctorDetails() {
             <label htmlFor="city">City *</label>
             <br />
             <input
+            autoComplete="off"
               type="text"
               id="city"
               name="city"
@@ -287,6 +326,7 @@ function DoctorDetails() {
             <label htmlFor="state">State *</label>
             <br />
             <input
+            autoComplete="off"
               type="text"
               id="state"
               name="state"
@@ -300,6 +340,7 @@ function DoctorDetails() {
             <label htmlFor="country">Country *</label>
             <br />
             <input
+            autoComplete="off"
               type="text"
               id="country"
               name="country"
@@ -337,6 +378,7 @@ function DoctorDetails() {
             <label htmlFor="certificate">Upload Certificate(s) *</label>
             <br />
             <input
+            autoComplete="off"
               type="file"
               id="certificate"
               name="certificate"
@@ -348,6 +390,7 @@ function DoctorDetails() {
             <label htmlFor="image">Upload Image *</label>
             <br />
             <input
+            autoComplete="off"
               type="file"
               id="image"
               name="image"
@@ -378,6 +421,7 @@ function DoctorDetails() {
             <label htmlFor="reg_no">Registration Number *</label>
             <br />
             <input
+            autoComplete="off"
               type="text"
               id="reg_no"
               name="reg_no"
@@ -388,12 +432,30 @@ function DoctorDetails() {
           </div>
         </div>
         <div className="flex justify-between space-x-48 mt-8">
-          
-          
           <div className="w-[200px]">
+            <label htmlFor="specilization">Specialization In *</label>
+            <br />
+            <select
+              name="specialization"
+              id="specialization"
+              value={formData.specialization}
+              onChange={handleInputChange}
+              className="style_input w-[200px]"
+              required
+            >
+              <option value=""></option>
+              <option value="Pediatrician">Pediatrician</option>
+              <option value="Gastro">Gastro</option>
+              <option value="Dental">Dental</option>
+              <option value="General">General</option>
+              <option value="Ortho">Ortho</option>
+            </select>
+          </div>
+          <div className="w-[210px]">
             <label htmlFor="password">Password *</label>
             <br />
             <input
+            autoComplete="off"
               type="text"
               id="password"
               name="password"
@@ -403,10 +465,11 @@ function DoctorDetails() {
               required
             />
           </div>
-          <div className="w-[200px]">
+          <div className="w-[210px]">
             <label htmlFor="confirmPassword">Confirm Password *</label>
             <br />
             <input
+            autoComplete="off"
               type="text"
               id="confirmPassword"
               name="confirmPassword"
@@ -416,34 +479,18 @@ function DoctorDetails() {
               required
             />
           </div>
-          <div className="w-[200px]">
-            <label htmlFor="specilization">Specialization In *</label>
-            <br />
-            <select
-            name="specialization"
-            id="specialization"
-            value={formData.specialization}
-            onChange={handleInputChange}
-            className="style_input w-[200px]"
-            required
-            >
-            <option value=""></option>
-            <option value="Pediatrician">Pediatrician</option>
-            <option value="Gastro">Gastro</option>
-            <option value="Dental">Dental</option>
-            <option value="General">General</option>
-            <option value="Ortho">Ortho</option>
-            </select>
-          </div>
-          </div>
+        </div>
       </div>
-      {state ? (<button
-        type="button"
-        onClick={handleSubmit}
-        className="mt-6 px-8 py-3 bg-[#2cda6d] rounded-3xl text-white font-semibold"
-      >
-        Submit
-      </button>) : (<div className="fixed z-10 inset-0 overflow-y-auto">
+      {state ? (
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="mt-6 px-8 py-3 bg-[#2cda6d] rounded-3xl text-white font-semibold"
+        >
+          Submit
+        </button>
+      ) : (
+        <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div
               className="fixed inset-0 transition-opacity"
@@ -456,6 +503,7 @@ function DoctorDetails() {
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <form onSubmit={handleotp}>
                   <input
+                  autoComplete="off"
                     type="number"
                     value={otp}
                     onChange={handleotpChange}
@@ -472,8 +520,8 @@ function DoctorDetails() {
               </div>
             </div>
           </div>
-          </div>
-        )}
+        </div>
+      )}
     </>
   );
 }
