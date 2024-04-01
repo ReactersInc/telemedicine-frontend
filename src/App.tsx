@@ -11,9 +11,9 @@ import PatientDashboard from "./pages/patientDashboard";
 import DoctorDashboard from "./pages/doctorDashboard";
 import Bookings from "./pages/bookings";
 import PatientsList from "./pages/patientsList";
-// import EcgGraph from './pages/test2'
 import ReportPage from "./pages/report/Report";
 import Register from "./pages/register";
+import SetSlot from "./pages/setslot/setslot";
 
 
 
@@ -48,10 +48,10 @@ export const router = [
     path: "/patientsList",
     element: <PatientsList />,
   },
-  // {
-  //   path: "/test2",
-  //   element: <EcgGraph/>
-  // }
+  {
+    path: "/setslot",
+    element:<SetSlot/>
+  },
   {
     path: "/report",
     element: <ReportPage SpO2={0} />,

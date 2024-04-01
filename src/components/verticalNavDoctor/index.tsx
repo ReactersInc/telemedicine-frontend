@@ -97,6 +97,20 @@ function VerticalNavDoctor() {
             Appointments
           </a>
         </div>
+        <div className="flex space-x-3 justify-items-start">
+          <a href="/setslot">
+            <img
+              src="./static/settime.svg"
+              height="22px"
+              width="22px"
+              alt=""
+              className="mt-1"
+            />
+          </a>
+          <a href="/setslot" className="font-semibold text-xl">
+          SET Slot 
+          </a>
+        </div>
         <div
           onClick={handleLogout}
           className="flex mt-auto pb-4 space-x-4  justify-items-center text-red-500"
