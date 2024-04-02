@@ -3,7 +3,7 @@ import VerticalNavDoctor from "../../components/verticalNavDoctor";
 import { userLogout } from "../../features/users/userSlice";
 import { useSelector } from "react-redux";
 const SetSlot = () => {
-    const name = useSelector(
+    const doctor_id = useSelector(
         (state: {
           user: {
             id: string;
@@ -15,8 +15,16 @@ const SetSlot = () => {
             photoUrl: string;
             state: string;
             timeStamp: string;
+            phone: string;
+          
+          
+            mobile_no: string;
+            doctor_id: string;
+            registration_no: string;
+            specilization: string;
+            rating: number;
           };
-        }) => state.user.name
+        }) => state.user.doctor_id
       );
   const [slots, setSlots] = useState({
     TimeSlotMon: "",
@@ -27,10 +35,12 @@ const SetSlot = () => {
     TimeSlotSat: "",
     TimeSlotSun: "",
   });
-
-  const [slotsPossible, setSlotsPossible] = useState(10);
-  const [startDate, setStartDate] = useState("16-12-2023");
-  const [endDate, setEndDate] = useState("20-12-2023");
+  const clearTime = (day: string) => {
+    setSlots({ ...slots, [day]: "" });
+  };
+  const [slotsPossible, setSlotsPossible] = useState(0);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const handleChange = (e: any) => {
     setSlots({ ...slots, [e.target.name]: e.target.value });
@@ -38,16 +48,36 @@ const SetSlot = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-
+    if (
+      startDate === "" ||
+      endDate=== "" ||
+      slotsPossible === 0
+    ) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+    if (
+      slots.TimeSlotFri === "" &&
+      slots.TimeSlotMon === "" &&
+      slots.TimeSlotSat === "" &&
+      slots.TimeSlotSun === "" &&
+      slots.TimeSlotThu === "" &&
+      slots.TimeSlotTue === "" &&
+      slots.TimeSlotWed === ""
+    ) {
+      alert("At least one day should have a time slot.");
+      return;
+    }
     const data = {
-      doctor_id: "D-17027906782",
+      doctor_id: doctor_id ,
       ...slots,
       slots_possible: slotsPossible,
       start_date: startDate,
       end_date: endDate,
     };
+    console.log(data);
 
-    fetch("http://your-api-url/slotSet.php", {
+    fetch("http://52.66.241.131/IoMTAppAPI/api/slotSet.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,6 +111,13 @@ const SetSlot = () => {
                 onChange={handleChange}
                 className="border-2 border-gray-200 rounded-md p-2"
               />
+              <button
+                type="button"
+                onClick={() => clearTime(day)}
+                className="ml-2 py-1 px-2 bg-red-500 text-white rounded-md"
+              >
+                Clear Time
+              </button>
             </div>
           ))}
           <div>
