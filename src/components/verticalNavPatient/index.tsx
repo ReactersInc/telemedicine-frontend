@@ -84,6 +84,20 @@ function VerticalNavPatient() {
           </a>
         </div>
         <div className="flex space-x-3 justify-items-start">
+          <a href="/patientsbookings">
+            <img
+              src="./static/patient.png"
+              height="22px"
+              width="22px"
+              alt=""
+              className="mt-1"
+            />
+          </a>
+          <a href="/patientsbookings" className="font-semibold text-xl  ">
+            Upcomming Appointments
+          </a>
+        </div>
+        {/* <div className="flex space-x-3 justify-items-start">
           <a href="/history">
             <img
               src="./static/patient.png"
@@ -96,7 +110,7 @@ function VerticalNavPatient() {
           <a href="/history" className="font-semibold text-xl">
             History
           </a>
-        </div>
+        </div> */}
         <div className="flex space-x-3 justify-items-start">
           <a href="/vitals">
             <img

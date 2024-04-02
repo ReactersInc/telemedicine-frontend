@@ -14,6 +14,7 @@ import PatientsList from "./pages/patientsList";
 import ReportPage from "./pages/report/Report";
 import Register from "./pages/register";
 import SetSlot from "./pages/setslot/setslot";
+import UpcomingAppointment from "./pages/upcomming appointment";
 
 
 
@@ -60,7 +61,10 @@ export const router = [
     path:"/register",
     element :<Register/>,
   }
-
+  , {
+    path: "/patientsbookings",
+    element: <UpcomingAppointment/>,
+  },
   
 ];
 
