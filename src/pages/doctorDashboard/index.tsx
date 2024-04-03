@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 import VerticalNavDoctor from "../../components/verticalNavDoctor";
 
 function DoctorDashboard() {
-  const name = useSelector(
+  const doc = useSelector(
     (state: {
       user: {
         id: string;
@@ -17,54 +17,20 @@ function DoctorDashboard() {
         photoUrl: string;
         state: string;
         timeStamp: string;
+        phone: string;
+      
+      
+        mobile_no: string;
+        doctor_id: string;
+        registration_no: string;
+        specilization: string;
+        rating: number;
+        city: string;
+        address: string;
       };
-    }) => state.user.name
+    }) => state.user
   );
-  const gender = useSelector(
-    (state: {
-      user: {
-        id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-      };
-    }) => state.user.gender
-  );
-  const email = useSelector(
-    (state: {
-      user: {
-        id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-      };
-    }) => state.user.email
-  );
-  const state = useSelector(
-    (state: {
-      user: {
-        id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-      };
-    }) => state.user.state
-  );
+ 
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -95,31 +61,31 @@ function DoctorDashboard() {
             <div className={styles.pateintDetails}>
               <div className={styles.label}>
                 <h3 className="font-semibold">Name:</h3>
-                <div className={styles.value}>{name}</div>
+                <div className={styles.value}>{doc.name}</div>
               </div>
               <div className={styles.label}>
                 <div className="flex">
                   <h3 className="font-semibold">Gender:</h3>
-                  <div className={styles.value}>{gender}</div>
+                  <div className={styles.value}>{doc.gender}</div>
                 </div>
                 <div className="flex ml-6">
                   <h3 className="font-semibold">DOB:</h3>
-                  <div className={styles.value}>20/09/2002</div>
+                  <div className={styles.value}>{doc.dob}</div>
                 </div>
               </div>
               <div className={styles.label}>
                 <h3 className="font-semibold">Phone No:</h3>
-                <div className={styles.value}> {"9876543210"}</div>
+                <div className={styles.value}> {doc.mobile_no}</div>
               </div>
 
               <div className={styles.label}>
                 <h3 className="font-semibold">Email:</h3>
-                <div className={styles.value}>{email}</div>
+                <div className={styles.value}>{doc.email}</div>
               </div>
 
               <div className={styles.label}>
                 <h3 className="font-semibold">Address:</h3>
-                <div className={styles.value}>Tezpur,Assam</div>
+                <div className={styles.value}>{ doc.address}</div>
               </div>
             </div>
 

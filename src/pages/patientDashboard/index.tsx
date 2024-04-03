@@ -9,31 +9,25 @@ function PatientDashboard() {
     (state: {
       user: {
         id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
+  email: string;
+  dob: string;
+  exp: number;
+  gender: string;
+  name: string;
+  photoUrl: string;
+  state: string;
+  timeStamp: string;
+  phone: string;
+
+
+  mobile_no: string;
+  doctor_id: string;
+  registration_no: string;
+  specilization: string;
+  rating: number;
+  city: string;
       };
-    }) => state.user.name
-  );
-  const email = useSelector(
-    (state: {
-      user: {
-        id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-      };
-    }) => state.user.email
+    }) => state.user
   );
   const dispatch = useDispatch();
 
@@ -65,31 +59,31 @@ function PatientDashboard() {
             <div className={styles.pateintDetails}>
               <div className={styles.label}>
                 <h3 className="font-semibold">Name:</h3>
-                <div className={styles.value}>{name}</div>
+                <div className={styles.value}>{name.name}</div>
               </div>
               <div className={styles.label}>
                 <div className="flex">
                   <h3 className="font-semibold">Gender:</h3>
-                  <div className={styles.value}>Female</div>
+                  <div className={styles.value}>{name.gender}</div>
                 </div>
                 <div className="flex ml-6">
                   <h3 className="font-semibold">DOB:</h3>
-                  <div className={styles.value}>20/09/2002</div>
+                  <div className={styles.value}>{name.dob}</div>
                 </div>
               </div>
               <div className={styles.label}>
                 <h3 className="font-semibold">Phone No:</h3>
-                <div className={styles.value}> {"9876543210"}</div>
+                <div className={styles.value}> {name.mobile_no}</div>
               </div>
 
               <div className={styles.label}>
                 <h3 className="font-semibold">Email:</h3>
-                <div className={styles.value}>{email}</div>
+                <div className={styles.value}>{name.email}</div>
               </div>
 
               <div className={styles.label}>
                 <h3 className="font-semibold">Address:</h3>
-                <div className={styles.value}>Tezpur,Assam</div>
+                <div className={styles.value}>{name.city+","+name.state}</div>
               </div>
             </div>
 

@@ -43,10 +43,11 @@ function Bookings() {
     setSelectedDate(event.target.value);
   };
 
-    const fetchAppointments = async () => {
-      const doctorId = doctor_id;
-      const bookingDate = selectedDate;
-      const apiUrl = `http://52.66.241.131/IoMTAppAPI/api/viewSlotBookings.php`;
+  const fetchAppointments = async () => {
+    setAppointments([]);
+    const doctorId = doctor_id;
+    const bookingDate = selectedDate;
+    const apiUrl = `http://52.66.241.131/IoMTAppAPI/api/viewSlotBookings.php`;
 
       try {
         const response = await fetch(apiUrl, {

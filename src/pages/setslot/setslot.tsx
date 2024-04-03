@@ -97,31 +97,33 @@ const SetSlot = () => {
     <>
       <VerticalNavDoctor />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} className="w-full max-w-lg p-8 mt-6 rounded-lg shadow-md bg-white">
           {Object.entries(slots).map(([day, time]) => (
             <div key={day} className="flex justify-between mb-4">
-              <label htmlFor={day} className="mr-4">
+              <label htmlFor={day} className="block text-gray-700 text-sm font-bold mb-2">
                 {day}
               </label>
-              <input
-                type="time"
-                id={day}
-                name={day}
-                value={time}
-                onChange={handleChange}
-                className="border-2 border-gray-200 rounded-md p-2"
-              />
-              <button
-                type="button"
-                onClick={() => clearTime(day)}
-                className="ml-2 py-1 px-2 bg-red-500 text-white rounded-md"
-              >
-                Clear Time
-              </button>
+              <div className="flex items-center">
+                <input
+                  type="time"
+                  id={day}
+                  name={day}
+                  value={time}
+                  onChange={handleChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+                <button
+                  type="button"
+                  onClick={() => clearTime(day)}
+                  className="ml-2 py-1 px-2 bg-red-500 text-white rounded hover:bg-red-700 focus:outline-none focus:shadow-outline"
+                >
+                  Clear Time
+                </button>
+              </div>
             </div>
           ))}
           <div>
-            <label htmlFor="slotsPossible" className="mr-4">
+            <label htmlFor="slotsPossible" className="block text-gray-700 text-sm font-bold mb-2">
               Slots Possible
             </label>
             <input
@@ -130,9 +132,9 @@ const SetSlot = () => {
               name="slotsPossible"
               value={slotsPossible}
               onChange={(e) => setSlotsPossible(parseInt(e.target.value))}
-              className="border-2 border-gray-200 rounded-md p-2"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
-            <label htmlFor="startDate" className="mr-4">
+            <label htmlFor="startDate" className="block text-gray-700 text-sm font-bold mb-2">
               Start Date
             </label>
             <input
@@ -141,9 +143,9 @@ const SetSlot = () => {
               name="startDate"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="border-2 border-gray-200 rounded-md p-2"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
-            <label htmlFor="endDate" className="mr-4">
+            <label htmlFor="endDate" className="block text-gray-700 text-sm font-bold mb-2">
               End Date
             </label>
             <input
@@ -152,12 +154,12 @@ const SetSlot = () => {
               name="endDate"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="border-2 border-gray-200 rounded-md p-2"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-500 text-white rounded-md"
+            className="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
           >
             Set Slots
           </button>

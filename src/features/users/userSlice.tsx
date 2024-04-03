@@ -18,6 +18,9 @@ const initialState: {
   registration_no: string;
   specilization: string;
   rating: number;
+  city: string;
+  address: string;
+
 } = {
   id: "",
   email: "",
@@ -34,6 +37,8 @@ const initialState: {
   registration_no: "",
   specilization: "",
   rating: 0,
+  city: "",
+  address: "",
 };
 
 const userSlice = createSlice({
@@ -56,7 +61,8 @@ const userSlice = createSlice({
       state.registration_no = action.payload.registration_no;
       state.specilization = action.payload.specilization;
       state.rating = action.payload.rating;
-
+      state.city = action.payload.city;
+      state.address = action.payload.address;
     },
     userLogout: (state) => {
       state.id = "";
@@ -69,6 +75,8 @@ const userSlice = createSlice({
       state.state = "";
       state.timeStamp = "";
       state.phone = "";
+      state.mobile_no = "";
+      state.address="";
     },
   },
 });

@@ -22,6 +22,8 @@ interface DecodedJwtPayload {
   registration_no: string;
   specilization: string;
   rating: number;
+  city: string;
+  address: string;
 }
 function ModalSignin() {
   const dispatch = useDispatch();
@@ -107,6 +109,7 @@ function ModalSignin() {
               photoUrl: decodedJwt.photoUrl,
               state: decodedJwt.state,
               timeStamp: decodedJwt.timeStamp,
+              city: decodedJwt.city,
             })
           );
 
@@ -168,10 +171,9 @@ function ModalSignin() {
               specilization: decodedJwt.specilization,
               rating: decodedJwt.rating,
               gender: decodedJwt.gender,
+              address:decodedJwt.address,
             })
           );
-          console.log(decodedJwt.doctor_id);
-          console.log( decodedJwt.registration_no);
 
           window.location.href = "doctordashboard";
             
