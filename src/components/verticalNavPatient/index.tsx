@@ -94,7 +94,7 @@ function VerticalNavPatient() {
             />
           </a>
           <a href="/patientsbookings" className="font-semibold text-xl  ">
-            Upcomming Appointments
+            Upcoming Appointments
           </a>
         </div>
         {/* <div className="flex space-x-3 justify-items-start">

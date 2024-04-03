@@ -16,11 +16,7 @@ import Register from "./pages/register";
 import SetSlot from "./pages/setslot/setslot";
 import UpcomingAppointment from "./pages/upcomming appointment";
 
-
-
 export const router = [
-
-  
   {
     path: "/",
     element: <Home />,
@@ -51,29 +47,23 @@ export const router = [
   },
   {
     path: "/setslot",
-    element:<SetSlot/>
+    element: <SetSlot />,
   },
   {
     path: "/report",
     element: <ReportPage SpO2={0} />,
   },
   {
-    path:"/register",
-    element :<Register/>,
-  }
-  , {
-    path: "/patientsbookings",
-    element: <UpcomingAppointment/>,
+    path: "/register",
+    element: <Register />,
   },
-  
+  {
+    path: "/patientsbookings",
+    element: <UpcomingAppointment />,
+  },
 ];
 
-
 function App() {
-
-
-
-  
   return (
     <div className="webcontainer">
       <BrowserRouter>

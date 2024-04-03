@@ -1,41 +1,89 @@
-// ReportPage.js
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./report.css";
-import VerticalNavPatient from '../../components/verticalNavPatient';
+import VerticalNavPatient from "../../components/verticalNavPatient";
 
+interface ReportCardProps {
+  reading: string;
+  result: string;
+  symptoms: string;
+  title: string;
+}
 
+const ReportCard: React.FC<ReportCardProps> = ({
+  reading,
+  result,
+  symptoms,
+  title,
+}) => (
+  <div className="mb-4">
+    <p className="font-semibold text-lg text-[#2cda6d]">{title}</p>
+    <p className="mt-2 font-semibold text-2xl text-slate-700">{reading}</p>
+    <p className="font-medium text-blue-400">{result}</p>
+  </div>
+);
 
-const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: number }, ) => {
-  const [pulse, setPulse] = useState(0)
-  const [SpO2, setSpO2] = useState(0)
-  const [roomTemp, setRoomTemp] = useState(0)
-  const [bodyTemp, setBodyTemp] = useState(0)
-  const [humidity, setHumidity] = useState(0)
-  const [gsr, setGsr] = useState(0)
-  const [sys, setSys] = useState(0)
-  const [dia, setDia] = useState(0)
-  const [ecgData, setEcgData] = useState([])
-  const [date, setDate] = useState([0, 0, 0, 0, 0])
-  const [dateId, setDateId] = useState(0)
+const ReportPage1 = (
+  { SpO2: spo2 }: { SpO2: number },
+  { gsr: GSR }: { gsr: number }
+) => {
+  const [pulse, setPulse] = useState(0);
+  const [SpO2, setSpO2] = useState(0);
+  const [roomTemp, setRoomTemp] = useState(0);
+  const [bodyTemp, setBodyTemp] = useState(0);
+  const [humidity, setHumidity] = useState(0);
+  const [gsr, setGsr] = useState(0);
+  const [sys, setSys] = useState(0);
+  const [dia, setDia] = useState(0);
+  const [ecgData, setEcgData] = useState([]);
+  const [date, setDate] = useState([0, 0, 0, 0, 0]);
+  const [dateId, setDateId] = useState(0);
 
-  const email = useSelector((state: { user: { id: string, email: string, dob: string, exp: number, gender: string, name: string, photoUrl: string, state: string, timeStamp: string } }) => state.user.email)
-  const name = useSelector((state: { user: { id: string, email: string, dob: string, exp: number, gender: string, name: string, photoUrl: string, state: string, timeStamp: string } }) => state.user.name)
+  const email = useSelector(
+    (state: {
+      user: {
+        id: string;
+        email: string;
+        dob: string;
+        exp: number;
+        gender: string;
+        name: string;
+        photoUrl: string;
+        state: string;
+        timeStamp: string;
+      };
+    }) => state.user.email
+  );
+  const name = useSelector(
+    (state: {
+      user: {
+        id: string;
+        email: string;
+        dob: string;
+        exp: number;
+        gender: string;
+        name: string;
+        photoUrl: string;
+        state: string;
+        timeStamp: string;
+      };
+    }) => state.user.name
+  );
 
-  console.log(email)
+  console.log(email);
 
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
-      // "email": email,  
-      "email": "rajveerjdh2021@gmail.com",
+      // "email": email,
+      email: "rajveerjdh2021@gmail.com",
     };
     const requestOptions = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     };
 
     try {
@@ -43,388 +91,332 @@ const ReportPage = ({ SpO2: spo2 }: { SpO2: number }, { gsr: GSR }: { gsr: numbe
       if (response.ok) {
         const jsonResponse = await response.json();
         if (jsonResponse && jsonResponse.Status) {
-
           console.log(jsonResponse.Status.record);
           console.log(jsonResponse.Status.record[dateId].pulse);
 
           setPulse(jsonResponse.Status.record[dateId].pulse);
           setSpO2(jsonResponse.Status.record[dateId].SpO2);
-          setBodyTemp(jsonResponse.Status.record[dateId].body_temp)
-          setDia(jsonResponse.Status.record[dateId].dia)
-          setGsr(jsonResponse.Status.record[dateId].gsr)
-          setHumidity(jsonResponse.Status.record[dateId].humidity)
-          setRoomTemp(jsonResponse.Status.record[dateId].room_temp)
-          setSys(jsonResponse.Status.record[dateId].sys)
-          setEcgData(jsonResponse.Status.record[dateId].ecg)
-          date[0] = jsonResponse.Status.record[0].timestamp
-          date[1] = jsonResponse.Status.record[1].timestamp
-          date[2] = jsonResponse.Status.record[2].timestamp
-          date[3] = jsonResponse.Status.record[3].timestamp
-          date[4] = jsonResponse.Status.record[4].timestamp
+          setBodyTemp(jsonResponse.Status.record[dateId].body_temp);
+          setDia(jsonResponse.Status.record[dateId].dia);
+          setGsr(jsonResponse.Status.record[dateId].gsr);
+          setHumidity(jsonResponse.Status.record[dateId].humidity);
+          setRoomTemp(jsonResponse.Status.record[dateId].room_temp);
+          setSys(jsonResponse.Status.record[dateId].sys);
+          setEcgData(jsonResponse.Status.record[dateId].ecg);
+          date[0] = jsonResponse.Status.record[0].timestamp;
+          date[1] = jsonResponse.Status.record[1].timestamp;
+          date[2] = jsonResponse.Status.record[2].timestamp;
+          date[3] = jsonResponse.Status.record[3].timestamp;
+          date[4] = jsonResponse.Status.record[4].timestamp;
           console.log(date);
-
         }
       } else {
-        console.error('Error:', response.status, response.statusText);
+        console.error("Error:", response.status, response.statusText);
       }
     } catch (error) {
-      console.error('Error sending JSON data:', error);
+      console.error("Error sending JSON data:", error);
     }
-  }
+  };
 
   useEffect(() => {
     espInfo();
-  }, [dateId])
+  }, [dateId]);
 
-  const generateReportspo2 = (SpO2: number) => {
+  const generateReportSpO2 = (SpO2: number): string[] => {
+    let reading: string = "";
+    let result: string = "";
+    let symptoms: string = "";
+    let title: string = "SpO2 Reading";
+    let range: string = "";
+
     if (SpO2 >= 95) {
-      return (
-      <div className='display-container'>
-      <div className='vital-heading'>
-      <h1>Your Blood Oxygen level is good.</h1>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.healthline.com/health/normal-blood-oxygen-level#symptoms'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-    );
+      reading = "Normal";
+      result = "Your Blood Oxygen level is Normal";
     } else if (SpO2 >= 85 && SpO2 < 95) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-        <p>HYPOXEMIA</p>
-      <h1>Your Blood Oxygen level is low.</h1>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.healthline.com/health/normal-blood-oxygen-level#symptoms'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
+      reading = "Low";
+      result =
+        "Your Blood Oxygen Level is Low. Low blood oxygen levels may lead to Hypoxemia.";
     } else if (SpO2 >= 67 && SpO2 < 85) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <h1>Your Blood Oxygen level is very low.</h1>
-      <h1>visual and cognitive changes may start to develop.</h1>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      
-      <p>To know More <a href='https://www.healthline.com/health/normal-blood-oxygen-level#symptoms'><span className='click-here-link'>click here</span></a></p>
-      
-      </div>
-
-      </div>
-      );
+      reading = "Very Low";
+      result = "Your Current Blood Oxygen Level is Very Low.";
+      symptoms = "At 67%, Visual and Cognitive changes may start to develop ";
     } else {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-        <p>CYANOSIS</p>
-      <h1>Your Blood Oxygen level is critically low.</h1>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.healthline.com/health/normal-blood-oxygen-level#symptoms'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
+      reading = "Critically Low";
+      result =
+        "Your SpO2 level is dangerously low. you’re at risk of developing symptoms of Cyanosis. Immediate medical attention is required.";
     }
 
-
+    return [reading, result, symptoms, title];
   };
 
-  const generateReportgsr = (gsr: number) => {
+  const generateReportGSR = (gsr: number) => {
+    let reading: string = "";
+    let result: string = "";
+    let symptoms: string = "";
+    let title: string = "GSR Reading";
+
     if (gsr >= 2000) {
-      return "gsr OK";
+      reading = "Normal";
+      result = "GSR reading is Normal";
+      symptoms = "";
     } else if (gsr >= 85 && gsr < 95) {
-      return "HYPOXEMIA";
+      reading = "";
+      result = "";
+      symptoms = "";
     } else if (gsr >= 67 && gsr < 85) {
-      return "Visual and Cognitive Signs";
+      reading = "";
+      result = "";
+      symptoms = "";
     } else {
-      return "Cyanosis";
+      reading = "";
+      result = "";
+      symptoms = "";
     }
-
-
+    return [reading, result, symptoms, title];
   };
 
+  const generateReportBP = (sys: number, dia: number) => {
+    let reading: string = "";
+    let result: string = "";
+    let symptoms: string = "";
+    let title: string = "Blood Pressure Reading";
 
-  const generateReportBP = (sys:number, dia:number) => {
-    if (sys< 120  && dia<80) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <h1>Normal Blood Pressure</h1>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
+    if (sys < 120 && dia < 80) {
+      reading = "Normal";
+      result = "Blood Pressure is Normal";
+      symptoms = "";
     } else if (sys >= 120 && dia < 80) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <p>Elevated Blood Pressure</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
+      reading = "High";
+      result = "Elevated Blood Pressure";
+      symptoms = "";
     } else if (sys >= 130 && dia >= 80) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <p>Stage 1 Hypertension</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
-    } else if(sys>=140 && dia>=90) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <p>Stage 2 Hypertension</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
+      reading = "Very High";
+      result = "Stage 1 Hypertension";
+      symptoms = "";
+    } else if (sys >= 140 && dia >= 90) {
+      reading = "Critically High";
+      result = "Stage 2 Hypertension";
+      symptoms = "";
     }
-
-
+    return [reading, result, symptoms, title];
   };
 
+  const generateReportBT = (body_Temp: number) => {
+    let reading: string = "";
+    let result: string = "";
+    let symptoms: string = "";
+    let title: string = "Body Temperature Reading";
 
-  const generateReportBody_temp = (body_Temp:number) => {
-    if (body_Temp >= 36.5 && body_Temp <37.3) {
-      return (<div className='display-container'>
-      <div className='vital-heading'>
-      <p>Normal Body Temperature</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>);
+    if (body_Temp >= 36.5 && body_Temp < 37.3) {
+      reading = "Normal";
+      result = "Normal Body Temperature";
+      symptoms = "";
     } else if (body_Temp >= 37.3 && body_Temp < 37.9) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <p>Low Grade Fever</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
-    } else if (body_Temp >38) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <p>Fever (Pyrexia)</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
-    } else{
-      return(
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <p>Hypothermia</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
-    }
-
-
-  };
-
-
-  const generateReportPulse = (pulse:number) => {
-    if (pulse<=100 && pulse>=60) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <p>Normal Pulse</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-        
-      );
-    } else if (pulse>100) {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <p>High Pulse(Tachycardia)</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-        
-      );
-   
+      reading = "Slightly High";
+      result = "Low Grade Fever";
+      symptoms = "";
+    } else if (body_Temp > 38) {
+      reading = "Critically High";
+      result = "Pyrexia";
+      symptoms = "";
     } else {
-      return (
-        <div className='display-container'>
-      <div className='vital-heading'>
-      <p>Low Pulse (Bradycardia)</p>
-      </div>
-      <div className='display-icon'>
-        <img src="./static/healthySpo2.png" alt="" />
-
-      </div>
-      <div className='more-info-link'>
-      <div >
-      <p>To know More <a href='https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139'>click here</a></p>
-      </div>
-      </div>
-
-      </div>
-      );
+      reading = "Critically Low";
+      result = "Hypothermia";
+      symptoms = "";
     }
-
-
+    return [reading, result, symptoms, title];
   };
 
- 
+  const generateReportPulse = (pulse: number) => {
+    let reading: string = "";
+    let result: string = "";
+    let symptoms: string = "";
+    let title: string = "Pulse Reading";
 
+    if (pulse <= 100 && pulse >= 60) {
+      reading = "Normal";
+      result = "Pulse reading is Normal";
+      symptoms = "";
+    } else if (pulse > 100) {
+      reading = "High";
+      result = "Pulse reading is High. May be at risk of Tachycardia";
+      symptoms = "";
+    } else {
+      reading = "Low";
+      result = "Pulse reading is Low. May be at risk of Bradycardia";
+      symptoms = "";
+    }
+    return [reading, result, symptoms, title];
+  };
   return (
     <div>
-      <VerticalNavPatient/>
-      <div className='report-title-heading'>
-        <div>
-          <p>Report Page</p>
+      <VerticalNavPatient />
 
+      <h1 className="mt-12 ml-48 font-semibold text-2xl">Vitals Report</h1>
+      <div className="mt-6 ml-48 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="shadow-md rounded-lg p-4 bg-white">
+          <ReportCard
+            reading={generateReportSpO2(SpO2)[0]}
+            result={generateReportSpO2(SpO2)[1]}
+            symptoms={generateReportSpO2(SpO2)[2]}
+            title={generateReportSpO2(SpO2)[3]}
+          />
+          <div className="grid grid-cols-2 mt-4">
+            <div className="bg-gray-100 py-2 px-4 font-semibold">
+              Ranges (in %)
+            </div>
+            <div className="bg-gray-100 py-2 px-4 font-semibold">Reading</div>
+            <div className="py-2 px-4 text-emerald-400">≥ 95</div>
+            <div className="py-2 px-4 text-emerald-400">Normal</div>
+            <div className="py-2 px-4 text-amber-400">85 ≤ x &lt; 95</div>
+            <div className="py-2 px-4 text-amber-400">Low</div>
+            <div className="py-2 px-4 text-red-400">67 ≤ x &lt; 85</div>
+            <div className="py-2 px-4 text-red-400">Very Low</div>
+            <div className="py-2 px-4 text-red-900">&lt; 67</div>
+            <div className="py-2 px-4 text-red-900">Critically Low</div>
+          </div>
+          <p className=" mt-2 text-blue-500">
+            For more information, click{" "}
+            <a
+              className="underline"
+              href="https://www.healthline.com/health/normal-blood-oxygen-level#symptoms"
+            >
+              here
+            </a>
+          </p>
         </div>
-
+        <div className="shadow-md rounded-lg p-4 bg-white">
+          <ReportCard
+            reading={generateReportGSR(gsr)[0]}
+            result={generateReportGSR(gsr)[1]}
+            symptoms={generateReportGSR(gsr)[2]}
+            title={generateReportGSR(gsr)[3]}
+          />
+          <div className="grid grid-cols-2 mt-4">
+            <div className="bg-gray-100 py-2 px-4 font-semibold">
+              Ranges (in mm/Hg)
+            </div>
+            <div className="bg-gray-100 py-2 px-4 font-semibold">Reading</div>
+            <div className="py-2 px-4">≥ 2000</div>
+            <div className="py-2 px-4">Normal</div>
+            <div className="py-2 px-4">85 ≤ x &lt; 95</div>
+            <div className="py-2 px-4">Low</div>
+            <div className="py-2 px-4">67 ≤ x &lt; 85</div>
+            <div className="py-2 px-4">Very Low</div>
+            <div className="py-2 px-4">&lt; 67</div>
+            <div className="py-2 px-4">Critically Low</div>
+          </div>
+          <p className=" mt-2 text-blue-500">
+            For more information, click{" "}
+            <a
+              className="underline"
+              href="https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139"
+            >
+              here
+            </a>
+          </p>
+        </div>
+        <div className="shadow-md rounded-lg p-4 bg-white">
+          <ReportCard
+            reading={generateReportBP(sys, dia)[0]}
+            result={generateReportBP(sys, dia)[1]}
+            symptoms={generateReportBP(sys, dia)[2]}
+            title={generateReportBP(sys, dia)[3]}
+          />
+          <div className="grid grid-cols-2 mt-4">
+            <div className="bg-gray-100 py-2 px-4 font-semibold">
+              Ranges (in mm Hg)
+            </div>
+            <div className="bg-gray-100 py-2 px-4 font-semibold">Reading</div>
+            <div className="py-2 px-4 text-emerald-400">
+              sys &lt; 120 and dia &lt; 80
+            </div>
+            <div className="py-2 px-4 text-emerald-400">Normal</div>
+            <div className="py-2 px-4 text-amber-400 ">
+              sys ≥ 120 and dia &lt; 80
+            </div>
+            <div className="py-2 px-4 text-amber-400">High</div>
+            <div className="py-2 px-4 text-red-400">sys ≥ 130 and dia ≥ 80</div>
+            <div className="py-2 px-4 text-red-400">Very High</div>
+            <div className="py-2 px-4 text-red-900">sys ≥ 140 and dia ≥ 90</div>
+            <div className="py-2 px-4 text-red-900">Critically High</div>
+          </div>
+          <div className="py-2 px-4 text-slate-400">
+            sys - Systolic | dia - Diastolic
+          </div>
+          <p className=" mt-2 text-blue-500">
+            For more information, click{" "}
+            <a
+              className="underline"
+              href="https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139"
+            >
+              here
+            </a>
+          </p>
+        </div>
+        <div className="shadow-md rounded-lg p-4 bg-white">
+          <ReportCard
+            reading={generateReportBT(bodyTemp)[0]}
+            result={generateReportBT(bodyTemp)[1]}
+            symptoms={generateReportBT(bodyTemp)[2]}
+            title={generateReportBT(bodyTemp)[3]}
+          />
+          <div className="grid grid-cols-2 mt-4">
+            <div className="bg-gray-100 py-2 px-4 font-semibold">
+              Ranges (in Celsius)
+            </div>
+            <div className="bg-gray-100 py-2 px-4 font-semibold">Reading</div>
+            <div className="py-2 px-4 text-red-400">≤ 36.5</div>
+            <div className="py-2 px-4 text-red-400">Critically Low</div>
+            <div className="py-2 px-4 text-emerald-400">36.5 ≤ x &lt; 37.3</div>
+            <div className="py-2 px-4 text-emerald-400">Normal</div>
+            <div className="py-2 px-4 text-amber-400">37.3 ≤ x &lt; 37.9</div>
+            <div className="py-2 px-4 text-amber-400">Slightly High</div>
+            <div className="py-2 px-4 text-red-400">{">"} 38</div>
+            <div className="py-2 px-4 text-red-400">Critically High</div>
+          </div>
+          <p className=" mt-2 text-blue-500">
+            For more information, click{" "}
+            <a
+              className="underline"
+              href="https://en.wikipedia.org/wiki/Human_body_temperature#:~:text=The%20normal%20human%20body%20temperature%20range%20is,typically%20stated%20as%2036.5%E2%80%9337.5%20%C2%B0C%20%2897.7%E2%80%9399.5%20%C2%B0F%29"
+            >
+              here
+            </a>
+          </p>
+        </div>
+        <div className="shadow-md rounded-lg p-4 bg-white">
+          <ReportCard
+            reading={generateReportPulse(pulse)[0]}
+            result={generateReportPulse(pulse)[1]}
+            symptoms={generateReportPulse(pulse)[2]}
+            title={generateReportPulse(pulse)[3]}
+          />
+          <div className="grid grid-cols-2 mt-4">
+            <div className="bg-gray-100 py-2 px-4 font-semibold">
+              Ranges (in units)
+            </div>
+            <div className="bg-gray-100 py-2 px-4 font-semibold">Reading</div>
+            <div className="py-2 px-4 text-red-400">{"<"} 60</div>
+            <div className="py-2 px-4 text-red-400">Low</div>
+            <div className="py-2 px-4 text-emerald-400">60 ≤ x ≤ 100</div>
+            <div className="py-2 px-4 text-emerald-400">Normal</div>
+            <div className="py-2 px-4 text-red-400">{">"} 100</div>
+            <div className="py-2 px-4 text-red-400">High</div>
+          </div>
+          <p className=" mt-2 text-blue-500">
+            For more information, click{" "}
+            <a
+              className="underline"
+              href="https://www.healthline.com/health/normal-blood-oxygen-level#symptoms"
+            >
+              here
+            </a>
+          </p>
+        </div>
       </div>
-
-      <div className='report-container'>
-  <div className='report-text'>
-    <p> SpO2 Report: {(SpO2)} {generateReportspo2(SpO2)}</p>
-  </div>
-  <div className='report-text'>
-    <p>GSR Report: {(gsr)} {generateReportgsr(gsr)}</p>
-  </div>
-  <div className='report-text'>
-    <p>BP Report: {generateReportBP(sys, dia)}</p>
-  </div>
-  <div className='report-text'>
-    <p>body temp Report: {generateReportBody_temp(bodyTemp)}</p>
-  </div>
-  <div className='report-text'>
-    <p>Pulse Report: {generateReportPulse(pulse)}</p>
-  </div>
-</div>
-
-
     </div>
   );
 };
 
-export default ReportPage;
+export default ReportPage1;

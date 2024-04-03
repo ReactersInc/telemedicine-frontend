@@ -13,18 +13,17 @@ interface AppointModalProps {
   patientEmail: string;
 }
 
-function AppointModal(props:  AppointModalProps) {
+function AppointModal(props: AppointModalProps) {
   const [dateTimeOptions, setDateTimeOptions] = useState<DateTimeOption[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [isDateTimeSelected, setIsDateTimeSelected] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log('Props in AppointModal:', props);
+    console.log("AppointModal mounted");
     const fetchDateTimeOptions = async () => {
       const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/searchSlot.php";
-      const doctorId = "D-17029136424"; // Static doctor_id
-      // console.log(interface AppointModalProps, doctorId);
+      const doctorId = props.doctor_id;
       try {
         const response = await fetch(apiUrl, {
           method: "POST",
@@ -53,7 +52,46 @@ function AppointModal(props:  AppointModalProps) {
     };
 
     fetchDateTimeOptions();
+
+    // Cleanup function
+    return () => {
+      console.log("AppointModal unmounted");
+    };
   }, []);
+
+  const bookAppointment = async () => {
+    if (selectedDate && selectedTime && props.doctor_id && props.patientEmail) {
+      const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/bookAppointment.php";
+      const data = {
+        doctorID: props.doctor_id,
+        patient_email: props.patientEmail,
+        date: selectedDate,
+        time: selectedTime,
+      };
+
+      console.log(data);
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          console.log("Appointment booked successfully!");
+        } else {
+          console.error("Failed to book appointment:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error booking appointment:", error);
+      }
+    } else {
+      console.error("Incomplete data for booking appointment");
+    }
+  };
 
   const dispatch = useDispatch();
 
@@ -69,10 +107,12 @@ function AppointModal(props:  AppointModalProps) {
     if (selectedDate === date) {
       setSelectedDate("");
       setIsDateTimeSelected(false);
+      console.log("inside if", setSelectedDate);
     } else {
       setSelectedDate(date);
       setSelectedTime("");
       setIsDateTimeSelected(false);
+      console.log("inside else", setSelectedDate);
     }
   };
 
@@ -80,9 +120,11 @@ function AppointModal(props:  AppointModalProps) {
     if (selectedTime === time) {
       setSelectedTime("");
       setIsDateTimeSelected(false);
+      console.log("inside if", setSelectedTime);
     } else {
       setSelectedTime(time);
       setIsDateTimeSelected(true);
+      console.log("inside else", setSelectedTime);
     }
   };
 
@@ -100,7 +142,6 @@ function AppointModal(props:  AppointModalProps) {
               <h1 className="text-xl font-semibold mb-2">
                 Select Date and Time
               </h1>
-              {/* <div>{props.doctorID}</div> */}
               {dateTimeOptions.map((option) => (
                 <div key={`${option.Date}-${option.Time}`} className="mt-2">
                   <div className="flex space-x-6">
@@ -128,7 +169,7 @@ function AppointModal(props:  AppointModalProps) {
           </div>
           <button
             className="mt-6 py-2 px-4 font-semibold text-white text-lg bg-[#2cda6d] rounded-md"
-            onClick={toggleModal}
+            onClick={bookAppointment}
           >
             Confirm Appointment
           </button>
