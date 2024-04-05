@@ -15,13 +15,25 @@ const ReportCard: React.FC<ReportCardProps> = ({
   result,
   symptoms,
   title,
-}) => (
-  <div className="mb-4">
-    <p className="font-semibold text-lg text-[#2cda6d]">{title}</p>
-    <p className="mt-2 font-semibold text-2xl text-slate-700">{reading}</p>
-    <p className="font-medium text-blue-400">{result}</p>
-  </div>
-);
+}) => {
+  // Define a variable to hold the color class based on the reading
+  let colorClass = "";
+
+  // Check the reading and assign colorClass accordingly
+  if (reading === "Normal") {
+    colorClass = "text-green-500"; // Green color for normal reading
+  } else if (reading === "Low" || reading === "Critically Low" || reading == "High") {
+    colorClass = "text-red-500"; // Red color for low or critically low reading
+  }
+
+  return (
+    <div className="mb-4">
+      <p className={`font-semibold text-lg ${colorClass}`}>{title}</p>
+      <p className={`mt-2 font-semibold text-2xl ${colorClass}`}>{reading}</p>
+      <p className={`font-medium ${colorClass}`}>{result}</p>
+    </div>
+  );
+};
 
 const ReportPage1 = (
   { SpO2: spo2 }: { SpO2: number },

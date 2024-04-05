@@ -1,71 +1,105 @@
+/* Common styles for all screen sizes */
 .report-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin-left: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+.report-text {
+  margin: 10px;
+  width: calc(50% - 20px); /* Adjust width and margin as needed */
+  min-height: 40vh; /* 15% of viewport height */
+  background-color: rgb(235, 212, 212);
+  color: rgb(180, 16, 16);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.report-title-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  background-color: aquamarine;
+  color: white;
+  margin: 10px;
+  border-radius: 10px;
+  width: calc(100% - 20px); /* Adjust as needed */
+}
+
+.vital-heading {
+  color: rgb(14, 167, 14);
+  font-size: large;
+}
+
+.vital-heading p {
+  font-size: xx-large;
+  color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.report-heading {
+  margin-top: 0;
+}
+
+.display-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.more-info-link {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: black;
+}
+
+.display-icon {
+  margin-top: 20px;
+}
+
+.more-info-link p .click-here-link {
+  color: rgb(7, 7, 224);
+  border: solid black;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+  .report-text {
+    width: calc(50% - 20px);
+  }
+  
+  .report-title-heading {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .report-container {
+    margin: 0;
   }
   
   .report-text {
-    margin: 20px;
-    width: calc(33.33% - 40px); /* Adjust width and margin as needed */
-    height: 40vh; /* 15% of viewport height */
-    background-color: rgb(235, 212, 212);
-    color: rgb(180, 16, 16);
-    display: flex;
-    justify-content: center;
-    align-items: top;
-    border-radius: 10px;
-  }
-
-  .report-title-heading{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: xx-large;
-    background-color: aquamarine;
-    color: white;
-    margin-left: 150px;
-    border-radius: 10px;
-    width: 80vw;
-  }
-  .vital-heading{
-    color: rgb(14, 167, 14);
-    font-size:large;
-  }
-
-  .vital-heading p{
-    font-size: xx-large;
-    color: red;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .report-heading{
-    margin-top: 0;
-  }
-
-  .display-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .more-info-link{
-    display: flex;
-    justify-content: center;
-    align-items:flex-end;
-    color: black;
-  }
-
-  .display-icon{
-    /* height: 150px; */
-    margin-top: 20px;
+    width: calc(100% - 20px);
   }
   
-  .more-info-link p .click-here-link{
-    color: rgb(7, 7, 224);
-    border: solid black;
+  .report-title-heading {
+    margin: 0;
+    width: calc(100% - 20px);
   }
+}
+
+@media screen and (max-width: 480px) {
+  .report-text {
+    width: calc(100% - 20px);
+    min-height: auto;
+  }
+}
