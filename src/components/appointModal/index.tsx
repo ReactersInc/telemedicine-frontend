@@ -82,6 +82,8 @@ function AppointModal(props: AppointModalProps) {
 
         if (response.ok) {
           console.log("Appointment booked successfully!");
+          alert("Appointment booked successfully!");
+          toggleModal();
         } else {
           console.error("Failed to book appointment:", response.statusText);
         }
