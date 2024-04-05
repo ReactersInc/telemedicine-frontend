@@ -26,11 +26,9 @@ interface DoctorListProps {
   patientEmail: string;
 }
 
-
 function DoctorList({ doctors, patientEmail }: DoctorListProps) {
   const [doctorID, setDoctorID] = useState("");
   const [PatientEmailID, setPatientEmailID] = useState("");
-  
 
   const isModalOpen = useSelector(
     (state: { modal: { modalOpen: boolean; scroll: boolean } }) =>
@@ -102,7 +100,10 @@ function DoctorList({ doctors, patientEmail }: DoctorListProps) {
               <div>
                 {isModalOpen && (
                   <div className={styles.overlayAppoint} onClick={toggleModal1}>
-                    <AppointModal doctor_id={doctorID} patientEmail={PatientEmailID} />
+                    <AppointModal
+                      doctor_id={doctorID}
+                      patientEmail={PatientEmailID}
+                    />
                   </div>
                 )}
               </div>
@@ -166,6 +167,7 @@ function Appointment() {
     { value: "Guwahati", label: "Guwahati" },
     { value: "Biswanath Chariali", label: "Biswanath Chariali" },
     { value: "Kolkata", label: "Kolkata" },
+    { value: "Tezpur", label: "Tezpur" },
     // { value: "12:00 AM", label: "12:00 AM" },
     // { value: "12:30 PM", label: "12:30 PM" },
   ];
@@ -285,8 +287,7 @@ function Appointment() {
 
   return (
     <div>
-      <VerticalNavPatient/>
-      
+      <VerticalNavPatient />
 
       <div id={styles.appointment}>
         <div className="page-label">
