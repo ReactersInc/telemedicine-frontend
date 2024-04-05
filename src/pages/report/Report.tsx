@@ -17,23 +17,27 @@ const ReportCard: React.FC<ReportCardProps> = ({
   title,
 }) => {
   // Define a variable to hold the color class based on the reading
-  let colorClass = "";
+  let readingColorClass = "";
+  let resultColorClass = "";
 
   // Check the reading and assign colorClass accordingly
   if (reading === "Normal") {
-    colorClass = "text-green-500"; // Green color for normal reading
-  } else if (reading === "Low" || reading === "Critically Low" || reading == "High") {
-    colorClass = "text-red-500"; // Red color for low or critically low reading
+    readingColorClass = "text-green-500"; // Green color for normal reading
+    resultColorClass = "text-blue-500"; // Blue color for result
+  } else if (reading === "Low" || reading === "Critically Low" || reading =="High") {
+    readingColorClass = "text-red-500"; // Red color for low or critically low reading
+    resultColorClass = "text-blue-500"; // Blue color for result
   }
 
   return (
     <div className="mb-4">
-      <p className={`font-semibold text-lg ${colorClass}`}>{title}</p>
-      <p className={`mt-2 font-semibold text-2xl ${colorClass}`}>{reading}</p>
-      <p className={`font-medium ${colorClass}`}>{result}</p>
+      <p className="font-semibold text-lg">{title}</p>
+      <p className={`mt-2 font-semibold text-2xl ${readingColorClass}`}>{reading}</p>
+      <p className={`font-medium ${resultColorClass}`}>{result}</p>
     </div>
   );
 };
+
 
 const ReportPage1 = (
   { SpO2: spo2 }: { SpO2: number },
