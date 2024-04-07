@@ -59,8 +59,7 @@ function VitalsDashboard() {
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
-      // "email": email,
-      email: "rajveerjdh2021@gmail.com",
+      email: email,
     };
     const requestOptions = {
       method: "POST",
@@ -157,7 +156,7 @@ function VitalsDashboard() {
 
   return (
     <div>
-      <VerticalNavPatient/>
+      <VerticalNavPatient />
       <div id="vitals-dashboard">
         <div className="timestamp">
           <span>Vitals Dashboard</span>
@@ -176,11 +175,12 @@ function VitalsDashboard() {
               <option value={2}>{date[2]}</option>
               <option value={3}>{date[3]}</option>
               <option value={4}>{date[4]}</option>
-            </select></div>
+            </select>
           </div>
         </div>
-<div className="vitalscontainer">
-<div className="ecg-container">
+      </div>
+      <div className="vitalscontainer">
+        <div className="ecg-container">
           <div className="col-vitals">
             <div>
               <div> ECG</div>
@@ -248,7 +248,7 @@ function VitalsDashboard() {
                     <p>Body Temp.</p>{" "}
                   </div>
                   <div className="Label-vitals">
-                    <div>
+                    <div className="h-20">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="40"
@@ -328,81 +328,69 @@ function VitalsDashboard() {
             {/* if needed paste humidity and gsr here it is their original position */}
           </div>
           <div className="col">
-            {/* <div className='Progress-col'>
-                <div className="col-vitals" >
-                  <div>
-                    <div> ECG</div>
-                    <div className="Label-vitals-ecg">
-                      <ReactApexChart options={options} series={series} type="line" height={250} width={450} />
+            <div className="row-vitals">
+              <div className="progress">
+                <div className="row-vitals">
+                  <div className="progress">
+                    <div className="Circle-vitals">
+                      <div> Humidity</div>
+                      <div className="Label-vitals">{humidity}</div>
+
+                      {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                    </div>
+                    <div className="progress">
+                      <div className="Circle-vitals">
+                        <div> GSR</div>
+                        <div className="Label-vitals">{gsr}</div>
+
+                        {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div> */}
-            <div className='row-vitals'>
-                <div className='progress'>
-              <div className="row-vitals">
-                <div className="progress">
-                  <div className="Circle-vitals">
-                    <div> Humidity</div>
-                    <div className="Label-vitals">{humidity}</div>
 
-
-                    {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
-                  </div>
-                <div className="progress">
-                  <div className="Circle-vitals">
-                    <div> GSR</div>
-                    <div className="Label-vitals">{gsr}</div>
-
-
-                    {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
-                  </div>
-                </div>
-              </div>
-
-              <div className="Progress-col">
-                <div className="blood-pressure">
-                  <div>
-                    <div className="blood-pressure-heading">Blood Pressure</div>
-                    <div className="row-vitals">
-                      <div className="Progress">
-                        <div className="Circle-vitals" id="sys">
-                          <div> Systolic</div>
-                          <div className="Label-vitals">{sys}</div>
-
-
-                          {/* <Circle percent={sys} strokeWidth={6} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                  <div className="Progress-col">
+                    <div className="blood-pressure">
+                      <div>
+                        <div className="blood-pressure-heading">
+                          Blood Pressure
                         </div>
-                      </div>
-                      <div className="Progress">
-                        <div className="Circle-vitals" id="dia">
-                          <div> Diastolic</div>
-                          <div className="Label-vitals">{dia}</div>
+                        <div className="row-vitals">
+                          <div className="Progress">
+                            <div className="Circle-vitals" id="sys">
+                              <div> Systolic</div>
+                              <div className="Label-vitals">{sys}</div>
 
+                              {/* <Circle percent={sys} strokeWidth={6} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                            </div>
+                          </div>
+                          <div className="Progress">
+                            <div className="Circle-vitals" id="dia">
+                              <div> Diastolic</div>
+                              <div className="Label-vitals">{dia}</div>
 
-                          {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                              {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div className='vitals-report'>
-              <div>
-                <button className='report-button'>
-                  <a href="/report">
-                    <h3> View Report:</h3>
-                  </a>
-                </button>
+                  <div className="vitals-report">
+                    <div>
+                      <button className="report-button">
+                        <a href="/report">
+                          <h3> View Report:</h3>
+                        </a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          </div>
-        </div>
         </div>
       </div>
-</div>
     </div>
   );
 }

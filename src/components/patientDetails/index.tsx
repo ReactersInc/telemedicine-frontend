@@ -109,14 +109,14 @@ function PatientDetails() {
     const state1 = (document.getElementById("state") as HTMLInputElement).value;
     const country = (document.getElementById("country") as HTMLInputElement)
       .value;
-    const state = state1 + country;
+    const state = state1 + " ,"+ country;
     const password = (document.getElementById("password") as HTMLInputElement)
       .value;
     const confirmPassword = (
       document.getElementById("confirmPassword") as HTMLInputElement
     ).value;
 
-    const name = fname + lname;
+    const name = fname +" "+ lname;
     if (
       fname === "" ||
       lname === "" ||

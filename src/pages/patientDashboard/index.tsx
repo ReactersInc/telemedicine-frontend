@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
@@ -9,35 +9,33 @@ function PatientDashboard() {
     (state: {
       user: {
         id: string;
-  email: string;
-  dob: string;
-  exp: number;
-  gender: string;
-  name: string;
-  photoUrl: string;
-  state: string;
-  timeStamp: string;
-  phone: string;
+        email: string;
+        dob: string;
+        exp: number;
+        gender: string;
+        name: string;
+        photoUrl: string;
+        state: string;
+        timeStamp: string;
+        phone: string;
 
-
-  mobile_no: string;
-  doctor_id: string;
-  registration_no: string;
-  specilization: string;
-  rating: number;
-  city: string;
+        mobile_no: string;
+        doctor_id: string;
+        registration_no: string;
+        specilization: string;
+        rating: number;
+        city: string;
       };
     }) => state.user
   );
   const dispatch = useDispatch();
-
   const handleLogout = () => {
     dispatch(userLogout());
     window.location.href = "/";
   };
   return (
     <div>
-<VerticalNavPatient/>
+      <VerticalNavPatient />
       <div id={styles.dashboard}>
         <div className="page-label">
           <span>Patient Dashboard</span>
@@ -71,10 +69,10 @@ function PatientDashboard() {
                   <div className={styles.value}>{name.dob}</div>
                 </div>
               </div>
-              <div className={styles.label}>
+              {/* <div className={styles.label}>
                 <h3 className="font-semibold">Phone No:</h3>
-                <div className={styles.value}> {name.mobile_no}</div>
-              </div>
+                <div className={styles.value}> {name.phone}</div>
+              </div> */}
 
               <div className={styles.label}>
                 <h3 className="font-semibold">Email:</h3>
@@ -83,7 +81,9 @@ function PatientDashboard() {
 
               <div className={styles.label}>
                 <h3 className="font-semibold">Address:</h3>
-                <div className={styles.value}>{name.city+","+name.state}</div>
+                <div className={styles.value}>
+                  {name.city + "," + name.state}
+                </div>
               </div>
             </div>
 
