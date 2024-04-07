@@ -92,7 +92,10 @@ function DoctorList({ doctors, patientEmail }: DoctorListProps) {
             </div>
             <div>
               <button
-                onClick={() => toggleModal(doctor.About.d_id)}
+                onClick={() => {
+                  toggleModal(doctor.About.d_id);
+                  console.log(doctor.About.d_id);
+                }}
                 className=" mt-6 py-2 px-4 font-semibold text-white text-md bg-[#2cda6d] rounded-md"
               >
                 Book Appointment

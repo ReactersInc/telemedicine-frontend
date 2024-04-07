@@ -14,6 +14,16 @@ interface User {
   photoUrl: string;
   state: string;
   timeStamp: string;
+  phone: string;
+
+
+  mobile_no: string;
+  doctor_id: string;
+  registration_no: string;
+  specilization: string;
+  rating: number;
+  city: string;
+  address: string;
 }
 
 interface Appointment {
@@ -27,14 +37,13 @@ interface Appointment {
 
 function PatientsList() {
   const dispatch = useDispatch();
-  const name = useSelector((state: { user: User }) => state.user.name);
-  const email = useSelector((state: { user: User }) => state.user.email);
+  const data = useSelector((state: { user: User }) => state.user);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      const doctorId = "D-17029181649"; // Assuming this is a static value for now
-      const bookingDate = "25-12-2023"; // Assuming this is a static value for now
+      const doctorId = data.doctor_id;
+      const bookingDate = "07-04-2024";
       const apiUrl = `http://52.66.241.131/IoMTAppAPI/api/viewSlotBookings.php`;
 
       try {

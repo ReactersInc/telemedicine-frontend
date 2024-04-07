@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./report.css";
 import VerticalNavPatient from "../../components/verticalNavPatient";
-
 interface ReportCardProps {
   reading: string;
   result: string;
   symptoms: string;
   title: string;
 }
+
 
 const ReportCard: React.FC<ReportCardProps> = ({
   reading,

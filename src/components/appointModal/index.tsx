@@ -38,6 +38,8 @@ function AppointModal(props: AppointModalProps) {
         if (response.ok) {
           const data = await response.json();
           if (data.Status && data.Status.slots) {
+            console.log("slotes =:");
+            console.log(data.Status.slots);
             setDateTimeOptions(data.Status.slots);
           }
         } else {
@@ -52,8 +54,6 @@ function AppointModal(props: AppointModalProps) {
     };
 
     fetchDateTimeOptions();
-
-    // Cleanup function
     return () => {
       console.log("AppointModal unmounted");
     };
@@ -63,10 +63,10 @@ function AppointModal(props: AppointModalProps) {
     if (selectedDate && selectedTime && props.doctor_id && props.patientEmail) {
       const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/bookAppointment.php";
       const data = {
-        doctorID: props.doctor_id,
+        doctor_id: props.doctor_id,
         patient_email: props.patientEmail,
-        date: selectedDate,
-        time: selectedTime,
+        booking_date: selectedDate,
+        booking_time: selectedTime,
       };
 
       console.log(data);
@@ -151,7 +151,11 @@ function AppointModal(props: AppointModalProps) {
                       className={`border py-2 px-4 border-[#2cda6d] rounded-md ${
                         selectedDate === option.Date ? "bg-green-300" : ""
                       }`}
-                      onClick={() => handleDateSelection(option.Date)}
+                      onClick={() => {
+                        handleDateSelection(option.Date); 
+                        console.log("inside button", selectedDate);
+                        console.log("inside button", option.Date);
+                      }}
                     >
                       {option.Date}
                     </button>
