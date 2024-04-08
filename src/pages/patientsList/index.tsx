@@ -1,93 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { userLogout } from "../../features/users/userSlice";
-import styles from "./index.module.css";
+import { useEffect, useState } from "react";
 import VerticalNavDoctor from "../../components/verticalNavDoctor";
 import "./index.css";
 import { Circle } from "rc-progress";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-interface User {
-  id: string;
-  email: string;
-  dob: string;
-  exp: number;
-  gender: string;
-  name: string;
-  photoUrl: string;
-  state: string;
-  timeStamp: string;
-  phone: string;
-  mobile_no: string;
-  doctor_id: string;
-  registration_no: string;
-  specilization: string;
-  rating: number;
-  city: string;
-  address: string;
-}
-
-interface Appointment {
-  booking_date: string;
-  booking_time: string;
-  About: {
-    patient_name: string;
-    patient_gender: string;
-    patient_email: string;
-  };
-}
+import { useLocation } from 'react-router-dom';
 
 function PatientsList() {
+
+  const location = useLocation();
   const [pulse, setPulse] = useState(0);
   const [SpO2, setSpO2] = useState(0);
   const [roomTemp, setRoomTemp] = useState(0);
   const [bodyTemp, setBodyTemp] = useState(0);
   const [humidity, setHumidity] = useState(0);
   const [gsr, setGsr] = useState(0);
-
   const [sys, setSys] = useState(0);
   const [dia, setDia] = useState(0);
   const [ecgData, setEcgData] = useState([]);
   const [date, setDate] = useState([0, 0, 0, 0, 0]);
   const [dateId, setDateId] = useState(0);
 
-  const email = useSelector(
-    (state: {
-      user: {
-        id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-      };
-    }) => state.user.email
-  );
-  const name = useSelector(
-    (state: {
-      user: {
-        id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-      };
-    }) => state.user.name
-  );
-
-  console.log(email);
-
+  const [doctorDetails, setDoctorDetails] = useState({
+    date: "",
+    doctorID: "",
+    email: "",
+    name: "",
+    gender: "",
+    patientDOB: "",
+  });
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
-      email: "rajveerjdh2021@gmail.com",
+      email: doctorDetails?.email,
     };
     const requestOptions = {
       method: "POST",
@@ -102,8 +47,6 @@ function PatientsList() {
       if (response.ok) {
         const jsonResponse = await response.json();
         if (jsonResponse && jsonResponse.Status) {
-          console.log(jsonResponse.Status.record);
-          console.log(jsonResponse.Status.record[dateId].pulse);
 
           setPulse(jsonResponse.Status.record[dateId].pulse);
           setSpO2(jsonResponse.Status.record[dateId].SpO2);
@@ -119,7 +62,6 @@ function PatientsList() {
           date[2] = jsonResponse.Status.record[2].timestamp;
           date[3] = jsonResponse.Status.record[3].timestamp;
           date[4] = jsonResponse.Status.record[4].timestamp;
-          console.log(date);
         }
       } else {
         console.error("Error:", response.status, response.statusText);
@@ -132,6 +74,14 @@ function PatientsList() {
   useEffect(() => {
     espInfo();
   }, [dateId]);
+
+  useEffect(() => {
+    if (location.state?.data) {
+      console.log("From Use Effect : ", location.state?.data);
+      setDoctorDetails(location.state?.data);
+    }
+}, []);
+
 
   const options: ApexOptions = {
     chart: {
@@ -176,43 +126,6 @@ function PatientsList() {
   ];
 
   const [show, setShow] = useState(false);
-  const [vitalemail, setvitalemail] = useState("");
-  const dispatch = useDispatch();
-  const data = useSelector((state: { user: User }) => state.user);
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
-
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      const doctorId = data.doctor_id;
-      const bookingDate = "07-04-2024";
-      const apiUrl = `http://52.66.241.131/IoMTAppAPI/api/viewSlotBookings.php`;
-
-      try {
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            doctor_id: doctorId,
-            booking_date: bookingDate,
-          }),
-        });
-        if (response.ok) {
-          const data = await response.json();
-          if (data.Status && data.Status.List) {
-            setAppointments(data.Status.List);
-          }
-        } else {
-          console.error("Failed to fetch appointments:", response.statusText);
-        }
-      } catch (error) {
-        console.error("Error fetching appointments:", error);
-      }
-    };
-
-    fetchAppointments();
-  }, []);
 
   return (
     <div>
@@ -240,63 +153,57 @@ function PatientsList() {
                 </tr>
               </thead>
               <tbody>
-                {appointments.map((appointment, index) => (
-                  <tr key={index}>
-                    <td className="border-b-2 p-2 ">
-                      {appointment.About?.patient_name}
-                    </td>
-                    <td className="border-b-2 p-2 text-center">
-                      {appointment.About?.patient_gender}
-                    </td>
-                    <td className="border-b-2 p-2 text-center">
-                      <div className="flex justify-center">
-                        <input
-                          autoComplete="off"
-                          type="text"
-                          id="fname"
-                          name="fname"
-                          className="style_input"
-                          placeholder="Write diagnosis"
-                        />
-                      </div>
-                    </td>
-                    <td className="border-b-2 p-2 text-center">
-                      <div className="flex justify-center">
-                        <input
-                          autoComplete="off"
-                          type="text"
-                          id="fname"
-                          name="fname"
-                          className="style_input"
-                          placeholder="Write prescribe"
-                        />
-                      </div>
-                    </td>
-                    <td className="border-b-2 p-2 text-center ">
-                      <div className="flex justify-between ">
-                        <button
-                          className="w-24"
-                          onClick={() => {
-                            console.log("appointment.About?.patient_email");
-                            setShow(!show);
-                            setvitalemail(appointment.About?.patient_name);
-                          }}
-                        >
-                          View
-                        </button>
-                        <button
-                          className="w-24"
-                          onClick={() => {
-                            console.log("submit done");
-                          
-                          }}
-                        >
-                          Submit
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                <tr>
+                  <td className="border-b-2 p-2 ">{doctorDetails?.name}</td>
+                  <td className="border-b-2 p-2 text-center">
+                    {doctorDetails?.gender}
+                  </td>
+                  <td className="border-b-2 p-2 text-center">
+                    <div className="flex justify-center">
+                      <input
+                        autoComplete="off"
+                        type="text"
+                        id="fname"
+                        name="fname"
+                        className="style_input"
+                        placeholder="Write diagnosis"
+                      />
+                    </div>
+                  </td>
+                  <td className="border-b-2 p-2 text-center">
+                    <div className="flex justify-center">
+                      <input
+                        autoComplete="off"
+                        type="text"
+                        id="fname"
+                        name="fname"
+                        className="style_input"
+                        placeholder="Write prescribe"
+                      />
+                    </div>
+                  </td>
+                  <td className="border-b-2 p-2 text-center ">
+                    <div className="flex justify-between ">
+                      <button
+                        className="w-24"
+                        onClick={() => {
+                          console.log("appointment.About?.patient_email");
+                          setShow(!show);
+                        }}
+                      >
+                        View
+                      </button>
+                      <button
+                        className="w-24"
+                        onClick={() => {
+                          console.log("submit done");
+                        }}
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>

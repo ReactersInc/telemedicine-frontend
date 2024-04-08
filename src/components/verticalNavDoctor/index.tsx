@@ -86,20 +86,6 @@ function VerticalNavDoctor() {
           </a>
         </div>
         <div className="flex space-x-3 justify-items-start">
-          <a href="/patientsList">
-            <img
-              src="./static/appointment.png"
-              height="22px"
-              width="22px"
-              alt=""
-              className="mt-1"
-            />
-          </a>
-          <a href="/patientsList" className="font-semibold text-xl  ">
-            Patients
-          </a>
-        </div>
-        <div className="flex space-x-3 justify-items-start">
           <a href="/bookings">
             <img
               src="./static/patient.png"
