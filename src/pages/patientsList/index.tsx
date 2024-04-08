@@ -4,10 +4,9 @@ import "./index.css";
 import { Circle } from "rc-progress";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 function PatientsList() {
-
   const location = useLocation();
   const [pulse, setPulse] = useState(0);
   const [SpO2, setSpO2] = useState(0);
@@ -32,8 +31,7 @@ function PatientsList() {
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
-      email: doctorDetails?.email,
-    };
+      email: doctorDetails.email,};
     const requestOptions = {
       method: "POST",
       headers: {
@@ -47,7 +45,6 @@ function PatientsList() {
       if (response.ok) {
         const jsonResponse = await response.json();
         if (jsonResponse && jsonResponse.Status) {
-
           setPulse(jsonResponse.Status.record[dateId].pulse);
           setSpO2(jsonResponse.Status.record[dateId].SpO2);
           setBodyTemp(jsonResponse.Status.record[dateId].body_temp);
@@ -72,16 +69,11 @@ function PatientsList() {
   };
 
   useEffect(() => {
-    espInfo();
-  }, [dateId]);
-
-  useEffect(() => {
     if (location.state?.data) {
       console.log("From Use Effect : ", location.state?.data);
       setDoctorDetails(location.state?.data);
     }
-}, []);
-
+  }, []);
 
   const options: ApexOptions = {
     chart: {
@@ -125,6 +117,37 @@ function PatientsList() {
     },
   ];
 
+  const [submitdata, setSubmitData] = useState({
+    diagnosis: "",
+    prescription: ""
+  });
+  const handleInputChange = (event:any) => {
+    const { name, value } = event.target;
+    setSubmitData({ ...submitdata, [name]: value });
+  };
+  const submitDiagnosis = () => {
+    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/addDiagnosis.php"
+    const data6 = {
+      doctor_id: doctorDetails?.doctorID,
+      p_email: doctorDetails?.email,
+      book_date: doctorDetails.date,
+      diagnosis: submitdata.diagnosis,
+      prescription: submitdata.prescription
+    };
+    console.log(data6);
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data6),
+    };
+    fetch(`${apiUrl}`, requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
   const [show, setShow] = useState(false);
 
   return (
@@ -154,7 +177,7 @@ function PatientsList() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="border-b-2 p-2 ">{doctorDetails?.name}</td>
+                  <td className="border-b-2 p-2 ">{doctorDetails?.email}</td>
                   <td className="border-b-2 p-2 text-center">
                     {doctorDetails?.gender}
                   </td>
@@ -163,8 +186,9 @@ function PatientsList() {
                       <input
                         autoComplete="off"
                         type="text"
-                        id="fname"
-                        name="fname"
+                        id="diagnosis"
+                        onChange={handleInputChange}
+                        name="diagnosis"
                         className="style_input"
                         placeholder="Write diagnosis"
                       />
@@ -175,8 +199,9 @@ function PatientsList() {
                       <input
                         autoComplete="off"
                         type="text"
-                        id="fname"
-                        name="fname"
+                        id="prescription"
+                        name="prescription"
+                        onChange={handleInputChange}
                         className="style_input"
                         placeholder="Write prescribe"
                       />
@@ -187,18 +212,14 @@ function PatientsList() {
                       <button
                         className="w-24"
                         onClick={() => {
-                          console.log("appointment.About?.patient_email");
+                          console.log(doctorDetails.email);
+                          espInfo();
                           setShow(!show);
                         }}
                       >
                         View
                       </button>
-                      <button
-                        className="w-24"
-                        onClick={() => {
-                          console.log("submit done");
-                        }}
-                      >
+                      <button className="w-24" onClick={submitDiagnosis}>
                         Submit
                       </button>
                     </div>
