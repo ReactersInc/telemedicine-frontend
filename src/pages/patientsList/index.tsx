@@ -31,7 +31,8 @@ function PatientsList() {
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
-      email: doctorDetails.email,};
+      email: doctorDetails.email,
+    };
     const requestOptions = {
       method: "POST",
       headers: {
@@ -119,20 +120,20 @@ function PatientsList() {
 
   const [submitdata, setSubmitData] = useState({
     diagnosis: "",
-    prescription: ""
+    prescription: "",
   });
-  const handleInputChange = (event:any) => {
+  const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     setSubmitData({ ...submitdata, [name]: value });
   };
   const submitDiagnosis = () => {
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/addDiagnosis.php"
+    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/addDiagnosis.php";
     const data6 = {
       doctor_id: doctorDetails?.doctorID,
       p_email: doctorDetails?.email,
       book_date: doctorDetails.date,
       diagnosis: submitdata.diagnosis,
-      prescription: submitdata.prescription
+      prescription: submitdata.prescription,
     };
     console.log(data6);
     const requestOptions = {
@@ -217,7 +218,7 @@ function PatientsList() {
                           setShow(!show);
                         }}
                       >
-                        View
+                        View Vitals
                       </button>
                       <button className="w-24" onClick={submitDiagnosis}>
                         Submit
