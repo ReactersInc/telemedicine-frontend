@@ -51,7 +51,7 @@ export const router = [
   },
   {
     path: "/report",
-    element: <ReportPage SpO2={0} />,
+    element: <ReportPage  />,
   },
   {
     path: "/register",
