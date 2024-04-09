@@ -1,13 +1,13 @@
 // src/App.tsx
-import React, { useState } from "react";
+import  { useState } from "react";
 import "./index.css";
 import { Circle } from "rc-progress";
 import { useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import { useSelector, useDispatch } from "react-redux";
-import { userLogout } from "../../features/users/userSlice";
+import { useSelector } from "react-redux";
 import VerticalNavPatient from "../../components/verticalNavPatient";
+import { Link } from 'react-router-dom'
 
 function VitalsDashboard() {
   const [pulse, setPulse] = useState(0);
@@ -22,7 +22,17 @@ function VitalsDashboard() {
   const [ecgData, setEcgData] = useState([]);
   const [date, setDate] = useState([0, 0, 0, 0, 0]);
   const [dateId, setDateId] = useState(0);
-
+  
+  const reportdata = {
+    report_pulse: 0,
+    report_SpO2: 0,
+    report_roomTemp: 0,
+    report_bodyTemp: 0,
+    report_humidity: 0,
+    report_gsr: 0,
+    report_sys: 0,
+    report_dia: 0,    
+  };
   const email = useSelector(
     (state: {
       user: {
@@ -38,28 +48,15 @@ function VitalsDashboard() {
       };
     }) => state.user.email
   );
-  const name = useSelector(
-    (state: {
-      user: {
-        id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-      };
-    }) => state.user.name
-  );
+
 
   console.log(email);
 
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
-      email: email,
+      // email: email,
+      email: "rajveerjdh2021@gmail.com",
     };
     const requestOptions = {
       method: "POST",
@@ -146,13 +143,6 @@ function VitalsDashboard() {
       data: ecgData,
     },
   ];
-
-  const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    dispatch(userLogout());
-    window.location.href = "/";
-  };
 
   return (
     <div>
@@ -378,11 +368,27 @@ function VitalsDashboard() {
 
                   <div className="vitals-report">
                     <div>
-                      <button className="report-button">
-                        <a href="/report">
-                          <h3> View Report:</h3>
-                        </a>
-                      </button>
+                      <Link
+                            to={{ pathname: "/report" }}
+                        state={{ data: reportdata }}
+                        className="report-button"
+                          >
+                            <button
+                              className="w-24 report-button"
+                              onClick={() => {
+                                reportdata.report_SpO2 = SpO2;
+                                reportdata.report_pulse = pulse;
+                                reportdata.report_bodyTemp = bodyTemp;
+                                reportdata.report_dia = dia;
+                                reportdata.report_gsr = gsr;
+                                reportdata.report_humidity = humidity;
+                                reportdata.report_roomTemp = roomTemp;
+                                reportdata.report_sys = sys;
+                              }}
+                            >
+                              Report
+                            </button>
+                          </Link>
                     </div>
                   </div>
                 </div>

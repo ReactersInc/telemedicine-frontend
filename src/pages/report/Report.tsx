@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import "./report.css";
 import VerticalNavPatient from "../../components/verticalNavPatient";
 interface ReportCardProps {
@@ -39,10 +39,9 @@ const ReportCard: React.FC<ReportCardProps> = ({
 };
 
 
-const ReportPage1 = (
-  { SpO2: spo2 }: { SpO2: number },
-  { gsr: GSR }: { gsr: number }
-) => {
+const ReportPage1 = () => {
+  const location = useLocation();
+
   const [pulse, setPulse] = useState(0);
   const [SpO2, setSpO2] = useState(0);
   const [roomTemp, setRoomTemp] = useState(0);
@@ -51,93 +50,20 @@ const ReportPage1 = (
   const [gsr, setGsr] = useState(0);
   const [sys, setSys] = useState(0);
   const [dia, setDia] = useState(0);
-  const [ecgData, setEcgData] = useState([]);
-  const [date, setDate] = useState([0, 0, 0, 0, 0]);
-  const [dateId, setDateId] = useState(0);
-
-  const email = useSelector(
-    (state: {
-      user: {
-        id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-      };
-    }) => state.user.email
-  );
-  const name = useSelector(
-    (state: {
-      user: {
-        id: string;
-        email: string;
-        dob: string;
-        exp: number;
-        gender: string;
-        name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-      };
-    }) => state.user.name
-  );
-
-  console.log(email);
-
-  const espInfo = async () => {
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
-    const data = {
-      // "email": email,
-      email: "rajveerjdh2021@gmail.com",
-    };
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-
-    try {
-      const response = await fetch(apiUrl, requestOptions);
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        if (jsonResponse && jsonResponse.Status) {
-          console.log(jsonResponse.Status.record);
-          console.log(jsonResponse.Status.record[dateId].pulse);
-
-          setPulse(jsonResponse.Status.record[dateId].pulse);
-          setSpO2(jsonResponse.Status.record[dateId].SpO2);
-          setBodyTemp(jsonResponse.Status.record[dateId].body_temp);
-          setDia(jsonResponse.Status.record[dateId].dia);
-          setGsr(jsonResponse.Status.record[dateId].gsr);
-          setHumidity(jsonResponse.Status.record[dateId].humidity);
-          setRoomTemp(jsonResponse.Status.record[dateId].room_temp);
-          setSys(jsonResponse.Status.record[dateId].sys);
-          setEcgData(jsonResponse.Status.record[dateId].ecg);
-          date[0] = jsonResponse.Status.record[0].timestamp;
-          date[1] = jsonResponse.Status.record[1].timestamp;
-          date[2] = jsonResponse.Status.record[2].timestamp;
-          date[3] = jsonResponse.Status.record[3].timestamp;
-          date[4] = jsonResponse.Status.record[4].timestamp;
-          console.log(date);
-        }
-      } else {
-        console.error("Error:", response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error("Error sending JSON data:", error);
-    }
-  };
-
+  const x = 5;
   useEffect(() => {
-    espInfo();
-  }, [dateId]);
+    if (location.state?.data) {
+      setBodyTemp(location.state?.data.report_bodyTemp);
+      setDia(location.state?.data.report_dia);
+      setGsr(location.state?.data.report_gsr);
+      setHumidity(location.state?.data.report_humidity);
+      setPulse(location.state?.data.report_pulse);
+      setRoomTemp(location.state?.data.report_roomTemp);
+      setSpO2(location.state?.data.report_SpO2);
+      setSys(location.state?.data.report_sys);
+    }
 
+  }, [x]);
   const generateReportSpO2 = (SpO2: number): string[] => {
     let reading: string = "";
     let result: string = "";
@@ -262,7 +188,17 @@ const ReportPage1 = (
       result = "Pulse reading is Low. May be at risk of Bradycardia";
       symptoms = "";
     }
+    console.log(roomTemp);
+    console.log(bodyTemp);
+    console.log(humidity);
+    console.log(gsr);
+    console.log(pulse);
+    console.log(SpO2);
+    console.log(sys);
+    console.log(dia);
+    console.log("ok");
     return [reading, result, symptoms, title];
+
   };
   return (
     <div>
