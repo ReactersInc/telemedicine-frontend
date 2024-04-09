@@ -1,8 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
 import VerticalNavPatient from "../../components/verticalNavPatient";
+import { Interface } from "readline";
+
+interface Diagnosis {
+  Sno: number;
+  Doc_ID: string;
+  P_Email: string;
+  Book_Date: string;
+  Diagnosis: string;
+  Prescription: string;
+  Pres_Time: string;
+}
 
 function PatientDashboard() {
   const name = useSelector(
@@ -33,6 +44,55 @@ function PatientDashboard() {
     dispatch(userLogout());
     window.location.href = "/";
   };
+
+  const [diagnosis, setDiagnosis] = useState<Diagnosis[]>([]);
+  const [previewData, setPreviewData] = useState<Diagnosis | null>(null); // State for managing preview data
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleGetAllDiagnosis = async () => {
+      const pEmail = name.email;
+      const apiUrl = `http://52.66.241.131/IoMTAppAPI/api/getAllDiagnosis.php`;
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            p_email: pEmail,
+          }),
+        });
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log("Fetched data:", responseData);
+          if (Array.isArray(responseData.data)) {
+            setDiagnosis(responseData.data);
+          } else {
+            console.error("Data array not found in response:", responseData);
+          }
+        } else {
+          console.error("Failed to fetch diagnosis:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching diagnosis:", error);
+      }
+    };
+
+    handleGetAllDiagnosis();
+  }, [name.email]);
+
+  const handlePreview = (item: Diagnosis) => {
+    setPreviewData(item); // Set the preview data when preview button is clicked
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const handleClosePreview = () => {
+    setPreviewData(null); // Close the preview by resetting preview data
+    setIsModalOpen(false); // Close the modal
+  };
+
   return (
     <div>
       <VerticalNavPatient />
@@ -69,11 +129,6 @@ function PatientDashboard() {
                   <div className={styles.value}>{name.dob}</div>
                 </div>
               </div>
-              {/* <div className={styles.label}>
-                <h3 className="font-semibold">Phone No:</h3>
-                <div className={styles.value}> {name.phone}</div>
-              </div> */}
-
               <div className={styles.label}>
                 <h3 className="font-semibold">Email:</h3>
                 <div className={styles.value}>{name.email}</div>
@@ -123,14 +178,32 @@ function PatientDashboard() {
                   <th>Prescription</th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>12.01.2023</td>
-                    <td>Dr. John Smith</td>
-                    <td>Trauma</td>
-                    <td>
-                      <button className="px-4 py-2 rounded-md">Preview</button>
-                    </td>
-                  </tr>
+                  {diagnosis.map((diagnosisItem, index) => (
+                    <tr key={index}>
+                      <td className="border-b-2 p-2 text-center">
+                        {diagnosisItem.Book_Date}
+                      </td>
+                      <td className="border-b-2 p-2 text-center">
+                        {diagnosisItem.Doc_ID}
+                      </td>
+                      <td className="border-b-2 p-2 text-center">
+                        {diagnosisItem.Diagnosis}
+                      </td>
+                      <td className="border-b-2 p-2 text-center">
+                        {diagnosisItem.Prescription}
+                      </td>
+                      <td>
+                        <a href="/patientHistory">
+                          <button
+                            className="px-4 py-2 rounded-md"
+                            onClick={() => handlePreview(diagnosisItem)}
+                          >
+                            Preview
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

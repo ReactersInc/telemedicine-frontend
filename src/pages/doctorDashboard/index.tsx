@@ -135,7 +135,7 @@ function DoctorDashboard() {
           </div>
           <div className={styles.tableContainer}>
             <div id={styles.tableDiv}>
-              <h1 className="font-semibold text-lg">Appointments</h1>
+              <h1 className="font-semibold text-lg">Today's Appointments</h1>
               <table id={styles.table}>
                 <thead>
                   <tr>
