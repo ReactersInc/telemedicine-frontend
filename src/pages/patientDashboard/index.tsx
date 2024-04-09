@@ -3,7 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
 import VerticalNavPatient from "../../components/verticalNavPatient";
-import { Interface } from "readline";
+import PrevModal from "../../components/PrevModal";
+import { setModal } from "../../features/modal/modalSlice";
+
+interface PrevProps {
+  Doc_ID: string;
+  P_Email: string;
+  Book_Date: string;
+}
 
 interface Diagnosis {
   Sno: number;
@@ -19,35 +26,43 @@ function PatientDashboard() {
   const name = useSelector(
     (state: {
       user: {
-        id: string;
         email: string;
-        dob: string;
-        exp: number;
-        gender: string;
         name: string;
-        photoUrl: string;
-        state: string;
-        timeStamp: string;
-        phone: string;
-
-        mobile_no: string;
-        doctor_id: string;
-        registration_no: string;
-        specilization: string;
-        rating: number;
+        gender: string;
+        dob: string;
         city: string;
+        state: string;
       };
     }) => state.user
   );
   const dispatch = useDispatch();
+
+  const isModalOpen = useSelector(
+    (state: { modal: { modalOpen: boolean } }) => state.modal.modalOpen
+  );
+
+  const [doctorID, setDoctorID] = useState("");
+  const [pEmail, setpEmail] = useState("");
+  const [bDate, setbDate] = useState("");
+
+  const toggleModal = ({ Doc_ID, P_Email, Book_Date }: PrevProps) => {
+    console.log("preview clicked");
+    setDoctorID(Doc_ID);
+    setpEmail(P_Email);
+    setbDate(Book_Date);
+    dispatch(setModal());
+  };
+
+  const toggleModal1 = () => {
+    dispatch(setModal());
+  };
+
   const handleLogout = () => {
     dispatch(userLogout());
     window.location.href = "/";
   };
 
   const [diagnosis, setDiagnosis] = useState<Diagnosis[]>([]);
-  const [previewData, setPreviewData] = useState<Diagnosis | null>(null); // State for managing preview data
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleGetAllDiagnosis = async () => {
@@ -82,16 +97,6 @@ function PatientDashboard() {
 
     handleGetAllDiagnosis();
   }, [name.email]);
-
-  const handlePreview = (item: Diagnosis) => {
-    setPreviewData(item); // Set the preview data when preview button is clicked
-    setIsModalOpen(true); // Open the modal
-  };
-
-  const handleClosePreview = () => {
-    setPreviewData(null); // Close the preview by resetting preview data
-    setIsModalOpen(false); // Close the modal
-  };
 
   return (
     <div>
@@ -148,23 +153,35 @@ function PatientDashboard() {
                   Recent Health Checkup
                 </p>
               </div>
-              <div className={styles.label}>
-                <h3 className="font-semibold">Date:</h3>
-                <div className={styles.value}>29/03/2024</div>
-              </div>
-              <div className={styles.label}>
-                <h3 className="font-semibold">Consultant Doctor:</h3>
-                <div className={styles.value}>Dr. Abc Xyz</div>
-              </div>
-
-              <div className="ml-4 mt-4">
-                <div className="flex space-x-2 items-center">
-                  <h3 className="font-semibold">Diagnosis</h3>
-                  <button className="py-2 px-3 bg-[#2cda6d] border rounded-2xl font-semibold text-slate-50">
-                    Preview Prescription
-                  </button>
+              {diagnosis.length > 0 && (
+                <div>
+                  <div className={styles.label}>
+                    <h3 className="font-semibold">Date:</h3>
+                    <div className={styles.value}>{diagnosis[0].Book_Date}</div>
+                  </div>
+                  <div className={styles.label}>
+                    <h3 className="font-semibold">Consultant Doctor:</h3>
+                    <div className={styles.value}>{diagnosis[0].Doc_ID}</div>
+                  </div>
+                  <div className="ml-4 mt-4">
+                    <div className="flex space-x-2 items-center">
+                      <h3 className="font-semibold">Diagnosis</h3>
+                      <button
+                        className="py-2 px-3 bg-[#2cda6d] border rounded-2xl font-semibold text-slate-50"
+                        onClick={() => {
+                          toggleModal({
+                            Doc_ID: diagnosis[0].Doc_ID,
+                            P_Email: diagnosis[0].P_Email,
+                            Book_Date: diagnosis[0].Book_Date,
+                          });
+                        }}
+                      >
+                        Preview Prescription
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
           <div className={styles.tableContainer}>
@@ -172,10 +189,12 @@ function PatientDashboard() {
               <h1 className="font-semibold text-lg">Patient History</h1>
               <table id={styles.table}>
                 <thead>
-                  <th>Date</th>
-                  <th>Doctor</th>
-                  <th>Diagnosis</th>
-                  <th>Prescription</th>
+                  <tr>
+                    <th>Date</th>
+                    <th>Doctor</th>
+                    <th>Diagnosis</th>
+                    <th>Prescription</th>
+                  </tr>
                 </thead>
                 <tbody>
                   {diagnosis.map((diagnosisItem, index) => (
@@ -193,14 +212,18 @@ function PatientDashboard() {
                         {diagnosisItem.Prescription}
                       </td>
                       <td>
-                        <a href="/patientHistory">
-                          <button
-                            className="px-4 py-2 rounded-md"
-                            onClick={() => handlePreview(diagnosisItem)}
-                          >
-                            Preview
-                          </button>
-                        </a>
+                        <button
+                          className="px-4 py-2 rounded-md"
+                          onClick={() => {
+                            toggleModal({
+                              Doc_ID: diagnosisItem.Doc_ID,
+                              P_Email: diagnosisItem.P_Email,
+                              Book_Date: diagnosisItem.Book_Date,
+                            });
+                          }}
+                        >
+                          Preview
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -210,6 +233,15 @@ function PatientDashboard() {
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <div className={styles.overlayAppoint} onClick={toggleModal1}>
+          <PrevModal
+            doctor_id={doctorID}
+            patientEmail={pEmail}
+            bookDate={bDate}
+          />
+        </div>
+      )}
     </div>
   );
 }

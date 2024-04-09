@@ -330,40 +330,6 @@ function Appointment() {
                 required
               />
             </div>
-            {/* <div className="mt-4">
-              <div>
-                <label htmlFor="dob" className="text-lg font-semibold pt-2">
-                  Date
-                </label>
-                <br />
-                <input
-                  type="date"
-                  name="dob"
-                  id="dob"
-                  className={styles.style_input}
-                  required
-                />
-              </div>
-            </div>
-            <div className="mt-4">
-              <label htmlFor="degree" className="text-lg font-semibold pt-2">
-                Time
-              </label>
-              <br />
-              <div className="flex space-x-6">
-                {timeSlots.map((timeOption) => (
-                  <button
-                    key={timeOption.value}
-                    onClick={() => handleTimeChange(timeOption)}
-                    className={`border py-2 px-4 border-[#2cda6d] rounded-md ${
-                      selectedTime === timeOption.value ? "bg-green-50" : ""
-                    }`}
-                  >
-                    <h3>{timeOption.label}</h3>
-                  </button>
-                ))}
-              </div>
-            </div> */}
           </div>
           <button
             className=" mt-6 py-2 px-4 font-semibold text-white text-lg bg-[#2cda6d] rounded-md"
