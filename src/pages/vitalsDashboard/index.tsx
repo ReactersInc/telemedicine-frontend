@@ -55,8 +55,8 @@ function VitalsDashboard() {
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
-      email: email,
-      // email: "rajveerjdh2021@gmail.com",
+      // email: email,
+      email: "rajveerjdh2021@gmail.com",
     };
     const requestOptions = {
       method: "POST",

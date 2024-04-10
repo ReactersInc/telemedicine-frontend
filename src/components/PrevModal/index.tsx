@@ -56,11 +56,11 @@ const PrevModal: React.FC<PrevModalProps> = ({
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-75">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full">
+      <div className="bg-white rounded-lg p-8 max-w-md w-full text-xl">
         {isLoading && <p>Loading...</p>}
         {prescriptionData && (
           <div>
-            <h2 className="text-xl font-semibold mb-4 text-blue-400">
+            <h2 className="text-xl font-semibold mb-4 text-green-500">
               Prescription Details
             </h2>
             <p className="mb-2">
@@ -81,7 +81,7 @@ const PrevModal: React.FC<PrevModalProps> = ({
           onClick={() => {
             // Close modal functionality here
           }}
-          className="mt-6 py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="mt-6 py-2 px-4 bg-green-500 w-24 text-white rounded hover:text-green-900 hover:bg-green-300"
         >
           Close
         </button>
