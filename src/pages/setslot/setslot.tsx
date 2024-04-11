@@ -91,6 +91,19 @@ const SetSlot = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+    alert("Slot added successfully");
+    setSlots({
+      TimeSlotMon: "",
+      TimeSlotTue: "",
+      TimeSlotWed: "",
+      TimeSlotThu: "",
+      TimeSlotFri: "",
+      TimeSlotSat: "",
+      TimeSlotSun: "",
+    });
+    setSlotsPossible(0);
+    setStartDate("");
+    setEndDate("");
   };
 
   return (
