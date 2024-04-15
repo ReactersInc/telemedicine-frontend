@@ -31,8 +31,8 @@ function PatientsList() {
   const digitaltwin = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
-      // email: doctorDetails.email,
-      email: "rajveerjdh2021@gmail.com",
+      email: doctorDetails.email,
+      // email: "rajveerjdh2021@gmail.com",
     };
     const requestOptions = {
       method: "POST",
@@ -72,8 +72,8 @@ function PatientsList() {
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
-      // email: doctorDetails.email,
-      email: "rajveerjdh2021@gmail.com",
+      email: doctorDetails.email,
+      // email: "rajveerjdh2021@gmail.com",
     };
     const requestOptions = {
       method: "POST",
