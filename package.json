@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mui/icons-material": "^5.15.15",
     "@react-native-async-storage/async-storage": "^1.18.1",
     "@reduxjs/toolkit": "^1.7.2",
     "@syncfusion/ej2-react-dropdowns": "^23.2.6",
@@ -25,6 +26,7 @@
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
+    "react-icon": "^1.0.0",
     "react-modal": "^3.16.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.15.0",
