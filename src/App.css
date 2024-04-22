@@ -8,7 +8,7 @@ input:active {
   overflow: unset;
 }
 .webcontainer {
-  margin: 0px 100px;
+  margin: 0px 20px;
 }
 
 @tailwind base;
