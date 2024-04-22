@@ -18,7 +18,11 @@ function PatientsList() {
   const [dia, setDia] = useState(0);
   const [ecgData, setEcgData] = useState([]);
   const [date, setDate] = useState([0, 0, 0, 0, 0]);
+  const [datetwin, setdatetwin] = useState([0, 0, 0, 0, 0]);
   const [dateId, setDateId] = useState(0);
+  const [dateId2, setDateId2] = useState(0);
+
+
 
   const [doctorDetails, setDoctorDetails] = useState({
     date: "",
@@ -29,7 +33,7 @@ function PatientsList() {
     patientDOB: "",
   });
   const digitaltwin = async () => {
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
+    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getProjectedData.php";
     const data = {
       email: doctorDetails.email,
       // email: "rajveerjdh2021@gmail.com",
@@ -46,21 +50,29 @@ function PatientsList() {
       const response = await fetch(apiUrl, requestOptions);
       if (response.ok) {
         const jsonResponse = await response.json();
+        const valueObjects:any = Object.values(jsonResponse.Data);
+        const keysObjects:any = Object.keys(jsonResponse.Data);
+        const length:any = Object.keys(jsonResponse.Data).length;
+
+        for (let index = 0; index < length; index++) {
+          datetwin[index] = keysObjects[index];
+        }
+        
         if (jsonResponse && jsonResponse.Status) {
-          setPulse(jsonResponse.Status.record[dateId].pulse);
-          setSpO2(jsonResponse.Status.record[dateId].SpO2);
-          setBodyTemp(jsonResponse.Status.record[dateId].body_temp);
-          setDia(jsonResponse.Status.record[dateId].dia);
-          setGsr(jsonResponse.Status.record[dateId].gsr);
-          setHumidity(jsonResponse.Status.record[dateId].humidity);
-          setRoomTemp(jsonResponse.Status.record[dateId].room_temp);
-          setSys(jsonResponse.Status.record[dateId].sys);
-          setEcgData(jsonResponse.Status.record[dateId].ecg);
-          date[0] = jsonResponse.Status.record[0].timestamp;
-          date[1] = jsonResponse.Status.record[1].timestamp;
-          date[2] = jsonResponse.Status.record[2].timestamp;
-          date[3] = jsonResponse.Status.record[3].timestamp;
-          date[4] = jsonResponse.Status.record[4].timestamp;
+          setPulse(valueObjects[dateId2].pulse);
+          setSpO2(valueObjects[dateId2].SpO2);
+          setBodyTemp(valueObjects[dateId2].body_temp);
+          setDia(valueObjects[dateId2].dia);
+          setGsr(valueObjects[dateId2].gsr);
+          setHumidity(valueObjects[dateId2].humidity);
+          setRoomTemp(valueObjects[dateId2].room_temp);
+          setSys(valueObjects[dateId2].sys);
+          setEcgData(valueObjects[dateId2].ecg);
+          date[0] = datetwin[0];
+          date[1] = datetwin[1];
+          date[2] = datetwin[2];
+          date[3] = datetwin[3];
+          date[4] = datetwin[4];
         }
       } else {
         console.error("Error:", response.status, response.statusText);
@@ -69,6 +81,9 @@ function PatientsList() {
       console.error("Error sending JSON data:", error);
     }
   };
+
+
+
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
@@ -110,14 +125,19 @@ function PatientsList() {
       console.error("Error sending JSON data:", error);
     }
   };
-
   useEffect(() => {
     if (location.state?.data) {
-      console.log("From Use Effect : ", location.state?.data);
       setDoctorDetails(location.state?.data);
     }
   }, []);
+  useEffect(() => {
+    espInfo();
 
+  }, [dateId]);
+  useEffect(() => {
+    digitaltwin();
+  }, [dateId2]);
+ 
   const options: ApexOptions = {
     chart: {
       id: "ecg-chart",
@@ -207,16 +227,21 @@ function PatientsList() {
   const [show, setShow] = useState(false);
   const [showdigitaltwin, setShowdigitaltwin] = useState(false);
   const handleClose = () => {
+    
     if (showdigitaltwin === true) {
-      console.log("showdigitaltwin is true");
       setShowdigitaltwin(false);
+    } else {
+      espInfo();
     }
+    
     setShow(!show);
   };
   const handleCloseDigitalTwin = () => {
     if (show === true) {
       setShow(false);
-      console.log("show is true");
+    }
+    else {
+      digitaltwin();
     }
     setShowdigitaltwin(!showdigitaltwin);
   };
@@ -556,14 +581,14 @@ function PatientsList() {
 
                 <select
                   onChange={(e) => {
-                    setDateId(parseInt(e.target.value));
+                    setDateId2(parseInt(e.target.value));
                   }}
                 >
-                  <option value={0}>{date[0]}</option>
-                  <option value={1}>{date[1]}</option>
-                  <option value={2}>{date[2]}</option>
-                  <option value={3}>{date[3]}</option>
-                  <option value={4}>{date[4]}</option>
+                  <option value={0}>{datetwin[0]}</option>
+                  <option value={1}>{datetwin[1]}</option>
+                  <option value={2}>{datetwin[2]}</option>
+                  <option value={3}>{datetwin[3]}</option>
+                  <option value={4}>{datetwin[4]}</option>
                 </select>
               </div>
             </div>
