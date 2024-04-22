@@ -22,7 +22,7 @@
   padding-right: 20px;
   padding-left: 20px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   background-color: #f5f9fe;
 }
@@ -91,12 +91,14 @@
   display: none;
   position: absolute;
   top: 2.6rem;
-  right: 1.5rem;
+  right: 0.5rem;
   flex-direction: column;
   justify-content: space-between;
   width: 2.25rem;
   height: 2rem;
 }
+
+
 
 .navbar .menu span{
   height: 0.4rem;
@@ -120,8 +122,24 @@
   width: 40px; /* Adjust the width of the icon */
   height: auto; /* Maintain aspect ratio */
 }
+.title {
+  display: flex;
+  /* align-items: center; */
+}
+
+.title img {
+  width: 10rem; /* Adjust width as needed */
+  margin-right: 10px; /* Add margin for spacing */
+}
 
 @media screen and (max-width: 960px) {
+
+  
+  body {
+    overflow-x: hidden;
+  }
+
+
   .navbar .menu{
     display: flex;
   }
@@ -146,10 +164,22 @@
   .navbar ul li{
     width: 100%;
     text-align: center;
+    margin: 3rem 0.2rem -4rem;
   }
 
   .navbar ul li a{
-    margin: -0.5rem 0.2rem;
+   
+  }
+
+  .title{
+    position: absolute;
+    top: 40px;
+    left: 10px;
+  }
+
+  .title img {
+    width: 100px; /* Adjust width for mobile */
+    margin-right: 0; /* Remove right margin for mobile */
   }
 
  

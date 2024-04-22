@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import ModalSignin from "../modalSignin";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,11 +19,28 @@ function HorizontalNav() {
     dispatch(setModal());
   };
 
-  if (!scrollable) {
-    document.body.style.overflowY = "hidden";
-  } else {
-    document.body.style.overflowY = "auto";
-  }
+  useEffect(() => {
+    // Disable horizontal scrolling on mount if screen width is less than 900px
+    const handleResize = () => {
+      if (window.innerWidth < 900 && !scrollable) {
+        document.documentElement.style.overflowX = "hidden";
+        document.body.style.overflowX = "hidden";
+      } else {
+        document.documentElement.style.overflowX = "auto";
+        document.body.style.overflowX = "auto";
+      }
+    };
+
+    handleResize(); // Call on mount
+
+    // Event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [scrollable]);
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -92,7 +109,7 @@ function HorizontalNav() {
 
       {/* Back to Top button */}
       <button className="backToTopBtn" onClick={scrollToTop}>
-       <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240227155250/up.png" alt="back to top" ></img>
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240227155250/up.png" alt="back to top" />
       </button>
     </>
   );

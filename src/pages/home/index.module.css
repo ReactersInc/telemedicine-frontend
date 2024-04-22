@@ -153,3 +153,31 @@
 .homeContactMap {
   width: 40%;
 }
+
+
+@media screen and (max-width: 800px) {
+  .homeBanner {
+    flex-direction: column;
+    padding-top: 100px; /* Adjust padding as needed */
+    align-items: center;
+  }
+  
+  .homeBannerText {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .homeBannerText > h1 {
+    font-size: 2.5rem; /* Reduce font size */
+  }
+  
+  .homeBannerImage {
+    width: 100%;
+    padding-top: 20px; /* Adjust padding as needed */
+  }
+  
+  .homeBannerImage > img {
+    width: 80%; /* Adjust image width */
+    height: auto;
+  }
+}
