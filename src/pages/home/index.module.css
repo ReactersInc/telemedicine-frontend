@@ -101,7 +101,7 @@
 }
 
 .homeAboutVideo {
-  width: 25%;
+  width: 20%;
 }
 .homeAboutVideo > video {
   border-radius: 10px;
@@ -110,7 +110,7 @@
   width: 100%;
   font-size: 1.5rem;
   line-height: 1.6;
-  /* margin-left: 5%; */
+  margin-left: 5%;
 }
 .homeContactContainer {
   width: 100%;
@@ -133,9 +133,7 @@
   align-items: center;
   justify-content: space-evenly;
 }
-.homeContactLineContainer {
-  width: 100%;
-}
+
 .homeContactLine {
   display: flex;
   align-items: center;
@@ -170,7 +168,7 @@
   }
   
   .homeBannerText > h1 {
-    font-size: 1.5rem; /* Reduce font size */
+    font-size: 0.6rem; /* Reduce font size */
   }
 
   .homeBannerText .homeBannerBtn{
