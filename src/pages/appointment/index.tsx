@@ -247,10 +247,12 @@ function Appointment() {
           setDoctorList(jsonResponse.Status.List);
         }
       } else {
+        alert("No Doctors Available!");
         console.error("Error sending JSON data:", response.statusText);
         // Handle the error appropriately
       }
     } catch (error) {
+      alert("No Doctors Available!");
       console.error("Error sending JSON data:", error);
       // Handle the error appropriately
     }
@@ -263,7 +265,7 @@ function Appointment() {
       border: "1px solid #2cda6d", // Border
       borderRadius: "10px", // Border radius
       marginTop: "6px", // Margin top
-      maxWidth: "30%", // Max width
+      width: "fit-content", // Max width
       backgroundColor: "white", // Background color
       transition: "box-shadow 0.3s, border-color 0.3s", // Transition
     }),

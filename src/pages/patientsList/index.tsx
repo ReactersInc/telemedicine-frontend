@@ -22,8 +22,6 @@ function PatientsList() {
   const [dateId, setDateId] = useState(0);
   const [dateId2, setDateId2] = useState(0);
 
-
-
   const [doctorDetails, setDoctorDetails] = useState({
     date: "",
     doctorID: "",
@@ -50,14 +48,14 @@ function PatientsList() {
       const response = await fetch(apiUrl, requestOptions);
       if (response.ok) {
         const jsonResponse = await response.json();
-        const valueObjects:any = Object.values(jsonResponse.Data);
-        const keysObjects:any = Object.keys(jsonResponse.Data);
-        const length:any = Object.keys(jsonResponse.Data).length;
+        const valueObjects: any = Object.values(jsonResponse.Data);
+        const keysObjects: any = Object.keys(jsonResponse.Data);
+        const length: any = Object.keys(jsonResponse.Data).length;
 
         for (let index = 0; index < length; index++) {
           datetwin[index] = keysObjects[index];
         }
-        
+
         if (jsonResponse && jsonResponse.Status) {
           setPulse(valueObjects[dateId2].pulse);
           setSpO2(valueObjects[dateId2].SpO2);
@@ -81,8 +79,6 @@ function PatientsList() {
       console.error("Error sending JSON data:", error);
     }
   };
-
-
 
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
@@ -132,12 +128,18 @@ function PatientsList() {
   }, []);
   useEffect(() => {
     espInfo();
-
   }, [dateId]);
   useEffect(() => {
-    digitaltwin();
-  }, [dateId2]);
- 
+    let interval = setInterval(() => {
+      digitaltwin();
+      console.log("hello 1");
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   const options: ApexOptions = {
     chart: {
       id: "ecg-chart",
@@ -189,58 +191,54 @@ function PatientsList() {
     setSubmitData({ ...submitdata, [name]: value });
   };
   const submitDiagnosis = async () => {
-    if (submitdata.diagnosis!=""||submitdata.prescription!="") {
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/addDiagnosis.php";
-    const data6 = {
-      doctor_id: doctorDetails?.doctorID,
-      p_email: doctorDetails?.email,
-      book_date: doctorDetails.date,
-      diagnosis: submitdata.diagnosis,
-      prescription: submitdata.prescription,
-    };
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data6),
-    };
+    if (submitdata.diagnosis != "" || submitdata.prescription != "") {
+      const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/addDiagnosis.php";
+      const data6 = {
+        doctor_id: doctorDetails?.doctorID,
+        p_email: doctorDetails?.email,
+        book_date: doctorDetails.date,
+        diagnosis: submitdata.diagnosis,
+        prescription: submitdata.prescription,
+      };
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data6),
+      };
 
-    try {
-      const response = await fetch(apiUrl, requestOptions);
-      if (response.ok) {
-        alert("Submit Successfully");
-        setSubmitData({ diagnosis:"", prescription:""});
-      window.location.href = "/doctordashboard";
-
-      } else {
-        console.error("Error:", response.status, response.statusText);
+      try {
+        const response = await fetch(apiUrl, requestOptions);
+        if (response.ok) {
+          alert("Submit Successfully");
+          setSubmitData({ diagnosis: "", prescription: "" });
+          window.location.href = "/doctordashboard";
+        } else {
+          console.error("Error:", response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error("Error sending JSON data:", error);
       }
-    } catch (error) {
-      console.error("Error sending JSON data:", error);
+    } else {
+      alert("Diagnosis and Prescription can't be empty ");
     }
-    }
-    else {
-      alert("Diagnosis and Prescription can't be empty ")
-   }
   };
   const [show, setShow] = useState(false);
   const [showdigitaltwin, setShowdigitaltwin] = useState(false);
   const handleClose = () => {
-    
     if (showdigitaltwin === true) {
       setShowdigitaltwin(false);
     } else {
       espInfo();
     }
-    
+
     setShow(!show);
   };
   const handleCloseDigitalTwin = () => {
     if (show === true) {
       setShow(false);
-    }
-    else {
+    } else {
       digitaltwin();
     }
     setShowdigitaltwin(!showdigitaltwin);
@@ -576,21 +574,6 @@ function PatientsList() {
             </div>
             <div className="flex justify-between font-bold">
               <span>Vitals Dashboard</span>
-              <div>
-                <label>Date :</label>
-
-                <select
-                  onChange={(e) => {
-                    setDateId2(parseInt(e.target.value));
-                  }}
-                >
-                  <option value={0}>{datetwin[0]}</option>
-                  <option value={1}>{datetwin[1]}</option>
-                  <option value={2}>{datetwin[2]}</option>
-                  <option value={3}>{datetwin[3]}</option>
-                  <option value={4}>{datetwin[4]}</option>
-                </select>
-              </div>
             </div>
             <div className="mb-10">
               <div className="ecg-container">
