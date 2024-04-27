@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import styles from "./index.module.css";
@@ -41,9 +41,57 @@ function VerticalNavPatient() {
     dispatch(userLogout());
     window.location.href = "/";
   };
+
+  const [showNav, setShowNav] = useState(true);
+
+  useEffect(() => {
+    // Function to check screen width and toggle sidenav visibility
+    const checkScreenWidth = () => {
+      if (window.innerWidth < 960) {
+        setShowNav(false);
+      } else {
+        setShowNav(true);
+      }
+    };
+
+    // Check screen width when component mounts
+    checkScreenWidth();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkScreenWidth);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", checkScreenWidth);
+    };
+  }, []);
+
+  const toggleNav = () => {
+    setShowNav(!showNav);
+  };
+
+  const closeNav = () => {
+    setShowNav(false);
+  };
+
   return (
     <div>
-      <div className={styles.sidenav}>
+      <button
+        className={styles.hamburgerIcon} // Style this button with hamburger menu icon
+        onClick={toggleNav}
+      >
+        <img src="./static/hamburger.svg" alt="Menu" />
+      </button>
+      <div
+        className={`${styles.sidenav} ${showNav ? styles.show : styles.hide}`}
+      >
+        {/* Close button */}
+        <button
+          className={styles.closeButton}
+          onClick={closeNav} // Close sidenav when clicked
+        >
+          Close
+        </button>
         <div className="flex flex-col">
           <div className=" w-28 h-28 flex justify-center">
             <img
