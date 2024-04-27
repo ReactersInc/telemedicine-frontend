@@ -32,3 +32,61 @@
 .sidenav a:active {
   color: #2cda6d;
 }
+
+.sidenav.hide {
+  left: -250px;
+}
+
+.hamburgerIcon {
+  /* Your styles for the hamburger icon */
+  display: none;
+  background-color: transparent;
+  border: none;
+  padding: 10px; /* Adjust padding as needed */
+  cursor: pointer;
+}
+
+/* Optionally, style the image inside the hamburger icon */
+.hamburgerIcon img {
+  width: 30px; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.closeButton{
+  display: none;
+}
+
+@media only screen and (max-width: 960px) {
+  .sidenav {
+    width: 200px; /* Adjust width for smaller screens */
+    /* background-color: #2cda6d; */
+
+    height:fit-content;
+    
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+
+  .closeButton {
+    /* Your close button styles */
+    display: inline;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  /* Hide the close button when sidenav is not open */
+  .sidenav:not(.show) .closeButton {
+    display: none;
+  }
+
+
+  .hamburgerIcon{
+    display: inline;
+  }
+}
