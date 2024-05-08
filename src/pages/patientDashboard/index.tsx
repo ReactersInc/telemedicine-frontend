@@ -103,12 +103,12 @@ function PatientDashboard() {
       <VerticalNavPatient />
       <div id={styles.dashboard}>
         <div className="page-label">
-          <span>Patient Dashboard</span>
+          <span className="page-label-1">Patient Dashboard</span>
         </div>
         <div className={styles.patientDetailContainer}>
-          <div className="flex pl-12 justify-left space-x-12">
-            <div className="border rounded-full">
-              <div className="w-52 h-52 p-4 border rounded-full bg-[#ffffff] flex justify-center">
+          <div className="lg:flex lg:pl-12 lg:justify-left lg:space-x-12">
+            <div className="lg:border lg:rounded-full profile-img ">
+              <div className="lg:w-52 lg:h-52 lg:p-4 lg:border lg:rounded-full lg:bg-[#ffffff] lg:flex lg:justify-center profile-img ">
                 <img
                   id={styles.profilePhoto}
                   src="./static/avatar.jpg"
@@ -142,7 +142,7 @@ function PatientDashboard() {
               <div className={styles.label}>
                 <h3 className="font-semibold">Address:</h3>
                 <div className={styles.value}>
-                  {name.city + "," + name.state}
+                  {name.city + ", " + name.state}
                 </div>
               </div>
             </div>
