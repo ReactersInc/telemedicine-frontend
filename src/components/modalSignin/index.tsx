@@ -43,19 +43,130 @@ function ModalSignin() {
     const [patientSelector, setPatientSelector] = useState("modalPatientSelector")
     const [doctorSelector, setDoctorSelector] = useState("modalDoctorSelector")
 
+<<<<<<< Updated upstream
     const changeStyleDoctorClick = () => {
         if (patientSelector === 'modalPatientSelector' && doctorSelector === 'modalDoctorSelector') {
             setPatientSelector("modalDoctorSelector");
             setDoctorSelector("modalPatientSelector");
             setUserType(1);
+=======
+  const signinHandle = async () => {
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const password = (document.getElementById("password") as HTMLInputElement)
+      .value;
+
+    // // console.log(temp_email+"+"+temp_password);
+
+    // console.log("initiating api...");
+
+    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/authUser.php";
+    const data = {
+      email,
+      password,
+    };
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    try {
+      const response = await fetch(apiUrl, requestOptions);
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        if (jsonResponse && jsonResponse.Status) {
+          const jwtToken = jsonResponse.Status.jwt;
+          // console.log("JWT Token:", jwtToken);
+          const decodedJwt: DecodedJwtPayload = jwt_decode(jwtToken);
+          // console.log(decodedJwt);
+
+          dispatch(
+            userLogin({
+              email: decodedJwt.email,
+              dob: decodedJwt.dob,
+              exp: decodedJwt.exp,
+              gender: decodedJwt.gender,
+              name: decodedJwt.name,
+              photoUrl: decodedJwt.photoUrl,
+              state: decodedJwt.state,
+              timeStamp: decodedJwt.timeStamp,
+              city: decodedJwt.city,
+            })
+          );
+
+          // window.location.href = "/dashboard"
+          window.location.href = "patientdashboard";
+        } else {
+          console.error("Invalid response structure.");
+>>>>>>> Stashed changes
         }
     }
+<<<<<<< Updated upstream
 
     const changeStylePatientClick = () => {
         if (patientSelector === 'modalDoctorSelector' && doctorSelector === 'modalPatientSelector') {
             setPatientSelector("modalPatientSelector");
             setDoctorSelector("modalDoctorSelector");
             setUserType(0);
+=======
+  };
+  const signinHandledoc = async () => {
+    const doctor_id = (document.getElementById("Doctorid") as HTMLInputElement)
+      .value;
+    const password = (
+      document.getElementById("docpassword") as HTMLInputElement
+    ).value;
+    // console.log("initiating api...");
+
+    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/authDoctor.php";
+    const data = {
+      doctor_id,
+      password,
+    };
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    try {
+      const response = await fetch(apiUrl, requestOptions);
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        if (jsonResponse && jsonResponse.Status) {
+          const jwtToken = jsonResponse.Status.jwt;
+          // console.log("JWT Token:", jwtToken);
+          const decodedJwt: DecodedJwtPayload = jwt_decode(jwtToken);
+          // console.log(decodedJwt);
+
+          dispatch(
+            userLogin({
+              email: decodedJwt.email,
+              dob: decodedJwt.dob,
+              exp: decodedJwt.exp,
+              doctor_id: decodedJwt.doctor_id,
+              name: decodedJwt.name,
+              photoUrl: decodedJwt.photoUrl,
+              registration_no: decodedJwt.registration_no,
+              mobile_no: decodedJwt.mobile_no,
+              specilization: decodedJwt.specilization,
+              rating: decodedJwt.rating,
+              gender: decodedJwt.gender,
+              address:decodedJwt.address,
+            })
+          );
+
+          window.location.href = "doctordashboard";
+            
+        } else {
+          console.error("Invalid response structure.");
+>>>>>>> Stashed changes
         }
     }
 

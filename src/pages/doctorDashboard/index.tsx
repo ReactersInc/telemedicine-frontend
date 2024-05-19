@@ -10,9 +10,51 @@ function DoctorDashboard(){
     const state = useSelector((state: {user: { id:string, email:string, dob:string, exp:number, gender:string, name:string, photoUrl:string, state:string, timeStamp: string }})=> state.user.state)
     const dispatch = useDispatch()
 
+<<<<<<< Updated upstream
     const handleLogout = () =>{
         dispatch(userLogout())
         window.location.href = "/"
+=======
+function DoctorDashboard() {
+  const doc = useSelector((state: { user: User }) => state.user);
+  const doctor_id = useSelector(
+    (state: { user: User }) => state.user.doctor_id
+  );
+  const dispatch = useDispatch();
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+
+  useEffect(() => {
+    fetchAppointments();
+  }, [doctor_id]);
+
+  const fetchAppointments = async () => {
+    const bookingDate = new Date().toISOString().split("T")[0];
+    const apiUrl = `http://52.66.241.131/IoMTAppAPI/api/viewSlotBookings.php`;
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          doctor_id: doctor_id,
+          booking_date: bookingDate,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        // console.log("API Response:", data); // Log API response
+        if (data.Status && data.Status.List) {
+          setAppointments(data.Status.List);
+          // console.log("Appointments:", data.Status.List); // Log appointments after setting
+        }
+      } else {
+        console.error("Failed to fetch appointments:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+>>>>>>> Stashed changes
     }
     return(
         <div>

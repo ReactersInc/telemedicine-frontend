@@ -26,7 +26,14 @@ function VitalsDashboard() {
   
   console.log(email)
 
+<<<<<<< Updated upstream
   const espInfo = async () =>{
+=======
+
+  // console.log(email);
+
+  const espInfo = async () => {
+>>>>>>> Stashed changes
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
         // "email": email,  
@@ -45,6 +52,7 @@ function VitalsDashboard() {
       if (response.ok) {
         const jsonResponse = await response.json();
         if (jsonResponse && jsonResponse.Status) {
+<<<<<<< Updated upstream
 
           console.log(jsonResponse.Status.record);
           console.log(jsonResponse.Status.record[dateId].pulse);
@@ -65,6 +73,26 @@ function VitalsDashboard() {
           date[4] = jsonResponse.Status.record[4].timestamp
           console.log(date);
           
+=======
+          // console.log(jsonResponse.Status.record);
+          // console.log(jsonResponse.Status.record[dateId].pulse);
+
+          setPulse(jsonResponse.Status.record[dateId].pulse);
+          setSpO2(jsonResponse.Status.record[dateId].SpO2);
+          setBodyTemp(jsonResponse.Status.record[dateId].body_temp);
+          setDia(jsonResponse.Status.record[dateId].dia);
+          setGsr(jsonResponse.Status.record[dateId].gsr);
+          setHumidity(jsonResponse.Status.record[dateId].humidity);
+          setRoomTemp(jsonResponse.Status.record[dateId].room_temp);
+          setSys(jsonResponse.Status.record[dateId].sys);
+          setEcgData(jsonResponse.Status.record[dateId].ecg);
+          date[0] = jsonResponse.Status.record[0].timestamp;
+          date[1] = jsonResponse.Status.record[1].timestamp;
+          date[2] = jsonResponse.Status.record[2].timestamp;
+          date[3] = jsonResponse.Status.record[3].timestamp;
+          date[4] = jsonResponse.Status.record[4].timestamp;
+          // console.log(date);
+>>>>>>> Stashed changes
         }
       } else {
         console.error('Error:', response.status, response.statusText);
