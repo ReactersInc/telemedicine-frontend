@@ -51,26 +51,19 @@ function PatientsList() {
         const valueObjects: any = Object.values(jsonResponse.Data);
         const keysObjects: any = Object.keys(jsonResponse.Data);
         const length: any = Object.keys(jsonResponse.Data).length;
-
         for (let index = 0; index < length; index++) {
           datetwin[index] = keysObjects[index];
         }
-
         if (jsonResponse && jsonResponse.Status) {
-          setPulse(valueObjects[dateId2].pulse);
-          setSpO2(valueObjects[dateId2].SpO2);
-          setBodyTemp(valueObjects[dateId2].body_temp);
-          setDia(valueObjects[dateId2].dia);
-          setGsr(valueObjects[dateId2].gsr);
-          setHumidity(valueObjects[dateId2].humidity);
-          setRoomTemp(valueObjects[dateId2].room_temp);
-          setSys(valueObjects[dateId2].sys);
-          setEcgData(valueObjects[dateId2].ecg);
-          date[0] = datetwin[0];
-          date[1] = datetwin[1];
-          date[2] = datetwin[2];
-          date[3] = datetwin[3];
-          date[4] = datetwin[4];
+          setPulse(valueObjects[0].pulse);
+          setSpO2(valueObjects[0].spO2);
+          setBodyTemp(valueObjects[0].body_temp);
+          setDia(valueObjects[0].dia);
+          setGsr(valueObjects[0].gsr);
+          setHumidity(valueObjects[0].humidity);
+          setRoomTemp(valueObjects[0].room_temp);
+          setSys(valueObjects[0].sys);
+          setEcgData(valueObjects[0].ecg);
         }
       } else {
         console.error("Error:", response.status, response.statusText);
@@ -79,7 +72,6 @@ function PatientsList() {
       console.error("Error sending JSON data:", error);
     }
   };
-
   const espInfo = async () => {
     const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
     const data = {
@@ -129,6 +121,7 @@ function PatientsList() {
   useEffect(() => {
     espInfo();
   }, [dateId]);
+
   useEffect(() => {
     let interval = setInterval(() => {
       digitaltwin();
@@ -224,26 +217,25 @@ function PatientsList() {
       alert("Diagnosis and Prescription can't be empty ");
     }
   };
-  const [show, setShow] = useState(false);
-  const [showdigitaltwin, setShowdigitaltwin] = useState(false);
+  const [showdigitaltwin, setDigitialtwin] = useState(false);
+  const [showvitals, setvitals] = useState(false);
   const handleClose = () => {
     if (showdigitaltwin === true) {
-      setShowdigitaltwin(false);
+      setDigitialtwin(false);
     } else {
       espInfo();
     }
 
-    setShow(!show);
+    setvitals(!showvitals);
   };
   const handleCloseDigitalTwin = () => {
-    if (show === true) {
-      setShow(false);
+    if (showvitals === true) {
+      setvitals(false);
     } else {
       digitaltwin();
     }
-    setShowdigitaltwin(!showdigitaltwin);
+    setDigitialtwin(!showdigitaltwin);
   };
-
   return (
     <div>
       <VerticalNavDoctor />
@@ -341,7 +333,7 @@ function PatientsList() {
             </table>
           </div>
         </div>
-        {show && (
+        {showvitals && (
           <div className="bg-white p-8  rounded-3xl my-5 mb-10 border-2 border-[#2cda6d] w-full">
             <div className="flex justify-center font-bold text-3xl border-b-2 mb-3 pb-3  border-[#2cda6d] border-dashed ">
               <p>Paitent Vitals</p>
@@ -543,16 +535,12 @@ function PatientsList() {
                                   <div className="Circle-vitals" id="sys">
                                     <div> Systolic</div>
                                     <div className="Label-vitals">{sys}</div>
-
-                                    {/* <Circle percent={sys} strokeWidth={6} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
                                   </div>
                                 </div>
                                 <div className="Progress ">
                                   <div className="Circle-vitals" id="dia">
                                     <div> Diastolic</div>
                                     <div className="Label-vitals">{dia}</div>
-
-                                    {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
                                   </div>
                                 </div>
                               </div>
@@ -573,7 +561,7 @@ function PatientsList() {
               <p>Digital Twin</p>
             </div>
             <div className="flex justify-between font-bold">
-              <span>Vitals Dashboard</span>
+              <span>Digital Twin Dashboard</span>
             </div>
             <div className="mb-10">
               <div className="ecg-container">
@@ -599,7 +587,6 @@ function PatientsList() {
                       <div className="Circle-vitals">
                         <div> Heart Rate</div>
                         <div className="Label-vitals">{pulse}</div>
-                        {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
                         <img src="./static/heartRate.png" alt="" width={150} />
                       </div>
                     </div>
