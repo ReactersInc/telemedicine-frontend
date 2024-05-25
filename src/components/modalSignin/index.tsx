@@ -70,7 +70,7 @@ function ModalSignin() {
     const email = (document.getElementById("email") as HTMLInputElement).value;
     const password = (document.getElementById("password") as HTMLInputElement)
       .value;
-
+ window.location.href = "patientdashboard";
     // console.log(temp_email+"+"+temp_password);
 
     console.log("initiating api...");
@@ -114,7 +114,7 @@ function ModalSignin() {
           );
 
           // window.location.href = "/dashboard"
-          window.location.href = "patientdashboard";
+          // window.location.href = "patientdashboard";
         } else {
           console.error("Invalid response structure.");
         }
