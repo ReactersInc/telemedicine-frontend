@@ -63,7 +63,6 @@ function DoctorList({ doctors, patientEmail }: DoctorListProps) {
         List of Available Doctors:
       </h3>
       <ul className="flex flex-col items-center mb-4 lg:flex-row lg:space-x-1 p-6 doctor-list">
-
         {doctors.map((doctor) => (
           <li key={doctor.About.d_id}>
             <div>
@@ -297,7 +296,7 @@ function Appointment() {
 
       <div id={styles.appointment}>
         <div className="page-label">
-          <span >Book an Appointment</span>
+          <span>Book an Appointment</span>
         </div>
         <div className={styles.appointmentContainer}>
           <div className="">

@@ -43,18 +43,15 @@ function PatientDetails() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({email: emailset, otp: otp}),
+      body: JSON.stringify({ email: emailset, otp: otp }),
     };
-
 
     try {
       const response = await fetch(apiurl, requestOptions);
 
       if (response.ok) {
-
         const jsonResponse = await response.json();
         if (jsonResponse && jsonResponse.Status) {
-
           const jwtToken = jsonResponse.Status.jwt;
           const decodedJwt: DecodedJwtPayload = jwt_decode(jwtToken);
 
@@ -85,8 +82,7 @@ function PatientDetails() {
       } else {
         window.alert("invalid email or password");
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   const signup = async () => {
     const fname = (document.getElementById("fname") as HTMLInputElement).value;
@@ -109,14 +105,14 @@ function PatientDetails() {
     const state1 = (document.getElementById("state") as HTMLInputElement).value;
     const country = (document.getElementById("country") as HTMLInputElement)
       .value;
-    const state = state1 + " ,"+ country;
+    const state = state1 + " ," + country;
     const password = (document.getElementById("password") as HTMLInputElement)
       .value;
     const confirmPassword = (
       document.getElementById("confirmPassword") as HTMLInputElement
     ).value;
 
-    const name = fname +" "+ lname;
+    const name = fname + " " + lname;
     if (
       fname === "" ||
       lname === "" ||
@@ -186,8 +182,7 @@ function PatientDetails() {
       } else {
         window.alert("invalid email or password");
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   return (
     <>
@@ -288,7 +283,7 @@ function PatientDetails() {
               <label htmlFor="height">Height(cm) *</label>
               <br />
               <input
-              autoComplete="off"
+                autoComplete="off"
                 type="number"
                 name="height"
                 id="height"
@@ -312,7 +307,7 @@ function PatientDetails() {
               <label htmlFor="dob">Date of Birth *</label>
               <br />
               <input
-              autoComplete="off"
+                autoComplete="off"
                 type="date"
                 name="dob"
                 id="dob"
@@ -390,8 +385,8 @@ function PatientDetails() {
               <label htmlFor="confirmPassword">Confirm Password *</label>
               <br />
               <input
-              autoComplete="off"
-              type="password" 
+                autoComplete="off"
+                type="password"
                 id="confirmPassword"
                 name="confirmPassword"
                 className="style_input"

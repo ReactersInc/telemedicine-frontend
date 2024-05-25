@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store, persistor } from "./app/store";
 import { PersistGate } from "redux-persist/integration/react";
@@ -66,7 +66,7 @@ export const router = [
 function App() {
   return (
     <div className="webcontainer">
-      <BrowserRouter>
+      <HashRouter>
         <Provider store={store}>
           <PersistGate persistor={persistor}>
             <Routes>
@@ -76,7 +76,7 @@ function App() {
             </Routes>
           </PersistGate>
         </Provider>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

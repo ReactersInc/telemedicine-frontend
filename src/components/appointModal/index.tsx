@@ -152,7 +152,7 @@ function AppointModal(props: AppointModalProps) {
                         selectedDate === option.Date ? "bg-green-300" : ""
                       }`}
                       onClick={() => {
-                        handleDateSelection(option.Date); 
+                        handleDateSelection(option.Date);
                         console.log("inside button", selectedDate);
                         console.log("inside button", option.Date);
                       }}

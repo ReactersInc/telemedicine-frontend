@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../features/users/userSlice";
 import VerticalNavDoctor from "../../components/verticalNavDoctor";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 interface User {
   id: string;
   email: string;
@@ -33,7 +33,9 @@ interface Appointment {
 }
 
 function Bookings() {
-  const doctor_id = useSelector((state: { user: User }) => state.user.doctor_id);
+  const doctor_id = useSelector(
+    (state: { user: User }) => state.user.doctor_id
+  );
 
   const dispatch = useDispatch();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -49,29 +51,29 @@ function Bookings() {
     const bookingDate = selectedDate;
     const apiUrl = `http://52.66.241.131/IoMTAppAPI/api/viewSlotBookings.php`;
 
-      try {
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            doctor_id: doctorId,
-            booking_date: bookingDate,
-          }),
-        });
-        if (response.ok) {
-          const data = await response.json();
-          if (data.Status && data.Status.List) {
-            setAppointments(data.Status.List);
-          }
-        } else {
-          console.error("Failed to fetch appointments:", response.statusText);
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          doctor_id: doctorId,
+          booking_date: bookingDate,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.Status && data.Status.List) {
+          setAppointments(data.Status.List);
         }
-      } catch (error) {
-        console.error("Error fetching appointments:", error);
+      } else {
+        console.error("Failed to fetch appointments:", response.statusText);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+    }
+  };
 
   const doctorDetail = {
     email: "",
@@ -79,7 +81,7 @@ function Bookings() {
     date: "",
     name: "",
     gender: "",
-    patientDOB:"",
+    patientDOB: "",
   };
 
   const handleLogout = () => {
@@ -160,7 +162,6 @@ function Bookings() {
                           {appointment.About?.patient_city}
                         </td>
                         <td className="border-b-2 p-2 text-center">
-
                           <Link
                             to={{ pathname: "/patientsList" }}
                             state={{ data: doctorDetail }}
@@ -171,9 +172,12 @@ function Bookings() {
                                 doctorDetail.email = appointment.patient_email;
                                 doctorDetail.doctorID = doctor_id;
                                 doctorDetail.date = selectedDate;
-                                doctorDetail.name = appointment.About?.patient_name;
-                                doctorDetail.gender = appointment.About?.patient_gender;
-                                doctorDetail.patientDOB = appointment.About?.patient_dob;
+                                doctorDetail.name =
+                                  appointment.About?.patient_name;
+                                doctorDetail.gender =
+                                  appointment.About?.patient_gender;
+                                doctorDetail.patientDOB =
+                                  appointment.About?.patient_dob;
                               }}
                             >
                               View

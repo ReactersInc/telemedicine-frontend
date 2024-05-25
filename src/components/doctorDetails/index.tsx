@@ -221,7 +221,7 @@ function DoctorDetails() {
             <label htmlFor="fname">First Name *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="text"
               id="fname"
               name="fname"
@@ -235,7 +235,7 @@ function DoctorDetails() {
             <label htmlFor="lname">Last Name *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="text"
               id="lname"
               name="lname"
@@ -268,7 +268,7 @@ function DoctorDetails() {
             <label htmlFor="email">Email *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="email"
               id="email"
               name="email"
@@ -282,7 +282,7 @@ function DoctorDetails() {
             <label htmlFor="mobile">Mobile Number *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="text"
               id="mobile"
               name="mobile"
@@ -296,7 +296,7 @@ function DoctorDetails() {
             <label htmlFor="dob">Date of Birth *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="date"
               id="dob"
               name="dob"
@@ -312,7 +312,7 @@ function DoctorDetails() {
             <label htmlFor="city">City *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="text"
               id="city"
               name="city"
@@ -326,7 +326,7 @@ function DoctorDetails() {
             <label htmlFor="state">State *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="text"
               id="state"
               name="state"
@@ -340,7 +340,7 @@ function DoctorDetails() {
             <label htmlFor="country">Country *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="text"
               id="country"
               name="country"
@@ -421,7 +421,7 @@ function DoctorDetails() {
             <label htmlFor="reg_no">Registration Number *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="text"
               id="reg_no"
               name="reg_no"
@@ -455,7 +455,7 @@ function DoctorDetails() {
             <label htmlFor="password">Password *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="text"
               id="password"
               name="password"
@@ -469,7 +469,7 @@ function DoctorDetails() {
             <label htmlFor="confirmPassword">Confirm Password *</label>
             <br />
             <input
-            autoComplete="off"
+              autoComplete="off"
               type="text"
               id="confirmPassword"
               name="confirmPassword"
@@ -503,7 +503,7 @@ function DoctorDetails() {
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <form onSubmit={handleotp}>
                   <input
-                  autoComplete="off"
+                    autoComplete="off"
                     type="number"
                     value={otp}
                     onChange={handleotpChange}

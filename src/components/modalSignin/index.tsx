@@ -16,7 +16,6 @@ interface DecodedJwtPayload {
   timeStamp: string;
   phone: string;
 
-
   mobile_no: string;
   doctor_id: string;
   registration_no: string;
@@ -171,12 +170,11 @@ function ModalSignin() {
               specilization: decodedJwt.specilization,
               rating: decodedJwt.rating,
               gender: decodedJwt.gender,
-              address:decodedJwt.address,
+              address: decodedJwt.address,
             })
           );
 
           window.location.href = "doctordashboard";
-            
         } else {
           console.error("Invalid response structure.");
         }
@@ -250,10 +248,7 @@ function ModalSignin() {
 
                 <div className="modalRow">
                   <button className="googleSignupBtn">
-                    <img
-                      src="./static/google.svg"
-                      alt="Google Icon"
-                    />
+                    <img src="./static/google.svg" alt="Google Icon" />
                     Continue with Google
                   </button>
                 </div>

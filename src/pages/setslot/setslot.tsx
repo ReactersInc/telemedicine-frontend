@@ -3,29 +3,28 @@ import VerticalNavDoctor from "../../components/verticalNavDoctor";
 import { userLogout } from "../../features/users/userSlice";
 import { useSelector } from "react-redux";
 const SetSlot = () => {
-    const doctor_id = useSelector(
-        (state: {
-          user: {
-            id: string;
-            email: string;
-            dob: string;
-            exp: number;
-            gender: string;
-            name: string;
-            photoUrl: string;
-            state: string;
-            timeStamp: string;
-            phone: string;
-          
-          
-            mobile_no: string;
-            doctor_id: string;
-            registration_no: string;
-            specilization: string;
-            rating: number;
-          };
-        }) => state.user.doctor_id
-      );
+  const doctor_id = useSelector(
+    (state: {
+      user: {
+        id: string;
+        email: string;
+        dob: string;
+        exp: number;
+        gender: string;
+        name: string;
+        photoUrl: string;
+        state: string;
+        timeStamp: string;
+        phone: string;
+
+        mobile_no: string;
+        doctor_id: string;
+        registration_no: string;
+        specilization: string;
+        rating: number;
+      };
+    }) => state.user.doctor_id
+  );
   const [slots, setSlots] = useState({
     TimeSlotMon: "",
     TimeSlotTue: "",
@@ -48,11 +47,7 @@ const SetSlot = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (
-      startDate === "" ||
-      endDate=== "" ||
-      slotsPossible === 0
-    ) {
+    if (startDate === "" || endDate === "" || slotsPossible === 0) {
       alert("Please fill in all required fields.");
       return;
     }
@@ -69,7 +64,7 @@ const SetSlot = () => {
       return;
     }
     const data = {
-      doctor_id: doctor_id ,
+      doctor_id: doctor_id,
       ...slots,
       slots_possible: slotsPossible,
       start_date: startDate,
@@ -110,10 +105,16 @@ const SetSlot = () => {
     <>
       <VerticalNavDoctor />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <form onSubmit={handleSubmit} className="w-full max-w-lg p-8 mt-6 rounded-lg shadow-md bg-white">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-lg p-8 mt-6 rounded-lg shadow-md bg-white"
+        >
           {Object.entries(slots).map(([day, time]) => (
             <div key={day} className="flex justify-between mb-4">
-              <label htmlFor={day} className="block text-gray-700 text-sm font-bold mb-2">
+              <label
+                htmlFor={day}
+                className="block text-gray-700 text-sm font-bold mb-2"
+              >
                 {day}
               </label>
               <div className="flex items-center">
@@ -136,7 +137,10 @@ const SetSlot = () => {
             </div>
           ))}
           <div>
-            <label htmlFor="slotsPossible" className="block text-gray-700 text-sm font-bold mb-2">
+            <label
+              htmlFor="slotsPossible"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
               Slots Possible
             </label>
             <input
@@ -147,7 +151,10 @@ const SetSlot = () => {
               onChange={(e) => setSlotsPossible(parseInt(e.target.value))}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
-            <label htmlFor="startDate" className="block text-gray-700 text-sm font-bold mb-2">
+            <label
+              htmlFor="startDate"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
               Start Date
             </label>
             <input
@@ -158,7 +165,10 @@ const SetSlot = () => {
               onChange={(e) => setStartDate(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
-            <label htmlFor="endDate" className="block text-gray-700 text-sm font-bold mb-2">
+            <label
+              htmlFor="endDate"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
               End Date
             </label>
             <input
