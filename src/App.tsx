@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store, persistor } from "./app/store";
+import { PersistGate } from "redux-persist/integration/react";
+import Home from "./pages/home";
+import VitalsDashboard from "./pages/vitalsDashboard";
+import Appointment from "./pages/appointment";
+import PatientDashboard from "./pages/patientDashboard";
+import DoctorDashboard from "./pages/doctorDashboard";
+import Bookings from "./pages/bookings";
+import PatientsList from "./pages/patientsList";
+import ReportPage from "./pages/report/Report";
+import Register from "./pages/register";
+import SetSlot from "./pages/setslot/setslot";
+import UpcomingAppointment from "./pages/upcomming appointment";
+
+export const router = [
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/vitals",
+    element: <VitalsDashboard />,
+  },
+  {
+    path: "/appointment",
+    element: <Appointment />,
+  },
+  {
+    path: "/patientdashboard",
+    element: <PatientDashboard />,
+  },
+  {
+    path: "/doctordashboard",
+    element: <DoctorDashboard />,
+  },
+  {
+    path: "/bookings",
+    element: <Bookings />,
+  },
+  {
+    path: "/patientsList",
+    element: <PatientsList />,
+  },
+  {
+    path: "/setslot",
+    element: <SetSlot />,
+  },
+  {
+    path: "/report",
+    element: <ReportPage  />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/patientsbookings",
+    element: <UpcomingAppointment />,
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="webcontainer">
+      <BrowserRouter>
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <Routes>
+              {router.map((item, index) => (
+                <Route key={index} path={item.path} element={item.element} />
+              ))}
+            </Routes>
+          </PersistGate>
+        </Provider>
+      </BrowserRouter>
+    </div>
+  );
 }
 
-export default App
+export default App;
