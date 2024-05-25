@@ -1,0 +1,275 @@
+.homeBanner {
+  height: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 150px;
+}
+.homeBannerText {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 50%;
+}
+.homeBannerText > h1 {
+  font-size: 4rem;
+  font-weight: 500;
+  margin: 0;
+}
+.homeBannerText > h1 > span {
+  color: #2cda6d;
+}
+.homeBannerText > p {
+  font-size: 1.9rem;
+}
+.homeBannerBtn {
+  height: max-content;
+  width: max-content;
+  padding: 22px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  background-color: #2cda6d;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 26px;
+  /* align-self: center; */
+}
+.homeBannerImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+.homeService > h2 {
+  color: #2cda6d;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  margin-top: 100px;
+}
+.homeService > h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.homeServiceShow {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.homeServiceCard {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  height: 250px;
+  width: 250px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.homeServiceCard > img {
+  height: 100px;
+  width: 100px;
+}
+.homeServiceCard > p {
+  margin: 0;
+}
+
+.homeServiceCard > h4 {
+  color: #2cda6d;
+  font-weight: 500;
+  margin-top: 6px;
+}
+.homeServiceCard:hover {
+  box-shadow: 5px 5px 40px #000000;
+  animation-duration: 2s;
+}
+.homeAboutUs {
+  padding-top: 40px;
+  width: 100%;
+}
+.homeAboutUs > h2 {
+  color: #2cda6d;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.homeAboutContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeAboutVideo {
+  width: 20%;
+}
+.homeAboutVideo > video {
+  border-radius: 10px;
+}
+.homeAboutText {
+  width: 100%;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin-left: 5%;
+}
+.homeContactContainer {
+  width: 100%;
+}
+.homeContactContainer > h2 {
+  color: #2cda6d;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+.homeContactContainer {
+  width: 100%;
+  margin-top: 100px;
+  background-color: #ffffff;
+  padding-top: 30px;
+  padding-bottom: 60px;
+}
+.homeContacts {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.homeContactLine {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-bottom: 20px;
+}
+.homeContactLine > div > div > h3 {
+  color: #2cda6d;
+  margin: 0;
+}
+.homeContactLine > div > div > p {
+  margin: 0;
+}
+.homeContactLine > img {
+  margin-right: 20px;
+}
+.homeContactMap {
+  width: 40%;
+}
+
+
+@media screen and (max-width: 700px) {
+  .homeBanner {
+    flex-direction: column;
+    padding-top: 100px; /* Adjust padding as needed */
+    align-items: center;
+  }
+  
+  .homeBannerText {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .homeBannerText > h1 {
+    font-size: 0.6rem; /* Reduce font size */
+  }
+
+  .homeBannerText .homeBannerBtn{
+    text-align: center;
+   /* margin-left: -35%; */
+   align-self: center;
+  }
+
+  .homeBannerText > p {
+    font-size: 1rem; /* Reduce font size */
+  }
+  
+  .homeBannerImage {
+    width: 100%;
+    padding-top: 20px; /* Adjust padding as needed */
+  }
+  
+  .homeBannerImage > img {
+    width: 80%; /* Adjust image width */
+    height: auto;
+  }
+
+
+  .homeServiceShow {
+    flex-direction: column; /* Change to column direction */
+    align-items: center; /* Align items in the center */
+    gap: 20px; /* Add some gap between cards */
+  }
+
+  .homeServiceCard {
+    text-align: center; /* Center text */
+  }
+
+  .homeServiceCard > img {
+    margin: 0 auto; /* Center image horizontally */
+  }
+
+  .homeService > h1 {
+    font-size: 1 rem; /* Adjust font size */
+    white-space: nowrap; /* Prevent line breaks */
+  }
+
+
+
+  .homeAboutContainer {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .homeAboutVideo {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Adjust margin as needed */
+  }
+
+  .homeAboutText {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem; /* Adjust font size as needed */
+  }
+
+
+
+  .homeContactContainer {
+    width: 90%;
+    /* overflow-x: hidden; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f9fe;
+     padding: 20px; 
+    border-radius: 10px; /* Add border-radius for rounded corners */
+  }
+
+  .homeContacts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .homeContactLineContainer {
+    width: 100%;
+  }
+
+  .homeContactLine {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .homeContactLine img{
+    text-align: center;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+  .homeContactMap {
+    width: 100%;
+  }
+}

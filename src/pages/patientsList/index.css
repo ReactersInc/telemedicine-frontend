@@ -1,0 +1,10 @@
+.style_input {
+  padding: 10px;
+  border: 1px solid #2cda6d; /* Default border color */
+  border-radius: 10px;
+  margin-top: 2px;
+  max-width: 100%;
+  background-color: white; /* Set the background color */
+  transition: box-shadow 0.3s, border-color 0.3s; /* Add transition for border color */
+  cursor: pointer;
+}

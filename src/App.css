@@ -1,0 +1,23 @@
+button {
+  cursor: pointer;
+}
+input:active {
+  border: transparent;
+}
+.noScroll {
+  overflow: unset;
+}
+.webcontainer {
+  margin: 0px 100px;
+}
+
+
+@media screen and (max-width: 700px){
+  .webcontainer{
+    margin: 0px 20px;
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
