@@ -66,7 +66,7 @@ export const router = [
 function App() {
   return (
     <div className="webcontainer">
-      <HashRouter>
+      <BrowserRouter>
         <Provider store={store}>
           <PersistGate persistor={persistor}>
             <Routes>
@@ -76,7 +76,7 @@ function App() {
             </Routes>
           </PersistGate>
         </Provider>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 }
