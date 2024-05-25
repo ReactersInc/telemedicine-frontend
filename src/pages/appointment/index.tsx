@@ -221,7 +221,7 @@ function Appointment() {
     console.log(speciality);
     console.log(location);
 
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/searchDoctor.php";
+    const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/searchDoctor.php";
     const data = {
       patient_email: email,
       specilization: speciality, // Use the selected speciality

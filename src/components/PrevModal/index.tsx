@@ -17,7 +17,7 @@ const PrevModal: React.FC<PrevModalProps> = ({
 
   useEffect(() => {
     const fetchPrescriptionData = async () => {
-      const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getDiagnosis.php";
+      const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/getDiagnosis.php";
       const data = {
         doctor_id: doctor_id,
         p_email: patientEmail,

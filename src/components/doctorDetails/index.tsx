@@ -132,7 +132,7 @@ function DoctorDetails() {
       alert("Password must contain at least one special character.");
       return false;
     }
-    const apiurl = "http://52.66.241.131/IoMTAppAPI/api/addDoctor.php";
+    const apiurl = "https://makemytwin.com/IoMTAppAPI/api/addDoctor.php";
     const requestOptions = {
       method: "POST",
       headers: {
@@ -173,7 +173,7 @@ function DoctorDetails() {
     } catch (error) {}
   };
   const handleotp = async (event: React.FormEvent<HTMLFormElement>) => {
-    const apiurl = "http://52.66.241.131/IoMTAppAPI/api/authDoctorOTP.php";
+    const apiurl = "https://makemytwin.com/IoMTAppAPI/api/authDoctorOTP.php";
     event.preventDefault();
     const requestOptions = {
       method: "POST",

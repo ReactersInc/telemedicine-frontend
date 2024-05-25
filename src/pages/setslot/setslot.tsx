@@ -72,7 +72,7 @@ const SetSlot = () => {
     };
     console.log(data);
 
-    fetch("http://52.66.241.131/IoMTAppAPI/api/slotSet.php", {
+    fetch("https://makemytwin.com/IoMTAppAPI/api/slotSet.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

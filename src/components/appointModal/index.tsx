@@ -22,7 +22,7 @@ function AppointModal(props: AppointModalProps) {
   useEffect(() => {
     console.log("AppointModal mounted");
     const fetchDateTimeOptions = async () => {
-      const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/searchSlot.php";
+      const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/searchSlot.php";
       const doctorId = props.doctor_id;
       try {
         const response = await fetch(apiUrl, {
@@ -61,7 +61,8 @@ function AppointModal(props: AppointModalProps) {
 
   const bookAppointment = async () => {
     if (selectedDate && selectedTime && props.doctor_id && props.patientEmail) {
-      const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/bookAppointment.php";
+      const apiUrl =
+        "https://makemytwin.com/IoMTAppAPI/api/bookAppointment.php";
       const data = {
         doctor_id: props.doctor_id,
         patient_email: props.patientEmail,

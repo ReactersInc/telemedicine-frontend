@@ -31,7 +31,7 @@ function PatientsList() {
     patientDOB: "",
   });
   const digitaltwin = async () => {
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getProjectedData.php";
+    const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/getProjectedData.php";
     const data = {
       email: doctorDetails.email,
       // email: "rajveerjdh2021@gmail.com",
@@ -73,7 +73,7 @@ function PatientsList() {
     }
   };
   const espInfo = async () => {
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
+    const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/getWebData.php";
     const data = {
       email: doctorDetails.email,
       // email: "rajveerjdh2021@gmail.com",
@@ -185,7 +185,7 @@ function PatientsList() {
   };
   const submitDiagnosis = async () => {
     if (submitdata.diagnosis != "" || submitdata.prescription != "") {
-      const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/addDiagnosis.php";
+      const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/addDiagnosis.php";
       const data6 = {
         doctor_id: doctorDetails?.doctorID,
         p_email: doctorDetails?.email,

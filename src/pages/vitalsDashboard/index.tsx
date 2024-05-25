@@ -1,5 +1,5 @@
 // src/App.tsx
-import  { useState } from "react";
+import { useState } from "react";
 import "./index.css";
 import { Circle } from "rc-progress";
 import { useEffect } from "react";
@@ -7,7 +7,7 @@ import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useSelector } from "react-redux";
 import VerticalNavPatient from "../../components/verticalNavPatient";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function VitalsDashboard() {
   const [pulse, setPulse] = useState(0);
@@ -22,7 +22,7 @@ function VitalsDashboard() {
   const [ecgData, setEcgData] = useState([]);
   const [date, setDate] = useState([0, 0, 0, 0, 0]);
   const [dateId, setDateId] = useState(0);
-  
+
   const reportdata = {
     report_pulse: 0,
     report_SpO2: 0,
@@ -31,7 +31,7 @@ function VitalsDashboard() {
     report_humidity: 0,
     report_gsr: 0,
     report_sys: 0,
-    report_dia: 0,    
+    report_dia: 0,
   };
   const email = useSelector(
     (state: {
@@ -49,11 +49,10 @@ function VitalsDashboard() {
     }) => state.user.email
   );
 
-
   console.log(email);
 
   const espInfo = async () => {
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/getWebData.php";
+    const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/getWebData.php";
     const data = {
       email: email,
       // email: "rajveerjdh2021@gmail.com",
@@ -369,26 +368,26 @@ function VitalsDashboard() {
                   <div className="vitals-report">
                     <div>
                       <Link
-                            to={{ pathname: "/report" }}
+                        to={{ pathname: "/report" }}
                         state={{ data: reportdata }}
                         className="report-button"
-                          >
-                            <button
-                              className="w-24 report-button"
-                              onClick={() => {
-                                reportdata.report_SpO2 = SpO2;
-                                reportdata.report_pulse = pulse;
-                                reportdata.report_bodyTemp = bodyTemp;
-                                reportdata.report_dia = dia;
-                                reportdata.report_gsr = gsr;
-                                reportdata.report_humidity = humidity;
-                                reportdata.report_roomTemp = roomTemp;
-                                reportdata.report_sys = sys;
-                              }}
-                            >
-                              Report
-                            </button>
-                          </Link>
+                      >
+                        <button
+                          className="w-24 report-button"
+                          onClick={() => {
+                            reportdata.report_SpO2 = SpO2;
+                            reportdata.report_pulse = pulse;
+                            reportdata.report_bodyTemp = bodyTemp;
+                            reportdata.report_dia = dia;
+                            reportdata.report_gsr = gsr;
+                            reportdata.report_humidity = humidity;
+                            reportdata.report_roomTemp = roomTemp;
+                            reportdata.report_sys = sys;
+                          }}
+                        >
+                          Report
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

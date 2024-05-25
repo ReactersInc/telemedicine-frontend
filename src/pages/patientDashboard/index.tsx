@@ -67,7 +67,7 @@ function PatientDashboard() {
   useEffect(() => {
     const handleGetAllDiagnosis = async () => {
       const pEmail = name.email;
-      const apiUrl = `http://52.66.241.131/IoMTAppAPI/api/getAllDiagnosis.php`;
+      const apiUrl = `https://makemytwin.com/IoMTAppAPI/api/getAllDiagnosis.php`;
 
       try {
         const response = await fetch(apiUrl, {

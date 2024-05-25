@@ -74,7 +74,7 @@ function ModalSignin() {
 
     console.log("initiating api...");
 
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/authUser.php";
+    const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/authUser.php";
     const data = {
       email,
       password,
@@ -133,7 +133,7 @@ function ModalSignin() {
     ).value;
     console.log("initiating api...");
 
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/authDoctor.php";
+    const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/authDoctor.php";
     const data = {
       doctor_id,
       password,

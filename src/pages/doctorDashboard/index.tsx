@@ -48,7 +48,7 @@ function DoctorDashboard() {
 
   const fetchAppointments = async () => {
     const bookingDate = new Date().toISOString().split("T")[0];
-    const apiUrl = `http://52.66.241.131/IoMTAppAPI/api/viewSlotBookings.php`;
+    const apiUrl = `https://makemytwin.com/IoMTAppAPI/api/viewSlotBookings.php`;
 
     try {
       const response = await fetch(apiUrl, {

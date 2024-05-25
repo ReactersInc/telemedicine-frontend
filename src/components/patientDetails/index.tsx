@@ -36,7 +36,7 @@ function PatientDetails() {
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    const apiurl = "http://52.66.241.131/IoMTAppAPI/api/authOTP.php";
+    const apiurl = "https://makemytwin.com/IoMTAppAPI/api/authOTP.php";
     event.preventDefault();
     const requestOptions = {
       method: "POST",
@@ -161,7 +161,7 @@ function PatientDetails() {
     data.state = state;
     setemail(email);
 
-    const apiUrl = "http://52.66.241.131/IoMTAppAPI/api/addUser.php";
+    const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/addUser.php";
     const requestOptions = {
       method: "POST",
       headers: {
