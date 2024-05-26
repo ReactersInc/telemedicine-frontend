@@ -18,11 +18,11 @@ function Home() {
             Find the Good Life With <span>Good Health.</span>
           </h1>
           <p>
-            Your health is our priority. lorem ipsum dolor sit amet consectet
-            piscing elit, sed do eismod
+            Experience top-tier services without leaving your home. We bring
+            convenience right to your doorstep!
           </p>
           <div className={styles.homeBannerBtn} onClick={toggleModal}>
-            Book  Appointment
+            Book Appointment
           </div>
         </div>
         <div className={styles.homeBannerImage}>
@@ -38,24 +38,21 @@ function Home() {
             <img src="./static/home_service_icon.png" alt="" />
             <h4>Medical</h4>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry
+              Experience top-quality medical services without the hassle. Our
+              offerings include Telemedicine Consultations.
             </p>
           </div>
           <div className={styles.homeServiceCard}>
             <img src="./static/home_service_icon.png" alt="" />
             <h4>Indiviual and family</h4>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry
-            </p>
+            <p>Personalized Health Solutions for You and Your Loved Ones.</p>
           </div>
           <div className={styles.homeServiceCard}>
             <img src="./static/home_service_icon.png" alt="" />
             <h4>Employer</h4>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry
+              Empowering Your Workforce with Quality Healthcare with our
+              tailored healthcare services.
             </p>
           </div>
         </div>

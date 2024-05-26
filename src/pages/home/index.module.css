@@ -3,7 +3,8 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding-top: 150px;
+  padding-top: 50px;
+  margin-bottom: 140px;
 }
 .homeBannerText {
   display: flex;
