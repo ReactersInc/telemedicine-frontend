@@ -8,6 +8,7 @@ import { ApexOptions } from "apexcharts";
 import { useSelector } from "react-redux";
 import VerticalNavPatient from "../../components/verticalNavPatient";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 function VitalsDashboard() {
   const [pulse, setPulse] = useState(0);
@@ -32,6 +33,9 @@ function VitalsDashboard() {
     report_gsr: 0,
     report_sys: 0,
     report_dia: 0,
+    report_gsr_highest: 0,
+    report_gsr_lowest: 0,
+    report_gsr_average: 0,
   };
   const email = useSelector(
     (state: {
@@ -48,8 +52,61 @@ function VitalsDashboard() {
       };
     }) => state.user.email
   );
+  const [gsrdata, setgsrdata] = useState({
+    average: 0,
+    highest: 0,
+    lowest: 0,
+  });
+  const gsrvalues = {
+    average: 0,
+    highest: 0,
+    lowest: 0,
+  }
+    const getgsrInfo = async () => {
+      const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/getGSRTrends.php";
+      const data = {
+        email: email,
+        // email: "rajveerjdh2021@gmail.com",
+      };
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      try {
+        // const response = await fetch(apiUrl, requestOptions);
+        const response = await axios.post(
+          "https://makemytwin.com/IoMTAppAPI/api/getGSRTrends.php",
+          {
+            email: email,
+          }
+        );  
+        
+          // const jsonResponse = await response.json();
+          const objectvalue = Object.values(response);
+          // console.log("GSR VALUES "+objectvalue[0].Data.gsrTrend[0].average);
+          gsrvalues.average = parseInt(objectvalue[0].Data.gsrTrend[0].average);
+          gsrvalues.highest = parseInt(objectvalue[0].Data.gsrTrend[0].highest);
+          gsrvalues.lowest = parseInt(objectvalue[0].Data.gsrTrend[0].lowest);
+          setgsrdata({
+            lowest: gsrvalues.lowest,
+            highest: gsrvalues.highest,
+            average: gsrvalues.average,
+          });
+          console.log("GSR VALUES "+gsrdata.lowest);
 
-  console.log(email);
+
+          // console.log("GSR VALUES "+gsrdata.highest);
+          // console.log("GSR VALUES "+gsrdata.average);
+       
+      } catch (error) {
+        console.error("Error sending JSON data:", error);
+      }
+    };
+    getgsrInfo();
+  // console.log(email);
 
   const espInfo = async () => {
     const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/getWebData.php";
@@ -70,8 +127,8 @@ function VitalsDashboard() {
       if (response.ok) {
         const jsonResponse = await response.json();
         if (jsonResponse && jsonResponse.Status) {
-          console.log(jsonResponse.Status.record);
-          console.log(jsonResponse.Status.record[dateId].pulse);
+          // console.log(jsonResponse.Status.record);
+          // console.log(jsonResponse.Status.record[dateId].pulse);
 
           setPulse(jsonResponse.Status.record[dateId].pulse);
           setSpO2(jsonResponse.Status.record[dateId].SpO2);
@@ -87,7 +144,7 @@ function VitalsDashboard() {
           date[2] = jsonResponse.Status.record[2].timestamp;
           date[3] = jsonResponse.Status.record[3].timestamp;
           date[4] = jsonResponse.Status.record[4].timestamp;
-          console.log(date);
+          // console.log(date);
         }
       } else {
         console.error("Error:", response.status, response.statusText);
@@ -372,21 +429,25 @@ function VitalsDashboard() {
                         state={{ data: reportdata }}
                         className="report-button"
                       >
-                        <button
-                          className="w-24 report-button"
-                          onClick={() => {
-                            reportdata.report_SpO2 = SpO2;
-                            reportdata.report_pulse = pulse;
-                            reportdata.report_bodyTemp = bodyTemp;
-                            reportdata.report_dia = dia;
-                            reportdata.report_gsr = gsr;
-                            reportdata.report_humidity = humidity;
-                            reportdata.report_roomTemp = roomTemp;
-                            reportdata.report_sys = sys;
-                          }}
-                        >
-                          Report
-                        </button>
+                      <button
+                        className="w-24 report-button"
+                        onClick={() => {
+                          reportdata.report_SpO2 = SpO2;
+                          reportdata.report_pulse = pulse;
+                          reportdata.report_bodyTemp = bodyTemp;
+                          reportdata.report_dia = dia;
+                          reportdata.report_gsr = gsr;
+                          reportdata.report_humidity = humidity;
+                          reportdata.report_roomTemp = roomTemp;
+                          reportdata.report_sys = sys;
+                          reportdata.report_gsr_average = gsrdata.average;
+                          reportdata.report_gsr_highest = gsrdata.highest;
+                          reportdata.report_gsr_lowest = gsrdata.lowest;
+                          console.log(reportdata);
+                        }}
+                      >
+                        Report
+                      </button>
                       </Link>
                     </div>
                   </div>

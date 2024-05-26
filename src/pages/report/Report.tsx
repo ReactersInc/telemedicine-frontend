@@ -47,11 +47,15 @@ const ReportPage1 = () => {
   const [roomTemp, setRoomTemp] = useState(0);
   const [bodyTemp, setBodyTemp] = useState(0);
   const [humidity, setHumidity] = useState(0);
+  const [gsr_highest, setGsrhighest] = useState(0);
+  const [gsr_lowest, setGsrlowest] = useState(0);
+  const [gsr_average, setGsraverage] = useState(0);
   const [gsr, setGsr] = useState(0);
   const [sys, setSys] = useState(0);
   const [dia, setDia] = useState(0);
   const [state, setstate] = useState(true);
   useEffect(() => {
+    // console.log(location.state?.data);
     if (location.state?.data) {
       if (location.state?.data.report_bodyTemp==0 && location.state?.data.report_dia==0 && location.state?.data.report_gsr==0 && location.state?.data.report_humidity==0 && location.state?.data.report_pulse==0 && location.state?.data.report_roomTemp==0 && location.state?.data.report_SpO2==0 && location.state?.data.report_sys==0) {
         setstate(false);
@@ -64,8 +68,14 @@ const ReportPage1 = () => {
       setRoomTemp(location.state?.data.report_roomTemp);
       setSpO2(location.state?.data.report_SpO2);
       setSys(location.state?.data.report_sys);
-      
+      setGsraverage(location.state?.data.report_gsr_average);
+      setGsrhighest(location.state?.data.report_gsr_highest);
+      setGsrlowest(location.state?.data.report_gsr_lowest); 
+      console.log(gsr_average);
+      console.log(gsr_highest);
+      console.log(gsr_lowest);
     }
+    
   }, [location.state?.data]);
   const generateReportSpO2 = (SpO2: number): string[] => {
     let reading: string = "";
