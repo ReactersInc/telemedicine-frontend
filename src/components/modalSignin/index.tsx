@@ -247,10 +247,10 @@ function ModalSignin() {
                 </div>
 
                 <div className="modalRow">
-                  <button className="googleSignupBtn">
+                  {/* <button className="googleSignupBtn">
                     <img src="./static/google.svg" alt="Google Icon" />
                     Continue with Google
-                  </button>
+                  </button>*/}
                 </div>
               </div>
             ) : (
