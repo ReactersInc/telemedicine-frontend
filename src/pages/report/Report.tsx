@@ -7,37 +7,49 @@ interface ReportCardProps {
   result: string;
   symptoms: string;
   title: string;
+  val: string;
 }
-
 
 const ReportCard: React.FC<ReportCardProps> = ({
   reading,
   result,
   symptoms,
   title,
+  val,
 }) => {
   // Define a variable to hold the color class based on the reading
   let readingColorClass = "";
   let resultColorClass = "";
 
   // Check the reading and assign colorClass accordingly
-  if (reading === "Normal") {
+  if (reading === "Normal" || reading == "Relaxed") {
     readingColorClass = "text-green-500"; // Green color for normal reading
     resultColorClass = "text-blue-500"; // Blue color for result
-  } else if (reading === "Low" || reading === "Critically Low" || reading =="High") {
+  } else if (
+    reading === "Low" ||
+    reading === "Critically Low" ||
+    reading == "High" ||
+    reading == "Elevated" ||
+    reading == "Highly Stressed" ||
+    reading == "Stressed"
+  ) {
     readingColorClass = "text-red-500"; // Red color for low or critically low reading
     resultColorClass = "text-blue-500"; // Blue color for result
   }
 
   return (
     <div className="mb-4">
-      <p className="font-semibold text-lg">{title}</p>
-      <p className={`mt-2 font-semibold text-2xl ${readingColorClass}`}>{reading}</p>
+      <div className="flex justify-between">
+        <p className="font-semibold text-lg">{title}</p>
+        <p className={`font-semibold text-lg ${readingColorClass}`}>{val}</p>
+      </div>
+      <p className={`mt-2 font-semibold text-2xl ${readingColorClass}`}>
+        {reading}
+      </p>
       <p className={`font-medium ${resultColorClass}`}>{result}</p>
     </div>
   );
 };
-
 
 const ReportPage1 = () => {
   const location = useLocation();
@@ -57,7 +69,16 @@ const ReportPage1 = () => {
   useEffect(() => {
     // console.log(location.state?.data);
     if (location.state?.data) {
-      if (location.state?.data.report_bodyTemp==0 && location.state?.data.report_dia==0 && location.state?.data.report_gsr==0 && location.state?.data.report_humidity==0 && location.state?.data.report_pulse==0 && location.state?.data.report_roomTemp==0 && location.state?.data.report_SpO2==0 && location.state?.data.report_sys==0) {
+      if (
+        location.state?.data.report_bodyTemp == 0 &&
+        location.state?.data.report_dia == 0 &&
+        location.state?.data.report_gsr == 0 &&
+        location.state?.data.report_humidity == 0 &&
+        location.state?.data.report_pulse == 0 &&
+        location.state?.data.report_roomTemp == 0 &&
+        location.state?.data.report_SpO2 == 0 &&
+        location.state?.data.report_sys == 0
+      ) {
         setstate(false);
       }
       setBodyTemp(location.state?.data.report_bodyTemp);
@@ -70,19 +91,18 @@ const ReportPage1 = () => {
       setSys(location.state?.data.report_sys);
       setGsraverage(location.state?.data.report_gsr_average);
       setGsrhighest(location.state?.data.report_gsr_highest);
-      setGsrlowest(location.state?.data.report_gsr_lowest); 
+      setGsrlowest(location.state?.data.report_gsr_lowest);
       console.log(gsr_average);
       console.log(gsr_highest);
       console.log(gsr_lowest);
     }
-    
   }, [location.state?.data]);
   const generateReportSpO2 = (SpO2: number): string[] => {
     let reading: string = "";
     let result: string = "";
     let symptoms: string = "";
     let title: string = "SpO2 Reading";
-    let range: string = "";
+    let val: string = SpO2 + " %";
 
     if (SpO2 >= 95) {
       reading = "Normal";
@@ -101,7 +121,7 @@ const ReportPage1 = () => {
         "Your SpO2 level is dangerously low. you’re at risk of developing symptoms of Cyanosis. Immediate medical attention is required.";
     }
 
-    return [reading, result, symptoms, title];
+    return [reading, result, symptoms, title, val];
   };
 
   const generateReportGSR = (gsr: number) => {
@@ -109,25 +129,30 @@ const ReportPage1 = () => {
     let result: string = "";
     let symptoms: string = "";
     let title: string = "GSR Reading";
+    let val: string = gsr + " mm/Hg";
 
-    if (gsr >= 2000) {
+    if (gsr > gsr_highest) {
+      reading = "Highly Stressed";
+      result = "Urgent Attention Needed";
+      symptoms = "";
+    } else if (gsr > gsr_average && gsr <= gsr_highest) {
+      reading = "Stressed";
+      result = "Monitor, Not Urgent";
+      symptoms = "";
+    } else if (gsr > gsr_lowest && gsr <= gsr_average) {
       reading = "Normal";
-      result = "GSR reading is Normal";
+      result = "No Concern";
       symptoms = "";
-    } else if (gsr >= 85 && gsr < 95) {
-      reading = "";
-      result = "";
-      symptoms = "";
-    } else if (gsr >= 67 && gsr < 85) {
-      reading = "";
-      result = "";
+    } else if (gsr <= gsr_lowest) {
+      reading = "Relaxed";
+      result = "No Action Needed";
       symptoms = "";
     } else {
-      reading = "";
-      result = "";
+      reading = "N/A";
+      result = "No Data Available";
       symptoms = "";
     }
-    return [reading, result, symptoms, title];
+    return [reading, result, symptoms, title, val];
   };
 
   const generateReportBP = (sys: number, dia: number) => {
@@ -135,6 +160,7 @@ const ReportPage1 = () => {
     let result: string = "";
     let symptoms: string = "";
     let title: string = "Blood Pressure Reading";
+    let val: string = sys + "/" + dia + " mm Hg";
 
     if (sys < 120 && dia < 80) {
       reading = "Normal";
@@ -152,8 +178,16 @@ const ReportPage1 = () => {
       reading = "Critically High";
       result = "Stage 2 Hypertension";
       symptoms = "";
+    } else if (sys >= 180 && dia >= 120) {
+      reading = "Emergency";
+      result = "Hypertensive Crisis";
+      symptoms = "";
+    } else if (sys > 90 && dia > 60) {
+      reading = "Low";
+      result = "Hypotension";
+      symptoms = "";
     }
-    return [reading, result, symptoms, title];
+    return [reading, result, symptoms, title, val];
   };
 
   const generateReportBT = (body_Temp: number) => {
@@ -161,6 +195,7 @@ const ReportPage1 = () => {
     let result: string = "";
     let symptoms: string = "";
     let title: string = "Body Temperature Reading";
+    let val: string = body_Temp + " Celsius";
 
     if (body_Temp >= 35.0 && body_Temp < 37.5) {
       reading = "Normal";
@@ -179,7 +214,7 @@ const ReportPage1 = () => {
       result = "Hypothermia";
       symptoms = "";
     }
-    return [reading, result, symptoms, title];
+    return [reading, result, symptoms, title, val];
   };
 
   const generateReportPulse = (pulse: number) => {
@@ -187,6 +222,7 @@ const ReportPage1 = () => {
     let result: string = "";
     let symptoms: string = "";
     let title: string = "Pulse Reading";
+    let val: string = pulse + " bpm";
 
     if (pulse <= 100 && pulse >= 60) {
       reading = "Normal";
@@ -201,8 +237,7 @@ const ReportPage1 = () => {
       result = "Pulse reading is Low. May be at risk of Bradycardia";
       symptoms = "";
     }
-    return [reading, result, symptoms, title];
-
+    return [reading, result, symptoms, title, val];
   };
   return (
     <div>
@@ -210,190 +245,213 @@ const ReportPage1 = () => {
       <div className="mt-6 ml-48 border-2  border-green-500 rounded-2xl p-5">
         {state ? (
           <div>
-            <h1 className="font-semibold text-2xl text-center">Vitals Report</h1>
-          <div className=" grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
-            <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
-              <ReportCard
-                reading={generateReportSpO2(SpO2)[0]}
-                result={generateReportSpO2(SpO2)[1]}
-                symptoms={generateReportSpO2(SpO2)[2]}
-                title={generateReportSpO2(SpO2)[3]}
-              />
-              <div className="grid grid-cols-2 mt-4">
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Ranges (in %)
+            <h1 className="font-semibold text-2xl text-center">
+              Vitals Report
+            </h1>
+            <div className=" grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
+              <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
+                <ReportCard
+                  reading={generateReportSpO2(SpO2)[0]}
+                  result={generateReportSpO2(SpO2)[1]}
+                  symptoms={generateReportSpO2(SpO2)[2]}
+                  title={generateReportSpO2(SpO2)[3]}
+                  val={generateReportSpO2(SpO2)[4]}
+                />
+                <div className="grid grid-cols-2 mt-4">
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Ranges (in %)
+                  </div>
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Reading
+                  </div>
+                  <div className="py-2 px-4 text-emerald-400">≥ 95</div>
+                  <div className="py-2 px-4 text-emerald-400">Normal</div>
+                  <div className="py-2 px-4 text-amber-400">85 ≤ x &lt; 95</div>
+                  <div className="py-2 px-4 text-amber-400">Low</div>
+                  <div className="py-2 px-4 text-red-400">67 ≤ x &lt; 85</div>
+                  <div className="py-2 px-4 text-red-400">Very Low</div>
+                  <div className="py-2 px-4 text-red-900">&lt; 67</div>
+                  <div className="py-2 px-4 text-red-900">Critically Low</div>
                 </div>
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Reading
-                </div>
-                <div className="py-2 px-4 text-emerald-400">≥ 95</div>
-                <div className="py-2 px-4 text-emerald-400">Normal</div>
-                <div className="py-2 px-4 text-amber-400">85 ≤ x &lt; 95</div>
-                <div className="py-2 px-4 text-amber-400">Low</div>
-                <div className="py-2 px-4 text-red-400">67 ≤ x &lt; 85</div>
-                <div className="py-2 px-4 text-red-400">Very Low</div>
-                <div className="py-2 px-4 text-red-900">&lt; 67</div>
-                <div className="py-2 px-4 text-red-900">Critically Low</div>
+                <p className=" mt-2 text-blue-500">
+                  For more information, click{" "}
+                  <a
+                    className="underline"
+                    href="https://www.healthline.com/health/normal-blood-oxygen-level#symptoms"
+                  >
+                    here
+                  </a>
+                </p>
               </div>
-              <p className=" mt-2 text-blue-500">
-                For more information, click{" "}
-                <a
-                  className="underline"
-                  href="https://www.healthline.com/health/normal-blood-oxygen-level#symptoms"
-                >
-                  here
-                </a>
-              </p>
+              <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
+                <ReportCard
+                  reading={generateReportGSR(gsr)[0]}
+                  result={generateReportGSR(gsr)[1]}
+                  symptoms={generateReportGSR(gsr)[2]}
+                  title={generateReportGSR(gsr)[3]}
+                  val={generateReportGSR(gsr)[4]}
+                />
+                <div className="grid grid-cols-2 mt-4">
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Ranges (in mm/Hg)
+                  </div>
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Reading
+                  </div>
+                  <div className="py-2 px-4 text-blue-400 font-semibold">
+                    {gsr}
+                  </div>
+                  <div className="py-2 px-4 text-blue-400 font-semibold">
+                    Current Reading
+                  </div>
+                  <div className="py-2 px-4 text-red-400">{gsr_highest}</div>
+                  <div className="py-2 px-4 text-red-400">Your Highest</div>
+                  <div className="py-2 px-4 text-amber-400">{gsr_average}</div>
+                  <div className="py-2 px-4 text-amber-400">Your Average</div>
+                  <div className="py-2 px-4 text-green-400">{gsr_lowest}</div>
+                  <div className="py-2 px-4 text-green-400">Your Lowest</div>
+                </div>
+                <p className=" mt-2 text-blue-500">
+                  For more information, click{" "}
+                  <a
+                    className="underline"
+                    href="https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139"
+                  >
+                    here
+                  </a>
+                </p>
+              </div>
+              <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
+                <ReportCard
+                  reading={generateReportBP(sys, dia)[0]}
+                  result={generateReportBP(sys, dia)[1]}
+                  symptoms={generateReportBP(sys, dia)[2]}
+                  title={generateReportBP(sys, dia)[3]}
+                  val={generateReportBP(sys, dia)[4]}
+                />
+                <div className="grid grid-cols-2 mt-4">
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Ranges (in mm Hg)
+                  </div>
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Reading
+                  </div>
+                  <div className="py-2 px-4 text-red-400">
+                    sys &lt; 90 and dia &lt; 60
+                  </div>
+                  <div className="py-2 px-4 text-red-400">Low</div>
+                  <div className="py-2 px-4 text-emerald-400">
+                    sys &lt; 120 and dia &lt; 80
+                  </div>
+                  <div className="py-2 px-4 text-emerald-400">Normal</div>
+                  <div className="py-2 px-4 text-amber-400 ">
+                    sys ≥ 120 and dia &lt; 80
+                  </div>
+                  <div className="py-2 px-4 text-amber-400">Elevated</div>
+                  <div className="py-2 px-4 text-red-400">
+                    sys ≥ 130 and dia ≥ 80
+                  </div>
+                  <div className="py-2 px-4 text-red-400">High</div>
+                  <div className="py-2 px-4 text-red-700">
+                    sys ≥ 140 and dia ≥ 90
+                  </div>
+                  <div className="py-2 px-4 text-red-700">Very High</div>
+                  <div className="py-2 px-4 text-red-900">
+                    sys ≥ 180 and dia ≥ 120
+                  </div>
+                  <div className="py-2 px-4 text-red-900">Critically High</div>
+                </div>
+
+                <div className="py-2 px-4 text-slate-400">
+                  sys - Systolic | dia - Diastolic
+                </div>
+                <p className=" mt-2 text-blue-500">
+                  For more information, click{" "}
+                  <a
+                    className="underline"
+                    href="https://www.healthline.com/health/diastole-vs-systole"
+                  >
+                    here
+                  </a>
+                </p>
+              </div>
+              <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
+                <ReportCard
+                  reading={generateReportBT(bodyTemp)[0]}
+                  result={generateReportBT(bodyTemp)[1]}
+                  symptoms={generateReportBT(bodyTemp)[2]}
+                  title={generateReportBT(bodyTemp)[3]}
+                  val={generateReportBT(bodyTemp)[4]}
+                />
+                <div className="grid grid-cols-2 mt-4">
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Ranges (in Celsius)
+                  </div>
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Reading
+                  </div>
+                  <div className="py-2 px-4 text-red-400">≤ 36.5</div>
+                  <div className="py-2 px-4 text-red-400">Critically Low</div>
+                  <div className="py-2 px-4 text-emerald-400">
+                    36.5 ≤ x &lt; 37.3
+                  </div>
+                  <div className="py-2 px-4 text-emerald-400">Normal</div>
+                  <div className="py-2 px-4 text-amber-400">
+                    37.3 ≤ x &lt; 37.9
+                  </div>
+                  <div className="py-2 px-4 text-amber-400">Slightly High</div>
+                  <div className="py-2 px-4 text-red-400">{">"} 38</div>
+                  <div className="py-2 px-4 text-red-400">Critically High</div>
+                </div>
+                <p className=" mt-2 text-blue-500">
+                  For more information, click{" "}
+                  <a
+                    className="underline"
+                    href="https://en.wikipedia.org/wiki/Human_body_temperature#:~:text=The%20normal%20human%20body%20temperature%20range%20is,typically%20stated%20as%2036.5%E2%80%9337.5%20%C2%B0C%20%2897.7%E2%80%9399.5%20%C2%B0F%29"
+                  >
+                    here
+                  </a>
+                </p>
+              </div>
+              <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
+                <ReportCard
+                  reading={generateReportPulse(pulse)[0]}
+                  result={generateReportPulse(pulse)[1]}
+                  symptoms={generateReportPulse(pulse)[2]}
+                  title={generateReportPulse(pulse)[3]}
+                  val={generateReportPulse(pulse)[4]}
+                />
+                <div className="grid grid-cols-2 mt-4">
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Ranges (in beats per minute)
+                  </div>
+                  <div className="bg-gray-100 py-2 px-4 font-semibold">
+                    Reading
+                  </div>
+                  <div className="py-2 px-4 text-red-400">{"<"} 60</div>
+                  <div className="py-2 px-4 text-red-400">Low</div>
+                  <div className="py-2 px-4 text-emerald-400">60 ≤ x ≤ 100</div>
+                  <div className="py-2 px-4 text-emerald-400">Normal</div>
+                  <div className="py-2 px-4 text-red-400">{">"} 100</div>
+                  <div className="py-2 px-4 text-red-400">High</div>
+                </div>
+                <p className=" mt-2 text-blue-500">
+                  For more information, click{" "}
+                  <a
+                    className="underline"
+                    href="https://www.healthline.com/health/normal-blood-oxygen-level#symptoms"
+                  >
+                    here
+                  </a>
+                </p>
+              </div>
             </div>
-            <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
-              <ReportCard
-                reading={generateReportGSR(gsr)[0]}
-                result={generateReportGSR(gsr)[1]}
-                symptoms={generateReportGSR(gsr)[2]}
-                title={generateReportGSR(gsr)[3]}
-              />
-              <div className="grid grid-cols-2 mt-4">
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Ranges (in mm/Hg)
-                </div>
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Reading
-                </div>
-                <div className="py-2 px-4">≥ 2000</div>
-                <div className="py-2 px-4">Normal</div>
-                <div className="py-2 px-4">85 ≤ x &lt; 95</div>
-                <div className="py-2 px-4">Low</div>
-                <div className="py-2 px-4">67 ≤ x &lt; 85</div>
-                <div className="py-2 px-4">Very Low</div>
-                <div className="py-2 px-4">&lt; 67</div>
-                <div className="py-2 px-4">Critically Low</div>
-              </div>
-              <p className=" mt-2 text-blue-500">
-                For more information, click{" "}
-                <a
-                  className="underline"
-                  href="https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139"
-                >
-                  here
-                </a>
-              </p>
-            </div>
-            <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
-              <ReportCard
-                reading={generateReportBP(sys, dia)[0]}
-                result={generateReportBP(sys, dia)[1]}
-                symptoms={generateReportBP(sys, dia)[2]}
-                title={generateReportBP(sys, dia)[3]}
-              />
-              <div className="grid grid-cols-2 mt-4">
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Ranges (in mm Hg)
-                </div>
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Reading
-                </div>
-                <div className="py-2 px-4 text-emerald-400">
-                  sys &lt; 120 and dia &lt; 80
-                </div>
-                <div className="py-2 px-4 text-emerald-400">Normal</div>
-                <div className="py-2 px-4 text-amber-400 ">
-                  sys ≥ 120 and dia &lt; 80
-                </div>
-                <div className="py-2 px-4 text-amber-400">High</div>
-                <div className="py-2 px-4 text-red-400">
-                  sys ≥ 130 and dia ≥ 80
-                </div>
-                <div className="py-2 px-4 text-red-400">Very High</div>
-                <div className="py-2 px-4 text-red-900">
-                  sys ≥ 140 and dia ≥ 90
-                </div>
-                <div className="py-2 px-4 text-red-900">Critically High</div>
-              </div>
-              <div className="py-2 px-4 text-slate-400">
-                sys - Systolic | dia - Diastolic
-              </div>
-              <p className=" mt-2 text-blue-500">
-                For more information, click{" "}
-                <a
-                  className="underline"
-                  href="https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139"
-                >
-                  here
-                </a>
-              </p>
-            </div>
-            <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
-              <ReportCard
-                reading={generateReportBT(bodyTemp)[0]}
-                result={generateReportBT(bodyTemp)[1]}
-                symptoms={generateReportBT(bodyTemp)[2]}
-                title={generateReportBT(bodyTemp)[3]}
-              />
-              <div className="grid grid-cols-2 mt-4">
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Ranges (in Celsius)
-                </div>
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Reading
-                </div>
-                <div className="py-2 px-4 text-red-400">≤ 36.5</div>
-                <div className="py-2 px-4 text-red-400">Critically Low</div>
-                <div className="py-2 px-4 text-emerald-400">
-                  36.5 ≤ x &lt; 37.3
-                </div>
-                <div className="py-2 px-4 text-emerald-400">Normal</div>
-                <div className="py-2 px-4 text-amber-400">
-                  37.3 ≤ x &lt; 37.9
-                </div>
-                <div className="py-2 px-4 text-amber-400">Slightly High</div>
-                <div className="py-2 px-4 text-red-400">{">"} 38</div>
-                <div className="py-2 px-4 text-red-400">Critically High</div>
-              </div>
-              <p className=" mt-2 text-blue-500">
-                For more information, click{" "}
-                <a
-                  className="underline"
-                  href="https://en.wikipedia.org/wiki/Human_body_temperature#:~:text=The%20normal%20human%20body%20temperature%20range%20is,typically%20stated%20as%2036.5%E2%80%9337.5%20%C2%B0C%20%2897.7%E2%80%9399.5%20%C2%B0F%29"
-                >
-                  here
-                </a>
-              </p>
-            </div>
-            <div className="shadow-md rounded-lg p-4 bg-white shadow-green-500 ">
-              <ReportCard
-                reading={generateReportPulse(pulse)[0]}
-                result={generateReportPulse(pulse)[1]}
-                symptoms={generateReportPulse(pulse)[2]}
-                title={generateReportPulse(pulse)[3]}
-              />
-              <div className="grid grid-cols-2 mt-4">
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Ranges (in units)
-                </div>
-                <div className="bg-gray-100 py-2 px-4 font-semibold">
-                  Reading
-                </div>
-                <div className="py-2 px-4 text-red-400">{"<"} 60</div>
-                <div className="py-2 px-4 text-red-400">Low</div>
-                <div className="py-2 px-4 text-emerald-400">60 ≤ x ≤ 100</div>
-                <div className="py-2 px-4 text-emerald-400">Normal</div>
-                <div className="py-2 px-4 text-red-400">{">"} 100</div>
-                <div className="py-2 px-4 text-red-400">High</div>
-              </div>
-              <p className=" mt-2 text-blue-500">
-                For more information, click{" "}
-                <a
-                  className="underline"
-                  href="https://www.healthline.com/health/normal-blood-oxygen-level#symptoms"
-                >
-                  here
-                </a>
-              </p>
-            </div>
-          </div>
           </div>
         ) : (
-          <div className="h-[340px] text-center text-red-500 font-bold text-2xl font-serif mt-72"> NO DATA</div>
+          <div className="h-[340px] text-center text-red-500 font-bold text-2xl font-serif mt-72">
+            {" "}
+            NO DATA
+          </div>
         )}
       </div>
     </div>
