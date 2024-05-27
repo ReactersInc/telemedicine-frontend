@@ -79,8 +79,8 @@ function HorizontalNav() {
 
         <ul
           className={`flex flex-col xl:flex-row justify-end w-full xl:w-auto xl:static transition-transform transform ${
-            menuOpen ? "translate-x-0" : "translate-x-[500px] xl:translate-x-0"
-          } xl:flex xl:justify-between xl:space-x-4 space-y-4 xl:space-y-0  xl:bg-transparent  xl:relative xl:left-auto xl:py-0  xl:pl-0  rounded-2xl h-96 w-60 xl:h-auto xl:w-auto absolute top-[90px]  right-[115px] xl:top-auto xl:right-auto  bg-[#f5f9fe]  overflow-hidden`}
+            menuOpen ? "dispaly" : "hidden"
+          } xl:flex xl:justify-between xl:space-x-4 space-y-4 xl:space-y-0  xl:bg-transparent  xl:relative xl:left-auto xl:py-0  xl:pl-0  rounded-2xl h-96 w-60 absolute top-[90px]  right-[115px] xl:top-auto xl:right-auto  bg-[#f5f9fe]  overflow-hidden`}
         >
           <div className="xl:flex items-center hidden">
             <li className="bg-[#f5f9fe]">
