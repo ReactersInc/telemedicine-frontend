@@ -36,7 +36,7 @@ function Home() {
       </div>
 
       <div className="bg-white px-8" id="service">
-        <h2 className="text-3xl font-semibold flex justify-center justify-items-center pt-4 text-[#2cda6d]">
+        <h2 className="text-3xl font-semibold flex justify-center justify-items-center pt-4">
           Services
         </h2>
         <div className="flex justify-between items-center">
