@@ -117,7 +117,6 @@ function Home() {
               style={{ border: 0, height: "200%", width: "100%" }}
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.253955578815!2d92.82484217537781!3d26.70433277677198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3744ebb0aeec46fb%3A0x58910c2e9e88cb03!2sDepartment%20of%20Computer%20Science%20%26%20Engineering%2C%20Tezpur%20University!5e0!3m2!1sen!2sin!4v1701298739067!5m2!1sen!2sin"
             ></iframe>
-            {/* <iframe src="" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                   */}
           </div>
         </div>
       </div>
