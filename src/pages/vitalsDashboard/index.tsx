@@ -63,20 +63,7 @@ function VitalsDashboard() {
     lowest: 0,
   }
     const getgsrInfo = async () => {
-      const apiUrl = "https://makemytwin.com/IoMTAppAPI/api/getGSRTrends.php";
-      const data = {
-        email: email,
-        // email: "rajveerjdh2021@gmail.com",
-      };
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      };
       try {
-        // const response = await fetch(apiUrl, requestOptions);
         const response = await axios.post(
           "https://makemytwin.com/IoMTAppAPI/api/getGSRTrends.php",
           {
