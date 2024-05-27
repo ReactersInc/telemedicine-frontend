@@ -79,10 +79,10 @@ function HorizontalNav() {
 
         <ul
           className={`flex flex-col xl:flex-row justify-end w-full xl:w-auto xl:static transition-transform transform ${
-            menuOpen ? "translate-x-0" : "-translate-x-full xl:translate-x-0"
-          } xl:flex xl:justify-between xl:space-x-4 space-y-4 xl:space-y-0 bg-[#f5f9fe] xl:bg-transparent fixed xl:relative top-16 xl:top-0 left-0 xl:left-auto xl:py-0 py-8 xl:pl-0 pl-4`}
+            menuOpen ? "translate-x-0" : "translate-x-[500px] xl:translate-x-0"
+          } xl:flex xl:justify-between xl:space-x-4 space-y-4 xl:space-y-0  xl:bg-transparent  xl:relative xl:left-auto xl:py-0  xl:pl-0  rounded-2xl h-96 w-60 xl:h-auto xl:w-auto absolute top-[90px]  right-[115px] xl:top-auto xl:right-auto  bg-[#f5f9fe]  overflow-hidden`}
         >
-          <div className="flex items-center">
+          <div className="xl:flex items-center hidden">
             <li className="bg-[#f5f9fe]">
               <a href="/#home">
                 <img
@@ -93,11 +93,11 @@ function HorizontalNav() {
               </a>
             </li>
           </div>
-          <div className="flex flex-col xl:flex-row items-center">
+          <div className="flex flex-col xl:flex-row items-center xl:text-base text-xs ">
             <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#home"
-                className="navLink block text-black font-medium relative p-2.5 mx-1 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
+                className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
               >
                 Home
               </a>
@@ -105,7 +105,7 @@ function HorizontalNav() {
             <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#service"
-                className="navLink block text-black font-medium relative p-2.5 mx-1 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
+                className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
               >
                 Service
               </a>
@@ -113,7 +113,7 @@ function HorizontalNav() {
             <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#aboutUs"
-                className="navLink block text-black font-medium relative p-2.5 mx-1 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
+                className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
               >
                 About Us
               </a>
@@ -121,22 +121,22 @@ function HorizontalNav() {
             <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#contact"
-                className="navLink block text-black font-medium relative p-2.5 mx-1 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
+                className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
               >
                 Contact
               </a>
             </li>
-            <li className="list-none bg-[#f5f9fe] mt-4 xl:mt-0">
+            <li className=" bg-[#f5f9fe] xl:mt-0 -mt-3 ">
               <button
-                className="signinBtn border-solid border-[#2cda6d] bg-white text-[#2cda6d] py-3 px-4 rounded-md"
+                className="signinBtn border-solid border-[#2cda6d] bg-white text-[#2cda6d] py-3 px-4 rounded-md w-20 h-10 xl:w-34 xl:h-14"
                 onClick={toggleModal}
               >
                 Sign in
               </button>
             </li>
-            <li className="list-none bg-[#f5f9fe] mt-4 xl:mt-0">
+            <li className=" bg-[#f5f9fe] xl:mt-0 -mt-5">
               <a href="/register">
-                <button className="SignBtn border-solid border-[#2cda6d] bg-[#2cda6d] text-white py-3 px-4 rounded-md">
+                <button className="SignBtn border-solid border-[#2cda6d] bg-[#2cda6d] text-white py-3 px-4 rounded-md w-20 h-10 xl:w-34 xl:h-14">
                   Register
                 </button>
               </a>
