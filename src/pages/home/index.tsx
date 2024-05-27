@@ -35,15 +35,16 @@ function Home() {
         </div>
       </div>
 
-      <div className="bg-white px-8" id="service">
+      <div className="md:bg-white px-8 pb-4" id="service">
         <h2 className="text-3xl font-semibold flex justify-center justify-items-center pt-4">
           Services
         </h2>
-        <div className="flex justify-between items-center">
-          <div className="w-1/4">
-            <img src="./static/Printed circuit board-cuate.png" />
+        <div className="md:flex justify-between items-center">
+          <div className=" md:w-1/4 w-3/4 ml-16 md:ml-0">
+            <img src="./static/Online Doctor-amico.png" />
           </div>
-          <div className="text-xl text-center flex-col space-y-4">
+
+          <div className="text-xl text-center flex-col space-y-4 mt-4">
             <p>We provide</p>
             <p className="text-[#2cda6d] ">
               Doctor's Appointment Booking System
@@ -57,8 +58,8 @@ function Home() {
             </p>
             <p>and few other services to be added soon.</p>
           </div>
-          <div className="w-1/4">
-            <img src="./static/Online Doctor-amico.png" />
+          <div className="w-1/4 visible sm:max-md:hidden">
+            <img src="./static/Printed circuit board-cuate.png" />
           </div>
         </div>
         {/* <h1>Experienced in multiple medical practices</h1>
