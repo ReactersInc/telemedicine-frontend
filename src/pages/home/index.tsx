@@ -26,7 +26,7 @@ function Home() {
           </div>
         </div>
         <div className={styles.homeBannerImage}>
-          <img src="./static/home_banner.png" alt="" />
+          <img src="./static/home_banner.svg" alt="" />
         </div>
       </div>
 
