@@ -35,19 +35,37 @@ function Home() {
         </div>
       </div>
 
-      <div className="py-20 bg-[#f5f9fe]" id="service">
-        <h2 className="text-2xl font-semibold text-center mb-4">Services</h2>
-        <h1 className="text-center text-3xl mb-10">
-          Experienced in multiple medical practices
-        </h1>
-        <div className="mx-[75px] flex flex-wrap justify-around">
-          <div className="bg-white shadow-md p-6 mb-8 mx-4 w-full sm:w-1/3 lg:w-1/4 text-center">
-            <img
-              src="./static/home_service_icon.png"
-              alt=""
-              className="mx-auto mb-4"
-            />
-            <h4 className="text-xl font-semibold mb-2">Medical</h4>
+      <div className="bg-white px-8" id="service">
+        <h2 className="text-3xl font-semibold flex justify-center justify-items-center pt-4 text-[#2cda6d]">
+          Services
+        </h2>
+        <div className="flex justify-between items-center">
+          <div className="w-1/4">
+            <img src="./static/Printed circuit board-cuate.png" />
+          </div>
+          <div className="text-xl text-center flex-col space-y-4">
+            <p>We provide</p>
+            <p className="text-[#2cda6d] ">
+              Doctor's Appointment Booking System
+            </p>
+            <p className="text-[#2cda6d] ">Remote Consultation</p>
+            <p className="text-[#2cda6d] ">
+              Health Diagnostics using Wearable IoMT Kit
+            </p>
+            <p className="text-[#2cda6d] ">
+              Your Digital Twin to predict your health conditions
+            </p>
+            <p>and few other services to be added soon.</p>
+          </div>
+          <div className="w-1/4">
+            <img src="./static/Online Doctor-amico.png" />
+          </div>
+        </div>
+        {/* <h1>Experienced in multiple medical practices</h1>
+        <div className={styles.homeServiceShow}>
+          <div className={styles.homeServiceCard}>
+            <img src="./static/home_service_icon.png" alt="" />
+            <h4>Medical</h4>
             <p>
               Experience top-quality medical services without the hassle. Our
               offerings include Telemedicine Consultations.
@@ -76,7 +94,7 @@ function Home() {
               tailored healthcare services.
             </p>
           </div>
-        </div>
+        </div>*/}
       </div>
 
       <div className="py-20" id="aboutUs">

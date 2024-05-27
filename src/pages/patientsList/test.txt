@@ -1,0 +1,790 @@
+// import React, { useState, useEffect } from "react";
+// import { StyleSheet, ScrollView, Linking, View, Text } from "react-native";
+
+// import axios from "axios";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { SafeAreaView } from "react-native-safe-area-context";
+
+// const initialReportsData = {
+//   SpO2: {
+//     reading: "",
+//     result: "",
+//   },
+//   GSR: {
+//     reading: "",
+//     result: "",
+//   },
+//   BP: {
+//     reading: "",
+//     result: "",
+//   },
+//   BT: {
+//     reading: "",
+//     result: "",
+//   },
+//   Pulse: {
+//     reading: "",
+//     result: "",
+//   },
+// };
+// const VitalsReport = () => {
+//   const [reportsData, setReportsData] = useState(initialReportsData);
+//   const [data, setData] = useState({
+//     pulse: 0,
+//     SpO2: 0,
+//     sys: 0,
+//     dia: 0,----   body_temp: 0,
+//     room_temp: 0,
+//     humidity: 0,
+//     gsr: 0,
+//     ecg: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//     lode: false,
+//   });
+//   useEffect(() => {
+//     const getvitalsInfo = async () => {
+//       try {
+//         const storedMail = await AsyncStorage.getItem("email");
+//         const response = await axios.post(
+//           "http://52.66.241.131/IoMTAppAPI/api/getLatestData.php",
+//           {
+//             email: storedMail,
+//           }
+//         );
+//         const responseData = response.data;
+//         const recordData = responseData.Status.record;
+//         setData({
+//           pulse: recordData.pulse,
+//           SpO2: recordData.SpO2,
+//           sys: recordData.sys,
+//           dia: recordData.dia,
+//           body_temp: recordData.body_temp,
+//           room_temp: recordData.room_temp,
+//           humidity: recordData.humidity,
+//           gsr: recordData.gsr,
+//           ecg: recordData.ecg,
+//           lode: true,
+//         });
+//         generateReportSpO2();
+//         generateReportGSR();
+//         generateReportBP();
+//         generateReportBT();
+//         generateReportPulse();
+//       } catch (error) {}
+//     };
+//     getvitalsInfo();
+//   }, [data.SpO2]);
+//   const generateReportSpO2 = () => {
+//     if (data.SpO2 != 0) {
+//       if (data.SpO2 >= 95) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           SpO2: {
+//             ...prevState.SpO2,
+//             reading: " Normal",
+//             result: " Your Blood Oxygen level is Normal",
+//           },
+//         }));
+//       } else if (data.SpO2 >= 85 && data.SpO2 < 95) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           SpO2: {
+//             ...prevState.SpO2,
+//             reading: " Low",
+//             result:
+//               " Your Blood Oxygen Level is Low. Low blood oxygen levels may lead to Hypoxemia.",
+//           },
+//         }));
+//       } else if (data.SpO2 >= 67 && data.SpO2 < 85) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           SpO2: {
+//             ...prevState.SpO2,
+//             reading: " Very Low",
+//             result: " Your Current Blood Oxygen Level is Very Low.",
+//           },
+//         }));
+//       } else {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           SpO2: {
+//             ...prevState.SpO2,
+//             reading: " Critically Low",
+//             result:
+//               " Your SpO2 level is dangerously low. you’re at risk of developing symptoms of Cyanosis. Immediate medical attention is required.",
+//           },
+//         }));
+//       }
+//     } else {
+//       setReportsData((prevState) => ({
+//         ...prevState,
+//         SpO2: {
+//           ...prevState.SpO2,
+//           reading: " No Data",
+//           result: " No Data Available",
+//         },
+//       }));
+//     }
+//   };
+//   const [gsrdata, setgsrdata] = useState({
+//     average: 0,
+//     highest: 0,
+//     lowest: 0,
+//   });
+//   const gsrvalues = {
+//     average: 0,
+//     highest: 0,
+//     lowest: 0,
+//   };
+//   const generateReportGSR = () => {
+//     const getgsrInfo = async () => {
+//       try {
+//         const storedMail = await AsyncStorage.getItem("email");
+//         const response = await axios.post(
+//           "http://52.66.241.131/IoMTAppAPI/api/getGSRTrends.php",
+//           {
+//             email: storedMail,
+//           }
+//         );
+//         const objectvalue = Object.values(response);
+//         gsrvalues.average = objectvalue[0].Data.gsrTrend[0].average;
+//         gsrvalues.highest = objectvalue[0].Data.gsrTrend[0].highest;
+//         gsrvalues.lowest = objectvalue[0].Data.gsrTrend[0].lowest;
+//         setgsrdata({
+//           lowest: gsrvalues.lowest,
+//           highest: gsrvalues.highest,
+//           average: gsrvalues.average,
+//         });
+//         console.log(gsrdata);
+
+//         console.log(gsrvalues);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     };
+
+//     getgsrInfo();
+//     if (data.gsr != 0) {
+//       if (
+//         data.gsr === gsrvalues.highest &&
+//         data.gsr === gsrvalues.average &&
+//         data.gsr === gsrvalues.lowest
+//       ) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           GSR: {
+//             ...prevState.GSR,
+//             reading: data.gsr,
+//             result:
+//               "The Data is the first reading and Doesn't have a comparison point yet.",
+//           },
+//         }));
+//       } else if (data.gsr > gsrvalues.highest) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           GSR: {
+//             ...prevState.GSR,
+//             result: "Urgent attention needed",
+//             reading: "Highly stressed",
+//           },
+//         }));
+//       } else if (
+//         data.gsr > gsrvalues.average &&
+//         data.gsr <= gsrvalues.highest
+//       ) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           GSR: {
+//             ...prevState.GSR,
+//             reading: "Monitor, not urgent",
+//             result: "Stressed",
+//           },
+//         }));
+//       } else if (data.gsr > gsrvalues.lowest && data.gsr <= gsrvalues.average) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           GSR: {
+//             ...prevState.GSR,
+//             reading: "Normal",
+//             result: "No concerns",
+//           },
+//         }));
+//       } else if (data.gsr <= gsrvalues.lowest) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           GSR: {
+//             ...prevState.GSR,
+//             reading: "Relaxed",
+//             result: "No action needed.",
+//           },
+//         }));
+//       }
+//     } else {
+//       setReportsData((prevState) => ({
+//         ...prevState,
+//         GSR: {
+//           ...prevState.GSR,
+//           reading: "No Data",
+//           result: "No Data Available",
+//         },
+//       }));
+//     }
+//   };
+
+//   const generateReportBP = () => {
+//     if (data.sys != 0 && data.dia != 0) {
+//       if (data.sys < 120 && data.dia < 80) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           BP: {
+//             ...prevState.BP,
+//             reading: " Normal",
+//             result: " Blood Pressure is Normal",
+//           },
+//         }));
+//       } else if (data.sys >= 120 && data.dia < 80) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           BP: {
+//             ...prevState.BP,
+//             reading: " High",
+//             result: " Elevated Blood Pressure",
+//           },
+//         }));
+//       } else if (data.sys >= 130 && data.dia >= 80) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           BP: {
+//             ...prevState.BP,
+//             reading: " Very High",
+//             result: " Stage 1 Hypertension",
+//           },
+//         }));
+//       } else if (data.sys >= 140 && data.dia >= 90) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           BP: {
+//             ...prevState.BP,
+//             reading: " Critically High",
+//             result: " Stage 2 Hypertension",
+//           },
+//         }));
+//       }
+//     } else {
+//       setReportsData((prevState) => ({
+//         ...prevState,
+//         BP: {
+//           ...prevState.BP,
+//           reading: " No Data",
+//           result: " No Data Available",
+//         },
+//       }));
+//     }
+//   };
+
+//   const generateReportBT = () => {
+//     if (data.body_temp != 0) {
+//       if (data.body_temp >= 36.5 && data.body_temp < 37.3) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           BT: {
+//             ...prevState.BT,
+//             reading: " Normal",
+//             result: " Normal Body Temperature",
+//           },
+//         }));
+//       } else if (data.body_temp >= 37.3 && data.body_temp < 37.9) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           BT: {
+//             ...prevState.BT,
+//             reading: " Slightly High",
+//             result: " Low Grade Fever",
+//           },
+//         }));
+//       } else if (data.body_temp > 38) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           BT: {
+//             ...prevState.BT,
+//             reading: " Critically High",
+//             result: " Pyrexia",
+//           },
+//         }));
+//       } else {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           BT: {
+//             ...prevState.BT,
+//             reading: " Critically Low",
+//             result: " Hypothermia",
+//           },
+//         }));
+//       }
+//     } else {
+//       setReportsData((prevState) => ({
+//         ...prevState,
+//         BT: {
+//           ...prevState.BT,
+//           reading: " No Data",
+//           result: " No Data Available",
+//         },
+//       }));
+//     }
+//   };
+
+//   const generateReportPulse = () => {
+//     if (data.pulse != 0) {
+//       if (data.pulse <= 100 && data.pulse >= 60) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           Pulse: {
+//             ...prevState.Pulse,
+//             reading: "Normal",
+//             result: "Pulse reading is Normal",
+//           },
+//         }));
+//       } else if (data.pulse > 100) {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           Pulse: {
+//             ...prevState.Pulse,
+//             reading: "High",
+//             result: "Pulse reading is High. May be at risk of Tachycardia",
+//           },
+//         }));
+//       } else {
+//         setReportsData((prevState) => ({
+//           ...prevState,
+//           Pulse: {
+//             ...prevState.Pulse,
+//             reading: "Low",
+//             result: "Pulse reading is Low. May be at risk of Bradycardia",
+//           },
+//         }));
+//       }
+//     } else {
+//       setReportsData((prevState) => ({
+//         ...prevState,
+//         Pulse: {
+//           ...prevState.Pulse,
+//           reading: "No Data",
+//           result: "No Data Available",
+//         },
+//       }));
+//     }
+//   };
+
+//   return (
+//     <>
+//       {data.lode ? (
+//         <SafeAreaView style={styles.safeare}>
+//           <ScrollView contentContainerStyle={styles.container}>
+//             <View style={styles.card}>
+//               <View style={styles.uppercard}>
+//                 <Text style={{ color: "white", fontSize: 30 }}>SpO2</Text>
+//                 <Text style={{ color: "white", fontSize: 30 }}>
+//                   {data.SpO2}
+//                 </Text>
+//               </View>
+//               <View style={styles.resultContainer}>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Reading ::{reportsData.SpO2.reading}
+//                 </Text>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Result :: {reportsData.SpO2.result}
+//                 </Text>
+//               </View>
+//               <View style={styles.rangesContainer}>
+//                 <View style={styles.container1}>
+//                   <View style={styles.row}>
+//                     <Text style={styles.header}>Ranges :</Text>
+//                     <Text style={styles.header}>Reading</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.emeraldText}>≥ 95</Text>
+//                     <Text style={styles.emeraldText}>Normal</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.amberText}>85 ≤ x &lt; 95</Text>
+//                     <Text style={styles.amberText}>Low</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.redText}>67 ≤ x &lt; 85</Text>
+//                     <Text style={styles.redText}>Very Low</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.red900Text}>&lt; 67</Text>
+//                     <Text style={styles.red900Text}>Critically Low</Text>
+//                   </View>
+//                 </View>
+//               </View>
+//               <Text
+//                 style={styles.link}
+//                 onPress={() =>
+//                   Linking.openURL(
+//                     "https://www.healthline.com/health/normal-blood-oxygen-level#symptoms"
+//                   )
+//                 }
+//               >
+//                 For more information, click here
+//               </Text>
+//             </View>
+//             <View style={styles.card}>
+//               <View style={styles.uppercard}>
+//                 <Text style={{ color: "white", fontSize: 30 }}>
+//                   GSR Reading
+//                 </Text>
+//                 <Text style={{ color: "white", fontSize: 30 }}>{data.gsr}</Text>
+//               </View>
+//               <View style={styles.resultContainer}>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Reading :: {reportsData.GSR.reading}
+//                 </Text>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Result :: {reportsData.GSR.result}
+//                 </Text>
+//               </View>
+//               <View style={styles.rangesContainer}>
+//                 <View style={styles.container1}>
+//                   <View style={styles.row}>
+//                     <Text style={styles.header}>Ranges :</Text>
+//                     <Text style={styles.header}>Reading</Text>
+//                   </View>
+
+//                   <View style={styles.row}>
+//                     <Text style={styles.amberText1}>{data.gsr}</Text>
+//                     <Text style={styles.amberText1}>Current Reading</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.redText}>{gsrdata.highest}</Text>
+//                     <Text style={styles.redText}>Your Heighest</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.emeraldText}>{gsrdata.average}</Text>
+//                     <Text style={styles.emeraldText}>Your Average</Text>
+//                   </View>
+
+//                   <View style={styles.row}>
+//                     <Text style={styles.red900Text}>{gsrdata.lowest}</Text>
+//                     <Text style={styles.red900Text}>Your Lowest</Text>
+//                   </View>
+//                 </View>
+//               </View>
+//               <Text
+//                 style={styles.link}
+//                 onPress={() =>
+//                   Linking.openURL(
+//                     "https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139"
+//                   )
+//                 }
+//               >
+//                 For more information, click here
+//               </Text>
+//             </View>
+//             <View style={styles.card}>
+//               <View style={styles.uppercard}>
+//                 <Text style={{ color: "white", fontSize: 30 }}>
+//                   Blood Pressure
+//                 </Text>
+//                 <Text style={{ color: "white", fontSize: 20 }}>
+//                   {"Sys=> "}
+//                   {data.sys + "\nDia=> " + data.dia}
+//                 </Text>
+//               </View>
+//               <View style={styles.resultContainer}>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Reading :: {reportsData.BP.reading}
+//                 </Text>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Result :: {reportsData.BP.result}
+//                 </Text>
+//               </View>
+//               <View style={styles.rangesContainer}>
+//                 <View style={styles.container1}>
+//                   <View style={styles.row}>
+//                     <Text style={styles.header}>Ranges :</Text>
+//                     <Text style={styles.header}>Reading</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.emeraldText}>
+//                       {" "}
+//                       sys &lt; 120 and dia &lt; 80
+//                     </Text>
+//                     <Text style={styles.emeraldText}>Normal</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.amberText}>
+//                       {" "}
+//                       sys ≥ 120 and dia &lt; 80
+//                     </Text>
+//                     <Text style={styles.amberText}>High</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.redText}>sys ≥ 130 and dia ≥ 80</Text>
+//                     <Text style={styles.redText}>Very High</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.red900Text}>
+//                       sys ≥ 140 and dia ≥ 90
+//                     </Text>
+//                     <Text style={styles.red900Text}>Critically High</Text>
+//                   </View>
+//                 </View>
+//               </View>
+//               <Text
+//                 style={styles.link}
+//                 onPress={() =>
+//                   Linking.openURL(
+//                     "https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982#:~:text=Normal%20blood%20pressure%20Maintain%20or%20adopt%20a%20healthy,or%20adopt%20a%20healthy%20lifestyle.%20130%20to%20139"
+//                   )
+//                 }
+//               >
+//                 For more information, click here
+//               </Text>
+//             </View>
+//             <View style={styles.card}>
+//               <View style={styles.uppercard}>
+//                 <Text style={{ color: "white", fontSize: 30 }}>
+//                   Body Temperature Reading
+//                 </Text>
+//                 <Text style={{ color: "white", fontSize: 30 }}>
+//                   {data.body_temp}
+//                 </Text>
+//               </View>
+//               <View style={styles.resultContainer}>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Reading :: {reportsData.BT.reading}
+//                 </Text>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Result :: {reportsData.BT.result}
+//                 </Text>
+//               </View>
+//               <View style={styles.rangesContainer}>
+//                 <View style={styles.container1}>
+//                   <View style={styles.row}>
+//                     <Text style={styles.header}>Ranges :</Text>
+//                     <Text style={styles.header}>Reading</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.emeraldText}>≤ 36.5</Text>
+//                     <Text style={styles.emeraldText}>Critically Low</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.amberText}>36.5 ≤ x &lt; 37.3</Text>
+//                     <Text style={styles.amberText}>Normal</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.redText}>37.3 ≤ x &lt; 37.9</Text>
+//                     <Text style={styles.redText}>Slightly High</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.red900Text}>{">"} 38</Text>
+//                     <Text style={styles.red900Text}>Critically High</Text>
+//                   </View>
+//                 </View>
+//               </View>
+//               <Text
+//                 style={styles.link}
+//                 onPress={() =>
+//                   Linking.openURL(
+//                     "https://en.wikipedia.org/wiki/Human_body_temperature#:~:text=The%20normal%20human%20body%20temperature%20range%20is,typically%20stated%20as%2036.5%E2%80%9337.5%20%C2%B0C%20%2897.7%E2%80%9399.5%20%C2%B0F%29"
+//                   )
+//                 }
+//               >
+//                 For more information, click here
+//               </Text>
+//             </View>
+//             <View style={styles.card}>
+//               <View style={styles.uppercard}>
+//                 <Text style={{ color: "white", fontSize: 30 }}>
+//                   Pulse Reading
+//                 </Text>
+//                 <Text style={{ color: "white", fontSize: 30 }}>
+//                   {data.pulse}
+//                 </Text>
+//               </View>
+//               <View style={styles.resultContainer}>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Reading :: {reportsData.Pulse.reading}
+//                 </Text>
+//                 <Text style={{ color: "black", fontSize: 20 }}>
+//                   Result :: {reportsData.Pulse.result}
+//                 </Text>
+//               </View>
+//               <View style={styles.rangesContainer}>
+//                 <View style={styles.container1}>
+//                   <View style={styles.row}>
+//                     <Text style={styles.header}>Ranges :</Text>
+//                     <Text style={styles.header}>Reading</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.emeraldText}>{"<"} 60</Text>
+//                     <Text style={styles.emeraldText}>Low</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.amberText}>60 ≤ x ≤ 100</Text>
+//                     <Text style={styles.amberText}>Normal</Text>
+//                   </View>
+//                   <View style={styles.row}>
+//                     <Text style={styles.redText}>{">"} 100</Text>
+//                     <Text style={styles.redText}>High</Text>
+//                   </View>
+//                 </View>
+//               </View>
+//               <Text
+//                 style={styles.link}
+//                 onPress={() =>
+//                   Linking.openURL(
+//                     "https://www.healthline.com/health/normal-blood-oxygen-level#symptoms"
+//                   )
+//                 }
+//               >
+//                 For more information, click here
+//               </Text>
+//             </View>
+//           </ScrollView>
+//         </SafeAreaView>
+//       ) : (
+//         <SafeAreaView style={styles.safeare1}>
+//           <View style={styles.loding}>
+//             <Text style={{ color: "#00563B", fontSize: 40 }}>Loading...</Text>
+//           </View>
+//         </SafeAreaView>
+//       )}
+//     </>
+//   );
+// };
+// const styles = StyleSheet.create({
+//   loding: {
+//     fontSize: 40,
+//     height: "100%",
+//     textAlign: "center",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   resultContainer: {
+//     borderRadius: 8,
+//     padding: 10,
+//     marginTop: 5,
+//     marginBottom: 5,
+//     backgroundColor: "#A5DD9B",
+//   },
+//   reoprtcontainer: {
+//     borderRadius: 8,
+//   },
+//   reoprttitle: {
+//     fontWeight: "bold",
+//     color: "#000",
+//     fontSize: 20,
+//     color: "black",
+//   },
+//   reoprtreading: {
+//     fontSize: 18,
+//     color: "#000",
+//     color: "black",
+//   },
+//   reoprtresult: {
+//     fontSize: 16,
+//     color: "#000",
+//     color: "black",
+//   },
+//   reoprtsymptoms: {
+//     fontSize: 14,
+//     color: "#000",
+//     color: "black",
+//   },
+//   uppercard: {
+//     backgroundColor: "#00563B",
+//     padding: 8,
+//     borderRadius: 10,
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//   },
+//   safeare: {
+//     margin: 0,
+//     paddingBottom: 80,
+//     paddingTop: 0,
+//   },
+//   safeare1: {
+//     backgroundColor: "#E0FFE0",
+//     paddingBottom: 80,
+//   },
+//   container1: {
+//     padding: 30,
+//     paddingTop: 5,
+//   },
+//   row: {
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//     gap: 10,
+//     alignItems: "center",
+//     paddingVertical: 8,
+//   },
+//   header: {
+//     color: "#000",
+//     fontWeight: "bold",
+//     fontSize: 16,
+//   },
+//   emeraldText: {
+//     color: "#2ecc71",
+//     fontSize: 14,
+//   },
+//   amberText: {
+//     color: "#ffb400",
+//     fontSize: 14,
+//   },
+//   amberText1: {
+//     color: "black",
+//     fontSize: 14,
+//     fontWeight: "bold",
+//   },
+//   redText: {
+//     color: "#ff6347",
+//     fontSize: 14,
+//   },
+//   red900Text: {
+//     color: "#b30000",
+//     fontSize: 14,
+//   },
+//   container: {
+//     flexGrow: 1,
+//     paddingVertical: 20,
+//     paddingHorizontal: 10,
+//     marginBottom: 100,
+//   },
+//   title: {
+//     marginTop: 12,
+//     fontWeight: "bold",
+//     fontSize: 20,
+//   },
+//   card: {
+//     marginTop: 6,
+//     backgroundColor: "white",
+//     borderRadius: 10,
+//     padding: 10,
+//     shadowColor: "white",
+//     shadowOffset: { width: 0, height: 2 },
+//     shadowOpacity: 0.2,
+//     shadowRadius: 2,
+//     elevation: 2,
+//   },
+//   rangesContainer: {
+//     borderRadius: 10,
+//   },
+//   rangeItem: {
+//     paddingVertical: 5,
+//     paddingHorizontal: 10,
+//     fontWeight: "bold",
+//     borderRadius: 10,
+//   },
+//   rangeText: {
+//     color: "#333",
+//   },
+//   link: {
+//     marginTop: 10,
+//     color: "blue",
+//     textDecorationLine: "underline",
+//   },
+// });
+
+// export default VitalsReport;
