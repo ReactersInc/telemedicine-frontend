@@ -84,7 +84,12 @@ function HorizontalNav() {
         >
           <div className="xl:flex items-center hidden">
             <li className="bg-[#f5f9fe]">
-              <a href="/#home">
+              <a
+                href="/#home"
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                }}
+              >
                 <img
                   src=".././static/logo.svg"
                   alt="Logo"
@@ -97,6 +102,9 @@ function HorizontalNav() {
             <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#home"
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                }}
                 className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
               >
                 Home
@@ -105,6 +113,9 @@ function HorizontalNav() {
             <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#service"
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                }}
                 className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
               >
                 Service
@@ -113,6 +124,9 @@ function HorizontalNav() {
             <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#aboutUs"
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                }}
                 className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
               >
                 About Us
@@ -121,6 +135,9 @@ function HorizontalNav() {
             <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#contact"
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                }}
                 className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
               >
                 Contact
@@ -129,13 +146,21 @@ function HorizontalNav() {
             <li className=" bg-[#f5f9fe] xl:mt-0 -mt-3 ">
               <button
                 className="signinBtn border-solid border-[#2cda6d] bg-white text-[#2cda6d] py-3 px-4 rounded-md w-20 h-10 xl:w-34 xl:h-14"
-                onClick={toggleModal}
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                  toggleModal();
+                }}
               >
                 Sign in
               </button>
             </li>
             <li className=" bg-[#f5f9fe] xl:mt-0 -mt-5">
-              <a href="/register">
+              <a
+                href="/register"
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                }}
+              >
                 <button className="SignBtn border-solid border-[#2cda6d] bg-[#2cda6d] text-white py-3 px-4 rounded-md w-20 h-10 xl:w-34 xl:h-14">
                   Register
                 </button>
