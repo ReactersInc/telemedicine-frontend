@@ -94,7 +94,7 @@ function DoctorDashboard() {
               <div className="w-52 h-52 p-4 border rounded-full bg-[#ffffff] flex justify-center">
                 <img
                   id={styles.profilePhoto}
-                  src="./static/avatar.jpg"
+                  src="./static/doc-avatar.svg"
                   alt=""
                   height="100%"
                   width="100%"

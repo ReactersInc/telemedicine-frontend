@@ -111,7 +111,7 @@ function PatientDashboard() {
               <div className="lg:w-52 lg:h-52 lg:p-4 lg:border lg:rounded-full lg:bg-[#ffffff] lg:flex lg:justify-center profile-img ">
                 <img
                   id={styles.profilePhoto}
-                  src="./static/avatar.jpg"
+                  src="./static/avatar.svg"
                   alt=""
                   height="100%"
                   width="100%"

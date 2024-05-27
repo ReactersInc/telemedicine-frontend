@@ -48,7 +48,7 @@ function HorizontalNav() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth" // Optional, smooth scrolling animation
+      behavior: "smooth", // Optional, smooth scrolling animation
     });
   };
 
@@ -57,7 +57,7 @@ function HorizontalNav() {
       <div className="navbar">
         <div className="title">
           <a href="/#home">
-            <img src=".././static/logo.png" alt="Logo" />
+            <img src=".././static/logo.svg" alt="Logo" />
           </a>
         </div>
         <div
@@ -109,7 +109,10 @@ function HorizontalNav() {
 
       {/* Back to Top button */}
       <button className="backToTopBtn" onClick={scrollToTop}>
-        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240227155250/up.png" alt="back to top" />
+        <img
+          src="https://media.geeksforgeeks.org/wp-content/uploads/20240227155250/up.png"
+          alt="back to top"
+        />
       </button>
     </>
   );

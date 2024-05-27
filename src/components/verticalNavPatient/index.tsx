@@ -95,7 +95,7 @@ function VerticalNavPatient() {
         <div className="flex flex-col">
           <div className=" w-28 h-28 flex justify-center">
             <img
-              src="./static/avatar.jpg"
+              src="./static/avatar.svg"
               height="100%"
               width="100%"
               className="border rounded-full"

@@ -8,22 +8,21 @@ function VerticalNavDoctor() {
     (state: {
       user: {
         id: string;
-  email: string;
-  dob: string;
-  exp: number;
-  gender: string;
-  name: string;
-  photoUrl: string;
-  state: string;
-  timeStamp: string;
-  phone: string;
+        email: string;
+        dob: string;
+        exp: number;
+        gender: string;
+        name: string;
+        photoUrl: string;
+        state: string;
+        timeStamp: string;
+        phone: string;
 
-
-  mobile_no: string;
-  doctor_id: string;
-  registration_no: string;
-  specilization: string;
-  rating: number;
+        mobile_no: string;
+        doctor_id: string;
+        registration_no: string;
+        specilization: string;
+        rating: number;
       };
     }) => state.user.doctor_id
   );
@@ -31,22 +30,21 @@ function VerticalNavDoctor() {
     (state: {
       user: {
         id: string;
-  email: string;
-  dob: string;
-  exp: number;
-  gender: string;
-  name: string;
-  photoUrl: string;
-  state: string;
-  timeStamp: string;
-  phone: string;
+        email: string;
+        dob: string;
+        exp: number;
+        gender: string;
+        name: string;
+        photoUrl: string;
+        state: string;
+        timeStamp: string;
+        phone: string;
 
-
-  mobile_no: string;
-  doctor_id: string;
-  registration_no: string;
-  specilization: string;
-  rating: number;
+        mobile_no: string;
+        doctor_id: string;
+        registration_no: string;
+        specilization: string;
+        rating: number;
       };
     }) => state.user.email
   );
@@ -58,7 +56,6 @@ function VerticalNavDoctor() {
     window.location.href = "/";
   };
 
-  
   const [showNav, setShowNav] = useState(true);
   useEffect(() => {
     // Function to check screen width and toggle sidenav visibility
@@ -90,8 +87,6 @@ function VerticalNavDoctor() {
     setShowNav(false);
   };
 
-
-
   return (
     <div>
       <button
@@ -100,7 +95,9 @@ function VerticalNavDoctor() {
       >
         <img src="./static/hamburger.svg" alt="Menu" />
       </button>
-      <div className={`${styles.sidenav} ${showNav ? styles.show : styles.hide}`}>
+      <div
+        className={`${styles.sidenav} ${showNav ? styles.show : styles.hide}`}
+      >
         {/* Close button */}
         <button
           className={styles.closeButton}
@@ -111,7 +108,7 @@ function VerticalNavDoctor() {
         <div className="flex flex-col">
           <div className=" w-28 h-28 flex justify-center">
             <img
-              src="./static/avatar.jpg"
+              src="./static/doc-avatar.svg"
               height="100%"
               width="100%"
               className="border rounded-full"
