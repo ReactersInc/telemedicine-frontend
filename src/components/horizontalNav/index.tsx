@@ -69,11 +69,13 @@ function HorizontalNav() {
               setMenuOpen(!menuOpen);
             }}
           >
+            
             <img
               src=".././static/navbar.svg"
               alt="Menu"
               className="w-full h-full"
             />
+          
           </div>
         </div>
 
@@ -99,7 +101,7 @@ function HorizontalNav() {
             </li>
           </div>
           <div className="flex flex-col xl:flex-row items-center xl:text-base text-xs ">
-            <li className="list-none bg-[#f5f9fe]">
+            {/* <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#home"
                 onClick={() => {
@@ -109,7 +111,7 @@ function HorizontalNav() {
               >
                 Home
               </a>
-            </li>
+            </li> */}
             <li className="list-none bg-[#f5f9fe]">
               <a
                 href="/#service"
