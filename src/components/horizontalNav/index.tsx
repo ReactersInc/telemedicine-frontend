@@ -78,9 +78,8 @@ function HorizontalNav() {
         </div>
 
         <div
-          className={`flex flex-col xl:flex-row justify-end xl:w-auto xl:static transition-transform transform bg-[#f5f9fe] w-40${
-            menuOpen ? "display" : "hidden"
-          } xl:flex xl:justify-between  rounded-2xl  xl:w-full xl:-right-0 xl:px-36 xl:top-0 xl:py-2 p-5 absolute top-[90px]  md:right-[115px] right-[70px] bg-[#f5f9fe]  overflow-hidden xl:fixed  shadow-md shadow-slate-200`}
+          className={`flex flex-col xl:flex-row justify-end xl:w-auto xl:static transition-transform transform bg-[#f5f9fe] ${
+            menuOpen ? "flex" : "hidden"} xl:flex xl:justify-between  rounded-2xl  xl:w-full xl:-right-0 xl:px-36 xl:top-0 xl:py-2 p-5 absolute top-[90px]  md:right-[115px] right-[70px] bg-[#f5f9fe]  overflow-hidden xl:fixed  shadow-md shadow-slate-200`}
         >
           <div className="xl:block items-center hidden ">
             <a
@@ -101,6 +100,7 @@ function HorizontalNav() {
               href="/#service"
               onClick={() => {
                 setMenuOpen(!menuOpen);
+
               }}
               className=" block text-black font-medium relative  xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
             >
@@ -110,6 +110,7 @@ function HorizontalNav() {
               href="/#aboutUs"
               onClick={() => {
                 setMenuOpen(!menuOpen);
+
               }}
               className=" block text-black font-medium relative  xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
             >
@@ -119,6 +120,7 @@ function HorizontalNav() {
               href="/#contact"
               onClick={() => {
                 setMenuOpen(!menuOpen);
+
               }}
               className=" block text-black font-medium relative  xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
             >
@@ -128,6 +130,7 @@ function HorizontalNav() {
               className="border-2 border-solid border-[#2cda6d] rounded-3xl bg-white text-[#2cda6d] px-4  h-10 xl:w-34 xl:h-12"
               onClick={() => {
                 setMenuOpen(!menuOpen);
+
                 toggleModal();
               }}
             >
@@ -137,6 +140,7 @@ function HorizontalNav() {
               href="/register"
               onClick={() => {
                 setMenuOpen(!menuOpen);
+
               }}
             >
               <button className="SignBtn border-solid border-[#2cda6d] bg-[#2cda6d] text-white px-4 rounded-3xl  h-10 xl:w-34 xl:h-12">
