@@ -74,7 +74,7 @@ function Home() {
             <h4>Medical</h4>
             <p>
               Experience top-quality medical services without the hassle. Our
-              offerings include Telemedicine Consultations.
+              offerings include Telehealth Consultations.
             </p>
           </div>
           <div className="bg-white shadow-md p-6 mb-8 mx-4 w-full sm:w-1/3 lg:w-1/4 text-center">

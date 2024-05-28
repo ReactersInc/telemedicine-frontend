@@ -61,7 +61,7 @@ function HorizontalNav() {
             </a>
           </div>
           <div className="text-lg sm:text-xl font-bold my-auto">
-            <p>Telemedicine</p>
+            <p>Telehealth</p>
           </div>
           <div
             className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center"
