@@ -39,78 +39,46 @@ function Home() {
         <h2 className="text-3xl font-semibold flex justify-center justify-items-center pt-4">
           Services
         </h2>
-        <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 md:space-y-0 mt-10 ">
-          <div className="w-3/4 md:w-1/4 hidden xl:block  ">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-16 space-y-2 md:space-y-0 mt-10 ">
+          <div className="w-3/4 md:w-1/4">
             <img
-              src="./static/Printed circuit board-cuate.png"
+              src="./static/Online Doctor-amico.png"
               alt="Printed circuit board"
             />
           </div>
 
-          <div className="sm:text-xl text-center flex flex-col space-y-4 mt-4 md:mt-0 text-sm">
+          <div className="sm:text-xl text-left flex flex-col space-y-4 mt-4 md:mt-0 text-sm">
             <p>We provide</p>
-            <p className="text-[#2cda6d]">
-              Doctor's Appointment Booking System
-            </p>
-            <p className="text-[#2cda6d]">Remote Consultation</p>
-            <p className="text-[#2cda6d]">
-              Health Diagnostics using Wearable IoMT Kit
-            </p>
-            <p className="text-[#2cda6d]">
-              Your Digital Twin to predict your health conditions
-            </p>
-            <p>and few other services to be added soon.</p>
-          </div>
-
-          <div className="ml-16 md:ml-0 w-full sm:w-2/3 md:w-1/2 lg:w-1/2 xl:w-1/4">
-            <img src="./static/Online Doctor-amico.png" alt="Online Doctor" />
+            <div className="flex items-center gap-2">
+              <img src="./static/bullet-point (2).png" className="w-4 h-4" />
+              <p className=" text-[#2cda6d]">
+                Doctor's Appointment Booking System
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <img src="./static/bullet-point (2).png" className="w-4 h-4" />
+              <p className=" text-[#2cda6d]">Remote Consultation</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <img src="./static/bullet-point (2).png" className="w-4 h-4" />
+              <p className=" text-[#2cda6d]">
+                Health Diagnostics using Wearable IoMT Kit
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <img src="./static/bullet-point (2).png" className="w-4 h-4" />
+              <p className=" text-[#2cda6d]">
+                Your Digital Twin to predict your health conditions
+              </p>
+            </div>
+            <p className="mt-2">and few other services to be added soon.</p>
           </div>
         </div>
-
-        {/* <h1>Experienced in multiple medical practices</h1>
-        <div className={styles.homeServiceShow}>
-          <div className={styles.homeServiceCard}>
-            <img src="./static/home_service_icon.png" alt="" />
-            <h4>Medical</h4>
-            <p>
-              Experience top-quality medical services without the hassle. Our
-              offerings include Telehealth Consultations.
-            </p>
-          </div>
-          <div className="bg-white shadow-md p-6 mb-8 mx-4 w-full sm:w-1/3 lg:w-1/4 text-center">
-            <img
-              src="./static/home_service_icon.png"
-              alt=""
-              className="mx-auto mb-4"
-            />
-            <h4 className="text-xl font-semibold mb-2">
-              Individual and Family
-            </h4>
-            <p>Personalized Health Solutions for You and Your Loved Ones.</p>
-          </div>
-          <div className="bg-white shadow-md p-6 mb-8 mx-4 w-full sm:w-1/3 lg:w-1/4 text-center">
-            <img
-              src="./static/home_service_icon.png"
-              alt=""
-              className="mx-auto mb-4"
-            />
-            <h4 className="text-xl font-semibold mb-2">Employer</h4>
-            <p>
-              Empowering Your Workforce with Quality Healthcare with our
-              tailored healthcare services.
-            </p>
-          </div>
-        </div>*/}
       </div>
 
       <div className="py-20" id="aboutUs">
-        <h2 className="text-2xl font-semibold text-center mb-10">About Us</h2>
+        <h2 className="text-3xl font-semibold text-center mb-10">About Us</h2>
         <div className="mx-4 md:mx-12 lg:mx-[75px] flex flex-col lg:flex-row items-center">
-          <div className="xl:w-[700px] md:w-1/2 sm:w-96 w-60 rounded-xl mb-8 lg:mb-0">
-            <video width="100%" height="auto" autoPlay muted>
-              <source src="./static/aboutUs.mp4" type="video/mp4" />
-            </video>
-          </div>
           <div className="xl:w-full md:w-2/3   md:text-lg xl:text-xl 2xl:text-2xl lg:pl-10 leading-relaxed">
             <p>
               We are a freelancer group enjoying research and development till
@@ -121,6 +89,9 @@ function Home() {
               and perform good research. Currently, we are focused on developing
               things for the healthcare sector. Who knows when we kick in !!!
             </p>
+          </div>
+          <div className="xl:w-[700px] md:w-1/2 sm:w-96 w-60 rounded-xl mb-8 lg:mb-0">
+            <img src="./static/Printed circuit board-cuate.png" />
           </div>
         </div>
       </div>
