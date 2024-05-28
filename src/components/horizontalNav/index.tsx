@@ -38,7 +38,7 @@ function HorizontalNav() {
     };
   }, [scrollable]);
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -50,7 +50,7 @@ function HorizontalNav() {
   return (
     <>
       <div className="bg-[#f5f9fe] py-4 px-5 ">
-        <div className="menu flex justify-between items-center px-4 py-2 xl:hidden">
+        <div className="menu flex justify-between items-center px-4 py-2 xl:hidden ">
           <div>
             <a href="/#home">
               <img
@@ -69,107 +69,82 @@ function HorizontalNav() {
               setMenuOpen(!menuOpen);
             }}
           >
-            
             <img
               src=".././static/navbar.svg"
               alt="Menu"
               className="w-full h-full"
             />
-          
           </div>
         </div>
 
-        <ul
-          className={`flex flex-col xl:flex-row justify-end xl:w-auto xl:static transition-transform transform ${
-            menuOpen ? "dispaly" : "hidden"
-          } xl:flex xl:justify-between xl:space-x-3 space-y-4 xl:space-y-0  xl:bg-transparent  xl:relative xl:left-auto xl:py-0  xl:pl-0  rounded-2xl md:w-60 w-40 xl:w-auto absolute top-[90px]  md:right-[115px] right-[70px] xl:top-auto xl:right-auto  bg-[#f5f9fe]  overflow-hidden`}
+        <div
+          className={`flex flex-col xl:flex-row justify-end xl:w-auto xl:static transition-transform transform bg-[#f5f9fe] w-40${
+            menuOpen ? "display" : "hidden"
+          } xl:flex xl:justify-between  rounded-2xl  xl:w-full xl:-right-0 xl:px-36 xl:top-0 xl:py-2 p-5 absolute top-[90px]  md:right-[115px] right-[70px] bg-[#f5f9fe]  overflow-hidden xl:fixed  shadow-md shadow-[#82f7ad]`}
         >
-          <div className="xl:flex items-center hidden">
-            <li className="bg-[#f5f9fe]">
-              <a
-                href="/#home"
-                onClick={() => {
-                  setMenuOpen(!menuOpen);
-                }}
-              >
-                <img
-                  src=".././static/logo.svg"
-                  alt="Logo"
-                  className="w-20 h-20"
-                />
-              </a>
-            </li>
+          <div className="xl:block items-center hidden ">
+            <a
+              href="/#home"
+              onClick={() => {
+                setMenuOpen(!menuOpen);
+              }}
+            >
+              <img
+                src=".././static/logo.svg"
+                alt="Logo"
+                className="w-20 h-20"
+              />
+            </a>
           </div>
-          <div className="flex flex-col xl:flex-row items-center xl:text-base text-xs ">
-            {/* <li className="list-none bg-[#f5f9fe]">
-              <a
-                href="/#home"
-                onClick={() => {
-                  setMenuOpen(!menuOpen);
-                }}
-                className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
-              >
-                Home
-              </a>
-            </li> */}
-            <li className="list-none bg-[#f5f9fe]">
-              <a
-                href="/#service"
-                onClick={() => {
-                  setMenuOpen(!menuOpen);
-                }}
-                className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
-              >
-                Service
-              </a>
-            </li>
-            <li className="list-none bg-[#f5f9fe]">
-              <a
-                href="/#aboutUs"
-                onClick={() => {
-                  setMenuOpen(!menuOpen);
-                }}
-                className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
-              >
-                About Us
-              </a>
-            </li>
-            <li className="list-none bg-[#f5f9fe]">
-              <a
-                href="/#contact"
-                onClick={() => {
-                  setMenuOpen(!menuOpen);
-                }}
-                className="navLink block text-black font-medium relative xl:p-2.5 xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
-              >
-                Contact
-              </a>
-            </li>
-            <li className=" bg-[#f5f9fe] xl:mt-0 -mt-3 ">
-              <button
-                className="signinBtn border-solid border-[#2cda6d] bg-white text-[#2cda6d] py-3 px-4 rounded-md w-20 h-10 xl:w-34 xl:h-14"
-                onClick={() => {
-                  setMenuOpen(!menuOpen);
-                  toggleModal();
-                }}
-              >
-                Sign in
+          <div className="w-40 xl:w-auto flex flex-col xl:flex-row items-center xl:text-base text-xs xl:space-x-12 gap-4 xl:gap-0 xl:space-y-0  py-5 xl:py-0">
+            <a
+              href="/#service"
+              onClick={() => {
+                setMenuOpen(!menuOpen);
+              }}
+              className=" block text-black font-medium relative  xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
+            >
+              Service
+            </a>
+            <a
+              href="/#aboutUs"
+              onClick={() => {
+                setMenuOpen(!menuOpen);
+              }}
+              className=" block text-black font-medium relative  xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
+            >
+              About Us
+            </a>
+            <a
+              href="/#contact"
+              onClick={() => {
+                setMenuOpen(!menuOpen);
+              }}
+              className=" block text-black font-medium relative  xl:mx-1 m-0 p-0 bg-[#f5f9fe] hover:text-[#2cda6d] hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-[#2cda6d] after:transition-all after:duration-300"
+            >
+              Contact
+            </a>
+            <button
+              className="border-2 border-solid border-[#2cda6d] rounded-3xl bg-white text-[#2cda6d] px-4  h-10 xl:w-34 xl:h-12"
+              onClick={() => {
+                setMenuOpen(!menuOpen);
+                toggleModal();
+              }}
+            >
+              Sign in
+            </button>
+            <a
+              href="/register"
+              onClick={() => {
+                setMenuOpen(!menuOpen);
+              }}
+            >
+              <button className="SignBtn border-solid border-[#2cda6d] bg-[#2cda6d] text-white px-4 rounded-3xl  h-10 xl:w-34 xl:h-12">
+                Register
               </button>
-            </li>
-            <li className=" bg-[#f5f9fe] xl:mt-0 -mt-5">
-              <a
-                href="/register"
-                onClick={() => {
-                  setMenuOpen(!menuOpen);
-                }}
-              >
-                <button className="SignBtn border-solid border-[#2cda6d] bg-[#2cda6d] text-white py-3 px-4 rounded-md w-20 h-10 xl:w-34 xl:h-14">
-                  Register
-                </button>
-              </a>
-            </li>
+            </a>
           </div>
-        </ul>
+        </div>
       </div>
 
       <div>{isModalOpen && <ModalSignin />}</div>

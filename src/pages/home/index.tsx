@@ -11,7 +11,7 @@ function Home() {
   return (
     <div>
       <HorizontalNav />
-      <div className="py-10 bg-[#f5f9fe]" id="home">
+      <div className="py-10 bg-[#f5f9fe] mt-14" id="home">
         <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-[74px] flex flex-col  lg:flex-row items-center justify-between bg-[#f5f9fe]">
           <div className="text-center lg:text-left mb-8 lg:mb-0 bg-[#f5f9fe]">
             <h1 className="text-3xl sm:text-4xl lg:text-3xl xl:text-5xl font-bold">
