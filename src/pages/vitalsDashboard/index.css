@@ -86,6 +86,7 @@
 }
 .progress{
     position: relative;
+    /* margin-right: 10px; */
 }
 
 .progress-col{
@@ -231,4 +232,108 @@
     
   }
 
+
+/* Add responsive styles for screens below 1024px */
+/* Add responsive styles for screens below 1024px */
+@media (max-width: 1024px) {
+  #vitals-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-left: 0; /* Remove left margin */
+    margin-right: 0; /* Remove right margin */
+  }
+
+  .vitalscontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .ecg-container {
+    width: 100%;
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .vitals-table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row-vitals {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Add margin between rows for spacing */
+    /* border: solid red; */
+  }
+
+  .col {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Ensure items wrap in small screens */
+    /* border: solid red; */
+  }
+
+  .Circle-vitals {
+    margin: 10px;
+    width: 150px; /* Maintain original width */
+    height: 150px; /* Maintain original height */
+  }
+
+  .Progress-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .Label-vitals-ecg {
+    width: 100%;
+  }
+
+  .blood-pressure {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* margin-left: -30px; */
+  }
+
+  .blood-pressure-heading {
+    width: 100%;
+    text-align: center;
+  }
   
+  .report-button {
+    position: fixed;
+    bottom: 0%; /* Adjust as needed */
+    right: 45%; /* Adjust as needed */
+    /* margin-top: 15px; */
+    margin-bottom: 5px;
+    background-color: yellowgreen;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 0;
+  }
+
+  /* Center the date below the vitals dashboard */
+ 
+  #vitals-dashboard{
+    margin-left: 0;
+  }
+ 
+  .timestamp{
+    display: flex;
+    flex-direction: column;
+  }
+}

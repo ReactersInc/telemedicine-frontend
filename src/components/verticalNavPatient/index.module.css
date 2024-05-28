@@ -16,7 +16,8 @@
   
   top: 0;
   left: 0; /* Initially off the screen */
-  transition: left 0.3s;
+  transition: left 0.3s; 
+  border-radius: 30px;
 }
 
 #dashboardIcon {
@@ -59,7 +60,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 1285px) {
   .sidenav {
     width: 200px; /* Adjust width for smaller screens */
     /* background-color: #2cda6d; */
