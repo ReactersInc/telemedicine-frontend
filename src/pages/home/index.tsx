@@ -40,14 +40,14 @@ function Home() {
           Services
         </h2>
         <div className="flex flex-col lg:flex-row justify-center items-center gap-16 space-y-2 md:space-y-0 mt-10 ">
-          <div className="w-3/4 md:w-1/4">
+          <div className="w-3/4 md:w-[500px]">
             <img
               src="./static/Online Doctor-amico.png"
               alt="Printed circuit board"
             />
           </div>
 
-          <div className="sm:text-xl text-left flex flex-col space-y-4 mt-4 md:mt-0 text-sm">
+          <div className="sm:text-2xl text-left flex flex-col space-y-4 mt-4 md:mt-0 text-sm">
             <p>We provide</p>
             <div className="flex items-center gap-2">
               <img src="./static/bullet-point (2).png" className="w-4 h-4" />
