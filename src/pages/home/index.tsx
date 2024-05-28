@@ -35,32 +35,38 @@ function Home() {
         </div>
       </div>
 
-      <div className="bg-white px-8" id="service">
+      <div className=" px-8 pb-4" id="service">
         <h2 className="text-3xl font-semibold flex justify-center justify-items-center pt-4">
           Services
         </h2>
-        <div className="flex justify-between items-center">
-          <div className="w-1/4">
-            <img src="./static/Printed circuit board-cuate.png" />
+        <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 md:space-y-0 mt-10 ">
+          <div className="w-3/4 md:w-1/4 hidden xl:block  ">
+            <img
+              src="./static/Printed circuit board-cuate.png"
+              alt="Printed circuit board"
+            />
           </div>
-          <div className="text-xl text-center flex-col space-y-4">
+
+          <div className="sm:text-xl text-center flex flex-col space-y-4 mt-4 md:mt-0 text-sm">
             <p>We provide</p>
-            <p className="text-[#2cda6d] ">
+            <p className="text-[#2cda6d]">
               Doctor's Appointment Booking System
             </p>
-            <p className="text-[#2cda6d] ">Remote Consultation</p>
-            <p className="text-[#2cda6d] ">
+            <p className="text-[#2cda6d]">Remote Consultation</p>
+            <p className="text-[#2cda6d]">
               Health Diagnostics using Wearable IoMT Kit
             </p>
-            <p className="text-[#2cda6d] ">
+            <p className="text-[#2cda6d]">
               Your Digital Twin to predict your health conditions
             </p>
             <p>and few other services to be added soon.</p>
           </div>
-          <div className="w-1/4">
-            <img src="./static/Online Doctor-amico.png" />
+
+          <div className="ml-16 md:ml-0 w-full sm:w-2/3 md:w-1/2 lg:w-1/2 xl:w-1/4">
+            <img src="./static/Online Doctor-amico.png" alt="Online Doctor" />
           </div>
         </div>
+
         {/* <h1>Experienced in multiple medical practices</h1>
         <div className={styles.homeServiceShow}>
           <div className={styles.homeServiceCard}>
