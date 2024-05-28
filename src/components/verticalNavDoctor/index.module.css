@@ -56,7 +56,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 1024px) {
   .sidenav {
     width: 200px; /* Adjust width for smaller screens */
     /* background-color: #2cda6d; */

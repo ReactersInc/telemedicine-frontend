@@ -89,9 +89,9 @@ function DoctorDashboard() {
           <span>Doctor Dashboard</span>
         </div>
         <div className={styles.patientDetailContainer}>
-          <div className="flex pl-12 justify-left space-x-12">
-            <div className="border rounded-full">
-              <div className="w-52 h-52 p-4 border rounded-full bg-[#ffffff] flex justify-center">
+          <div className="xl:flex xl:pl-12 xl:justify-left xl:space-x-12">
+            <div className="xl:border xl:rounded-full xl:rounded-circle profile-img">
+              <div className="xl:w-52 xl:h-52 xl:p-4 xl:border rounded-full bg-[#ffffff] flex justify-center ">
                 <img
                   id={styles.profilePhoto}
                   src="./static/doc-avatar.svg"

@@ -163,7 +163,7 @@ function PatientDashboard() {
                     <h3 className="font-semibold">Consultant Doctor:</h3>
                     <div className={styles.value}>{diagnosis[0].Doc_ID}</div>
                   </div>
-                  <div className="ml-4 mt-4">
+                  <div className="ml-4 mt-1.5">
                     <div className="flex space-x-2 items-center">
                       <h3 className="font-semibold">Diagnosis</h3>
                       <button
@@ -185,7 +185,7 @@ function PatientDashboard() {
             </div>
           </div>
           <div className={styles.tableContainer}>
-            <div id={styles.tableDiv}>
+            <div id={styles.tableDiv} >
               <h1 className="font-semibold text-lg">Patient History</h1>
               <table id={styles.table}>
                 <thead>
@@ -194,6 +194,7 @@ function PatientDashboard() {
                     <th>Doctor</th>
                     <th>Diagnosis</th>
                     <th>Prescription</th>
+                    <th>View</th>
                   </tr>
                 </thead>
                 <tbody>

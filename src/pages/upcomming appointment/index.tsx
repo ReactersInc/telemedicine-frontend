@@ -55,33 +55,42 @@ const UpcomingAppointment = () => {
   return (
     <>
       <VerticalNavPatient />
-      <div className="ml-48 mt-10">
-        <h1 className="text-2xl font-bold mb-4 text-blue-600">
-          {data.Status.message}
-        </h1>
-        {data.Status.information &&
-          data.Status.information.map((doctor, index) => (
-            <div key={index} className="mb-4 p-4 bg-white shadow-lg rounded-lg">
-              <h2 className="text-xl font-semibold text-blue-500">
-                {doctor.doctor_name}
-              </h2>
-              <p className="text-gray-600">{doctor.doctor_email}</p>
-              <p className="text-gray-600">{doctor.doctor_mobileno}</p>
-              <p className="text-gray-600">{doctor.doctor_specilization}</p>
-              <h3 className="font-semibold text-blue-500">Bookings:</h3>
-              {doctor.bookings &&
-                doctor.bookings.map((booking, index) => (
-                  <div key={index} className="p-2 mt-2 bg-gray-100 rounded">
-                    <p className="text-gray-700">Date: {booking.Date}</p>
-                    <p className="text-gray-700">Time: {booking.Time}</p>
-                    <p className="text-gray-700">
-                      Slot Number: {booking.Slot_Number}
-                    </p>
-                  </div>
-                ))}
-            </div>
-          ))}
+      <div className="sm:ml-12 md:ml-24 lg:ml-32 xl:ml-48 mt-10">
+  <h1 className="text-xl sm:text-2xl font-bold mb-4 text-blue-600">
+    {data.Status.message}
+  </h1>
+  {data.Status.information &&
+    data.Status.information.map((doctor, index) => (
+      <div
+        key={index}
+        className="mb-4 p-4 bg-white shadow-lg rounded-lg sm:flex sm:justify-between sm:items-center"
+      >
+        <div>
+          <h2 className="text-lg sm:text-xl font-semibold text-blue-500">
+            {doctor.doctor_name}
+          </h2>
+          <p className="text-gray-600">{doctor.doctor_email}</p>
+          <p className="text-gray-600">{doctor.doctor_mobileno}</p>
+          <p className="text-gray-600">{doctor.doctor_specilization}</p>
+        </div>
+        <div>
+          <h3 className="font-semibold text-blue-500">Bookings:</h3>
+          {doctor.bookings &&
+            doctor.bookings.map((booking, index) => (
+              <div
+                key={index}
+                className="p-2 mt-2 bg-gray-100 rounded sm:flex sm:justify-between sm:items-center"
+              >
+                <p className="text-gray-700">Date: {booking.Date}</p>
+                <p className="text-gray-700">Time: {booking.Time}</p>
+                <p className="text-gray-700">Slot Number: {booking.Slot_Number}</p>
+              </div>
+            ))}
+        </div>
       </div>
+    ))}
+</div>
+
     </>
   );
 };

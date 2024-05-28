@@ -371,6 +371,8 @@ function VitalsDashboard() {
 
                       {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
                     </div>
+                  </div>
+
                     <div className="progress">
                       <div className="Circle-vitals">
                         <div> GSR</div>
@@ -379,35 +381,8 @@ function VitalsDashboard() {
                         {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
                       </div>
                     </div>
-                  </div>
 
-                  <div className="Progress-col">
-                    <div className="blood-pressure">
-                      <div>
-                        <div className="blood-pressure-heading">
-                          Blood Pressure
-                        </div>
-                        <div className="row-vitals">
-                          <div className="Progress">
-                            <div className="Circle-vitals" id="sys">
-                              <div> Systolic</div>
-                              <div className="Label-vitals">{sys}</div>
-
-                              {/* <Circle percent={sys} strokeWidth={6} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
-                            </div>
-                          </div>
-                          <div className="Progress">
-                            <div className="Circle-vitals" id="dia">
-                              <div> Diastolic</div>
-                              <div className="Label-vitals">{dia}</div>
-
-                              {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                 
 
                   <div className="vitals-report">
                     <div>
@@ -439,6 +414,36 @@ function VitalsDashboard() {
                     </div>
                   </div>
                 </div>
+                
+
+                <div className="Progress-col">
+                    <div className="blood-pressure">
+                      <div>
+                        <div className="blood-pressure-heading">
+                          Blood Pressure
+                        </div>
+                        <div className="row-vitals">
+                          <div className="Progress">
+                            <div className="Circle-vitals" id="sys">
+                              <div> Systolic</div>
+                              <div className="Label-vitals">{sys}</div>
+
+                              {/* <Circle percent={sys} strokeWidth={6} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                            </div>
+                          </div>
+                          <div className="Progress">
+                            <div className="Circle-vitals" id="dia">
+                              <div> Diastolic</div>
+                              <div className="Label-vitals">{dia}</div>
+
+                              {/* <Circle percent={50} strokeWidth={5} strokeColor="#25D366" trailWidth={5} trailColor="#d6e7da"/>  */}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
               </div>
             </div>
           </div>
