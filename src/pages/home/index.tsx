@@ -72,6 +72,11 @@ function Home() {
               </p>
             </div>
             <p className="mt-2">and few other services to be added soon.</p>
+            <div className="mt-6 mx-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#2cda6d] rounded-full text-base sm:text-lg font-semibold cursor-pointer inline-block">
+              <a href="./static/app.apk" className="">
+                Downlode APK
+              </a>
+            </div>
           </div>
         </div>
       </div>
